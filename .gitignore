@@ -10,3 +10,5 @@ results/synth/
 results/synth_dryrun/
 slurm/queue/*
 !slurm/queue/.gitkeep
+results/synth_flux/
+results/aerr/

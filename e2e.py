@@ -12,12 +12,40 @@ from probe import loss_fn
 from wmloc.watermarks import load_watermark
 
 
+class StegaConvs(nn.Module):
+    """StegaStamp decoder conv stack (dec_conv_1..7) rebuilt in torch with the ONNX weights (STN skipped).
+    TF 'SAME' padding for stride 2 = pad right/bottom by 1. Returns the outputs of conv 2, 4, 5, 6, 7."""
+    SPEC = [(3, 32, 2), (32, 32, 1), (32, 64, 2), (64, 64, 1), (64, 64, 2), (64, 128, 2), (128, 128, 2)]
+
+    def __init__(self):
+        super().__init__()
+        import onnx
+        from onnx import numpy_helper
+        w = {i.name: numpy_helper.to_array(i) for i in onnx.load(str(data.HERE / "external" / "stega_feats.onnx")).graph.initializer}
+        self.convs = nn.ModuleList()
+        for k, (ci, co, st) in enumerate(self.SPEC, 1):
+            c = nn.Conv2d(ci, co, 3, stride=st, padding=0)
+            c.weight.data = torch.from_numpy([v for n, v in w.items() if f"dec_conv_{k}/Conv2D" in n][0].copy())
+            c.bias.data = torch.from_numpy([v for n, v in w.items() if f"dec_conv_{k}/BiasAdd" in n][0].copy())
+            self.convs.append(c)
+
+    def forward(self, x):
+        h, outs = x - 0.5, []
+        for k, (c, (_, _, st)) in enumerate(zip(self.convs, self.SPEC), 1):
+            h = F.relu(c(F.pad(h, (0, 1, 0, 1) if (st == 2 and k < 7) else (1, 1, 1, 1))))
+            if k in (2, 4, 5, 6, 7):
+                outs.append(h)
+        return outs
+
+
 class Net(nn.Module):
     def __init__(self, wm):
         super().__init__(); self.kind = wm.name
         if wm.name == "pixelseal":
             cn = wm.det.convnext; self.pre = wm.det.preprocess; self.res = 256
             self.body = nn.ModuleList([cn.downsample_layers[0], cn.stages[0], cn.downsample_layers[1], cn.stages[1]]); c = (96, 192)
+        elif wm.name == "stegastamp":
+            self.ss = StegaConvs(); self.res = 400; c = (32, 64, 64, 128, 128)
         else:
             n = wm.net; self.res = 245
             self.stem = nn.Sequential(n.conv1, n.bn1, n.relu, n.maxpool); self.l1, self.l2 = n.layer1, n.layer2; c = (256, 512)
@@ -27,6 +55,9 @@ class Net(nn.Module):
 
     def forward(self, x):                                   # x: B x 3 x 512 x 512 in [0, 1]
         x = F.interpolate(x, size=(self.res,) * 2, mode="bilinear", align_corners=False, antialias=True)
+        up = lambda f: F.adaptive_avg_pool2d(f, 64) if f.shape[-1] > 64 else F.interpolate(f, size=(64, 64), mode="bilinear", align_corners=False)
+        if self.kind == "stegastamp":
+            return self.head(self.norm(torch.cat([up(f) for f in self.ss(x)], 1)))[:, 0]
         if self.kind == "pixelseal":
             h = self.pre(x); h0 = self.body[1](self.body[0](h)); h1 = self.body[3](self.body[2](h0))
         else:
@@ -35,12 +66,15 @@ class Net(nn.Module):
         return self.head(self.norm(torch.cat([up(h0), up(h1)], 1)))[:, 0]
 
 
+FLIP = True
+
+
 def batches(X, M, bs, steps, rng):
     for _ in range(steps):
         idx = np.sort(rng.choice(len(X), bs, replace=False))
         x = torch.from_numpy(np.stack([X[i] for i in idx])).cuda().permute(0, 3, 1, 2).float() / 255
         g = F.avg_pool2d(torch.from_numpy(np.stack([M[i] for i in idx])).cuda().float()[:, None], 2)[:, 0]
-        if rng.random() < 0.5:
+        if FLIP and rng.random() < 0.5:
             x, g = x.flip(-1), g.flip(-1)
         yield x, g
 
@@ -64,7 +98,9 @@ def predict(net, X):
     for i in range(0, len(X), 16):
         x = torch.from_numpy(np.stack(X[i:i + 16])).cuda().permute(0, 3, 1, 2).float() / 255
         with torch.autocast("cuda", dtype=torch.bfloat16):
-            p = (torch.sigmoid(net(x).float()) + torch.sigmoid(net(x.flip(-1)).float()).flip(-1)) / 2
+            p = torch.sigmoid(net(x).float())
+            if FLIP:
+                p = (p + torch.sigmoid(net(x.flip(-1)).float()).flip(-1)) / 2
         out.append(F.interpolate(p[:, None], size=(128, 128), mode="bilinear", align_corners=False)[:, 0].cpu().numpy())
     return np.concatenate(out)
 
@@ -72,10 +108,16 @@ def predict(net, X):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--method", required=True); ap.add_argument("--synth", default="synth_flux")
     ap.add_argument("--pre_steps", type=int, default=6000); ap.add_argument("--ft_epochs", type=int, default=30)
+    ap.add_argument("--noflip", type=int, default=0, help="no left-right flips (they mirror the watermark pattern)")
+    ap.add_argument("--res", type=int, default=0, help="input resolution (default: the decoder's own, 256/245/400)")
     ap.add_argument("--lr", type=float, default=1e-3); ap.add_argument("--bs", type=int, default=16); ap.add_argument("--tag", default="e2e")
     a = ap.parse_args(); t0 = time.time(); torch.manual_seed(0)
+    global FLIP
+    FLIP = not a.noflip
     wm = load_watermark(a.method, models_dir=data.TASK_DIR / "models", device="cuda")
     net = Net(wm).cuda().float()
+    if a.res:
+        net.res = a.res
     tr = data.load_split("train", [a.method]); names = [tr[i]["image_name"] for i in range(len(tr))]
     Xr = [tr[i]["image"] for i in range(len(tr))]; g = data.train_masks128(); Mr = [g[n] for n in names]
     fold = data.train_table().set_index("name").loc[names].fold.values
