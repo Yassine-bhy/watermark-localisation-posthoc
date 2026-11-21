@@ -124,10 +124,12 @@ footer { margin-top: 5rem; color: var(--muted); font-size: .85rem; border-top: 1
     <li><a href="#step2"><span class="n">09</span>Step 2: the network</a></li>
     <li><a href="#synth"><span class="n">10</span>Synthetic training data</a></li>
     <li><a href="#training"><span class="n">11</span>Training and evaluation</a></li>
-    <li><a href="#worker"><span class="n">12</span>The node worker</a></li>
-    <li><a href="#decisions"><span class="n">13</span>Decisions and plan B</a></li>
-    <li><a href="#commands"><span class="n">14</span>Command cheat sheet</a></li>
-    <li><a href="#glossary"><span class="n">15</span>Glossary</a></li>
+    <li><a href="#step2result"><span class="n">12</span>Step 2 result: not good enough</a></li>
+    <li><a href="#probe"><span class="n">13</span>Step 3: decoder-feature probes</a></li>
+    <li><a href="#worker"><span class="n">14</span>The node worker</a></li>
+    <li><a href="#decisions"><span class="n">15</span>Decisions and plan B</a></li>
+    <li><a href="#commands"><span class="n">16</span>Command cheat sheet</a></li>
+    <li><a href="#glossary"><span class="n">17</span>Glossary</a></li>
   </ol>
 </nav>
 
@@ -138,10 +140,10 @@ footer { margin-top: 5rem; color: var(--muted); font-size: .85rem; border-top: 1
     <h1>Watermark Localisation Course</h1>
     <p class="lede">Everything we built for task 1, in the order we built it: what the task asks, how the score behaves, what lives where on JURECA, every experiment with its numbers, and how the step 2 network is trained.</p>
     <div class="status">
-      <span class="chip">Leaderboard (public): <b>0.4695</b></span>
-      <span class="chip">Best CV so far: <b>0.473</b></span>
-      <span class="chip">Leader: <b>0.66</b></span>
-      <span class="chip">Step 2 job: <b>waiting for a node</b></span>
+      <span class="chip">Leaderboard (public): <b>0.5307</b></span>
+      <span class="chip">Best CV so far: <b>0.531</b></span>
+      <span class="chip">Leader (earlier tonight): <b>0.66</b></span>
+      <span class="chip">Node: <b>running, jrc0423, until ~11:17</b></span>
     </div>
   </div>
   <figure style="margin:0">
@@ -361,18 +363,54 @@ flowchart LR
   <li><strong>Post-process</strong> (tuned in CV): threshold per method, the full/partial gate, removing tiny specks, and rectangle refinement where the crop decodes.</li>
 </ol>
 
-<h2 id="worker"><span class="n">12</span>The node worker</h2>
+<h2 id="step2result"><span class="n">12</span>Step 2 result: not good enough</h2>
+<div class="measure">
+<p>The job started at 19:17. The dry run caught one bug (a learning-rate schedule with zero warm-up for very short runs), which was fixed on the running node without queueing again. Then everything ran: 18,000 synthetic images in 5 minutes, three pretraining variants, the automatic pick (256 px), and 5-fold fine-tuning.</p>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>Stage</th><th class="num">within-image AUC (median)</th><th class="num">CV mIoU with gate</th></tr></thead>
+<tbody>
+<tr><td>Pretrained on synthetic only, scored on the 510 real images</td><td class="num weak">0.46–0.59</td><td class="num">real-train 0.269 (no gate)</td></tr>
+<tr><td>Fine-tuned on real images, 5-fold held out</td><td class="num weak">0.45–0.60</td><td class="num weak">0.450</td></tr>
+<tr><td>Step 1 (for comparison)</td><td></td><td class="num">0.473</td></tr>
+</tbody></table></div>
+<div class="callout"><p><strong>Why it failed.</strong> Inside each real image the network's map was close to random. It learned the synthetic watermarks, but the real ones look different at pixel level: the same matched-filter measure gives 0.03 on freshly embedded watermarks and 0.002–0.024 on the real images, while both decode perfectly. An SDXL autoencoder round trip does not explain it (it breaks PixelSeal: agreement 0.55); a FLUX autoencoder round trip comes closer (decoding stays at 1.00, pattern drops to 0.02).</p>
+<p>Two more ideas were tested and dropped with numbers: rectangle boxes proposed by the network found a decodable box for only 3–12 % of partial images, and decoder attribution maps (occlusion, gradients) only helped PixelSeal full images (AUC 0.71).</p></div>
+
+<h2 id="probe"><span class="n">13</span>Step 3: decoder-feature probes (the breakthrough)</h2>
+<div class="measure">
+<p><strong>Idea.</strong> The network failed because Watermark Anything's features were never trained on our three watermarks. But each decoder's own early layers were: they exist to pick up exactly that watermark's texture. So instead of a big network, we take the decoder's intermediate feature maps, which are still spatial (64 × 64 cells), and train a tiny convolutional head on them to say “watermarked or not” per cell.</p>
+<p><strong>Features.</strong> PixelSeal: ConvNeXt stages 0–1 (plus stage 2 in the “deep” version). TrustMark: ResNet layer1–2 (plus layer3). StegaStamp: conv layers 2, 4 and 5, exposed by adding them as outputs of a copy of the ONNX graph. The image is resized exactly as the decoder resizes it, so the features see the watermark at the scale it was trained on.</p>
+</div>
+{{py:probe.py:features}}
+{{py:probe.py:Head}}
+<div class="tbl"><table>
+<thead><tr><th>Method</th><th class="num">within-image AUC, full</th><th class="num">partial</th><th class="num">CV mIoU (gate + thresholds)</th><th class="num">step 1</th></tr></thead>
+<tbody>
+<tr><td>PixelSeal (average of 2 heads)</td><td class="num good">0.84–0.86</td><td class="num">0.72–0.78</td><td class="num good">0.556</td><td class="num">0.470</td></tr>
+<tr><td>TrustMark (average of 2 heads)</td><td class="num good">0.80–0.82</td><td class="num">0.68–0.70</td><td class="num good">0.544</td><td class="num">0.465</td></tr>
+<tr><td>StegaStamp</td><td class="num">0.73</td><td class="num">0.68</td><td class="num">0.494</td><td class="num">0.485</td></tr>
+<tr><td><strong>All</strong></td><td></td><td></td><td class="num"><strong>0.531</strong></td><td class="num">0.473</td></tr>
+</tbody></table></div>
+<div class="callout wm"><p><strong>Leaderboard: 0.5307</strong> (public split), against 0.5311 in CV: our cross-validation predicts the leaderboard almost exactly, so we keep deciding on CV. Each probe trains in under 30 seconds on one GPU, so improving it is cheap.</p></div>
+<div class="measure"><p>Scoring and submitting use one shared protocol: <code>evalmaps.py</code> (5-fold CV: gate threshold and one map threshold per regime fit on the training folds) and <code>make_sub.py</code> (the same, refit on all 510 images, applied to the test maps).</p></div>
+{{py:evalmaps.py:evaluate}}
+
+<h2 id="worker"><span class="n">14</span>The node worker</h2>
 <div class="measure">
 <p>Because waiting for a node costs hours, step 2 is <strong>one</strong> 16-hour job. It runs the pipeline, then stays on the node: each GPU keeps taking the next command dropped into <code>slurm/queue/</code>. New experiments start within seconds, without queueing again. The job runs from a frozen copy of its shell scripts (bash reads scripts while running them, so editing them mid-job could break it), while Python files are read fresh by every new command.</p>
 </div>
 {{whole:slurm/worker.sh}}
 {{whole:slurm/pipeline.sh}}
 {{whole:slurm/multi.sh}}
+<div class="measure"><p><strong>Sharing the node with teammates.</strong> The organisers allow one job per team, so teammates use our node instead of submitting. A command dropped into the queue runs on our node (jrc0423) on one free GPU; we keep at most two of our own commands running so at least two GPUs stay free.</p></div>
+{{whole:slurm/run_on_node.sh}}
 
-<h2 id="decisions"><span class="n">13</span>Decisions and plan B</h2>
+<h2 id="decisions"><span class="n">15</span>Decisions and plan B</h2>
 <div class="tbl"><table>
 <thead><tr><th>When</th><th>We look at</th><th>Decision</th></tr></thead>
 <tbody>
+<tr><td>done: dry run, data, pretraining, fine-tuning</td><td>step 2 network: CV 0.450</td><td>below 0.473: not submitted; replaced by decoder-feature probes (0.531, submitted)</td></tr>
 <tr><td>about 30–40 min after the job starts</td><td>dry-run log, 12 synthetic shards present</td><td>a failure stops the job at once; fix and resubmit</td></tr>
 <tr><td>every half epoch of pretraining</td><td>real-train mIoU per variant (510 unseen images)</td><td>if nothing beats 0.473 after one epoch, synthetic data does not transfer: switch to plan B</td></tr>
 <tr><td>after fine-tuning</td><td>5-fold CV mIoU per method and regime</td><td>submit only if it beats 0.473 by more than 0.02 (leaderboard noise)</td></tr>
@@ -383,7 +421,7 @@ flowchart LR
   <div class="card"><span class="tag">Always</span><h4>Gate + rectangles</h4><p>The 97 %-accurate gate and decoder-verified rectangles go on top of whichever model wins.</p></div>
 </div>
 
-<h2 id="commands"><span class="n">14</span>Command cheat sheet</h2>
+<h2 id="commands"><span class="n">16</span>Command cheat sheet</h2>
 <div class="code"><figcaption><span class="path">your terminal</span><span class="what">connect, keep a session, watch the job</span></figcaption><pre><code class="language-bash">ssh benelhajyahia1@jrlogin10.jureca.fz-juelich.de
 tmux new -s mon                      # later: tmux attach -t mon   (detach: Ctrl-b then d)
 cd /p/scratch/training2666/neves2/BlitzTeam/Hackathon_Watermark_Localisation_Task/benelhajyahia1
@@ -399,7 +437,7 @@ echo "python train.py finetune --init results/models/wam256_pre.pt --fold 0 --ta
 # release the node when everything is done (only then)
 touch slurm/queue/STOP</code></pre></div>
 
-<h2 id="glossary"><span class="n">15</span>Glossary</h2>
+<h2 id="glossary"><span class="n">17</span>Glossary</h2>
 <div class="tbl"><table><tbody>
 <tr><td><strong>mIoU</strong></td><td>Mean over the two classes of intersection over union, per image, then averaged over images.</td></tr>
 <tr><td><strong>Regime / gate</strong></td><td>Full (whole image watermarked, with holes) vs. partial (a watermarked part in a clean image). The gate decides it from the whole-image decode.</td></tr>
