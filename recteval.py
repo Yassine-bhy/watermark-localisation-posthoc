@@ -2,6 +2,7 @@
     python recteval.py <map_tag> [score|agree]
 Per held-out fold: gate, map post-processing params and the box cut-off tau are fit on the training folds;
 an image the gate calls partial gets its box as mask if its box score > tau, else the post-processed map."""
+import os
 import sys
 import numpy as np
 import data
@@ -21,7 +22,7 @@ def main(tag, key="agree"):
     names, P = load_maps(tag, "train"); names = np.array(names); gs = gate_scores(method, "train")
     fold = df.loc[names].fold.values; full = df.loc[names].full_watermark.values; regime = df.loc[names].regime.values
     G = np.stack([g[n] for n in names]); gsv = np.array([gs[n] for n in names])
-    z = np.load(data.RESULTS / f"brute_{method}_train.npz"); bx = dict(zip(z["names"].tolist(), z["box"])); bv = dict(zip(z["names"].tolist(), z[key]))
+    z = np.load(data.RESULTS / f"{os.environ.get('BRUTE_TAG', 'brute')}_{method}_train.npz"); bx = dict(zip(z["names"].tolist(), z["box"])); bv = dict(zip(z["names"].tolist(), z[key]))
     has = np.array([n in bx for n in names]); val = np.array([bv.get(n, -1e9) for n in names])
     B = np.array([miou_batch(box_mask(bx[n])[None], G[i][None])[0] if has[i] else 0 for i, n in enumerate(names)])
     S = postproc.table(P, G)
@@ -35,6 +36,7 @@ def main(tag, key="agree"):
         use = ~pf & has & (val > c)
         held[te] = np.where(use, B, mp)[te]; held_map[te] = mp[te]
         print(f"fold {k}: tau {c:.3f}  boxes used on held-out {use[te].sum()}", flush=True)
+    main.result = (held_map.mean(), held.mean())
     print(f"{tag}: map+post CV {held_map.mean():.4f} -> with boxes {held.mean():.4f}  (partial {held_map[~full].mean():.4f} -> {held[~full].mean():.4f})")
     for r in ("partial",):
         pass

@@ -44,13 +44,22 @@ class Net(nn.Module):
         if wm.name == "pixelseal":
             cn = wm.det.convnext; self.pre = wm.det.preprocess; self.res = 256
             self.body = nn.ModuleList([cn.downsample_layers[0], cn.stages[0], cn.downsample_layers[1], cn.stages[1]]); c = (96, 192)
+            if DEEP:
+                self.body.extend([cn.downsample_layers[2], cn.stages[2]]); c = (96, 192, 384)
         elif wm.name == "stegastamp":
             self.ss = StegaConvs(); self.res = 400; c = (32, 64, 64, 128, 128)
         else:
             n = wm.net; self.res = 245
             self.stem = nn.Sequential(n.conv1, n.bn1, n.relu, n.maxpool); self.l1, self.l2 = n.layer1, n.layer2; c = (256, 512)
-        self.head = nn.Sequential(nn.Conv2d(sum(c), 64, 1), nn.GELU(), nn.Conv2d(64, 64, 3, padding=1), nn.GELU(),
-                                  nn.Conv2d(64, 32, 3, padding=2, dilation=2), nn.GELU(), nn.Conv2d(32, 1, 1))
+            if DEEP:
+                self.l3 = n.layer3; c = (256, 512, 1024)
+        if DEEP:                                               # bigger head with a wider receptive field (objects)
+            self.head = nn.Sequential(nn.Conv2d(sum(c), 128, 1), nn.GELU(), nn.Conv2d(128, 128, 3, padding=1), nn.GELU(),
+                                      nn.Conv2d(128, 128, 3, padding=2, dilation=2), nn.GELU(), nn.Conv2d(128, 64, 3, padding=4, dilation=4), nn.GELU(),
+                                      nn.Conv2d(64, 64, 3, padding=8, dilation=8), nn.GELU(), nn.Conv2d(64, 1, 1))
+        else:
+            self.head = nn.Sequential(nn.Conv2d(sum(c), 64, 1), nn.GELU(), nn.Conv2d(64, 64, 3, padding=1), nn.GELU(),
+                                      nn.Conv2d(64, 32, 3, padding=2, dilation=2), nn.GELU(), nn.Conv2d(32, 1, 1))
         self.norm = nn.BatchNorm2d(sum(c))
 
     def forward(self, x):                                   # x: B x 3 x 512 x 512 in [0, 1]
@@ -59,13 +68,18 @@ class Net(nn.Module):
         if self.kind == "stegastamp":
             return self.head(self.norm(torch.cat([up(f) for f in self.ss(x)], 1)))[:, 0]
         if self.kind == "pixelseal":
-            h = self.pre(x); h0 = self.body[1](self.body[0](h)); h1 = self.body[3](self.body[2](h0))
+            h = self.pre(x); h0 = self.body[1](self.body[0](h)); h1 = self.body[3](self.body[2](h0)); fs = [h0, h1]
+            if DEEP:
+                fs.append(self.body[5](self.body[4](h1)))
         else:
-            h = self.stem(x * 2 - 1); h0 = self.l1(h); h1 = self.l2(h0)
-        return self.head(self.norm(torch.cat([up(h0), up(h1)], 1)))[:, 0]
+            h = self.stem(x * 2 - 1); h0 = self.l1(h); h1 = self.l2(h0); fs = [h0, h1]
+            if DEEP:
+                fs.append(self.l3(h1))
+        return self.head(self.norm(torch.cat([up(f) for f in fs], 1)))[:, 0]
 
 
 FLIP = True
+DEEP = False                 # add a deeper decoder layer (PS stage 2 / TM layer3) for context + bigger head
 OUT = 64                     # output grid (64, or 128 = the official mask grid)
 LOVASZ = False
 
@@ -120,6 +134,19 @@ def train(net, X, M, steps, lr, bs, seed):
 
 
 @torch.no_grad()
+def predict_v(net, X):
+    """4-way flip TTA (identity, h, v, hv), each un-flipped before averaging."""
+    out = []
+    for i in range(0, len(X), 16):
+        x = torch.from_numpy(np.stack(X[i:i + 16])).cuda().permute(0, 3, 1, 2).float() / 255; p = 0
+        with torch.autocast("cuda", dtype=AMP or torch.float32, enabled=AMP is not None):
+            for d in ((), (-1,), (-2,), (-2, -1)):
+                xx = x.flip(d) if d else x; q = torch.sigmoid(net(xx).float()); p = p + (q.flip(d) if d else q)
+        out.append(F.interpolate((p / 4)[:, None], size=(128, 128), mode="bilinear", align_corners=False)[:, 0].cpu().numpy())
+    return np.concatenate(out)
+
+
+@torch.no_grad()
 def predict(net, X):
     out = []
     for i in range(0, len(X), 16):
@@ -136,14 +163,15 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--method", required=True); ap.add_argument("--synth", default="synth_flux")
     ap.add_argument("--pre_steps", type=int, default=6000); ap.add_argument("--ft_epochs", type=int, default=30)
     ap.add_argument("--noflip", type=int, default=0, help="no left-right flips (they mirror the watermark pattern)")
-    ap.add_argument("--out", type=int, default=64); ap.add_argument("--foldens", type=int, default=0, help="test map = mean of the 5 fold models + full model")
+    ap.add_argument("--seed", type=int, default=0, help="seed offset (seed ensembles)")
+    ap.add_argument("--deep", type=int, default=0); ap.add_argument("--out", type=int, default=64); ap.add_argument("--foldens", type=int, default=0, help="test map = mean of the 5 fold models + full model")
     ap.add_argument("--bnfreeze", type=int, default=0); ap.add_argument("--lovasz", type=int, default=0)
     ap.add_argument("--fp32", type=int, default=0, help="no bf16 autocast")
     ap.add_argument("--res", type=int, default=0, help="input resolution (default: the decoder's own, 256/245/400)")
     ap.add_argument("--lr", type=float, default=1e-3); ap.add_argument("--bs", type=int, default=16); ap.add_argument("--tag", default="e2e")
-    a = ap.parse_args(); t0 = time.time(); torch.manual_seed(0)
-    global FLIP, AMP, BNFREEZE, LOVASZ, OUT
-    OUT = a.out
+    a = ap.parse_args(); t0 = time.time(); torch.manual_seed(a.seed)
+    global FLIP, AMP, BNFREEZE, LOVASZ, OUT, DEEP
+    OUT = a.out; DEEP = bool(a.deep)
     LOVASZ = bool(a.lovasz)
     BNFREEZE = bool(a.bnfreeze)
     FLIP = not a.noflip
@@ -160,24 +188,26 @@ def main():
         Xs = [np.load(s / "images.npy", mmap_mode="r") for s in sh]; Ms = [np.load(s / "masks.npy") for s in sh]
         Xs = [x for X in Xs for x in X]; Ms = [m for M in Ms for m in M]   # lists of views (lazy)
         print("synthetic", len(Xs), flush=True)
-        net = train(net, Xs, Ms, a.pre_steps, a.lr, a.bs, 0)
+        net = train(net, Xs, Ms, a.pre_steps, a.lr, a.bs, 100 * a.seed)
         zs = predict(net, Xr); np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}pre_{a.method}_train.npz", names=np.array(names), prob=zs.astype(np.float16))
         print("stage A done (zero-shot maps on real train saved)", f"{time.time() - t0:.0f}s", flush=True)
-    base = copy.deepcopy(net.state_dict()); held = np.zeros((len(names), 128, 128), np.float32)
+    base = copy.deepcopy(net.state_dict()); held = np.zeros((len(names), 128, 128), np.float32); held_v = np.zeros_like(held)
     te_ds = data.load_split("test", [a.method]); tn = [te_ds[i]["image_name"] for i in range(len(te_ds))]
     Xt = [te_ds[i]["image"] for i in range(len(te_ds))]; test_sum = np.zeros((len(tn), 128, 128), np.float32); n_models = 0
     ft_steps = lambda n: a.ft_epochs * n // a.bs
     for k in range(5):
         net.load_state_dict(base); idx = np.nonzero(fold != k)[0]
-        train(net, [Xr[i] for i in idx], [Mr[i] for i in idx], ft_steps(len(idx)), a.lr * 0.3, a.bs, k + 1)
-        te = np.nonzero(fold == k)[0]; held[te] = predict(net, [Xr[i] for i in te])
+        train(net, [Xr[i] for i in idx], [Mr[i] for i in idx], ft_steps(len(idx)), a.lr * 0.3, a.bs, 100 * a.seed + k + 1)
+        te = np.nonzero(fold == k)[0]; held[te] = predict(net, [Xr[i] for i in te]); held_v[te] = predict_v(net, [Xr[i] for i in te])
         if a.foldens:
             test_sum += predict(net, Xt); n_models += 1
         print("fold", k, f"{time.time() - t0:.0f}s", flush=True)
     np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}_{a.method}_train.npz", names=np.array(names), prob=held.astype(np.float16))
-    net.load_state_dict(base); train(net, Xr, Mr, ft_steps(len(Xr)), a.lr * 0.3, a.bs, 9)
+    np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}V_{a.method}_train.npz", names=np.array(names), prob=held_v.astype(np.float16))
+    net.load_state_dict(base); train(net, Xr, Mr, ft_steps(len(Xr)), a.lr * 0.3, a.bs, 100 * a.seed + 9)
     test_sum += predict(net, Xt); n_models += 1
     np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}_{a.method}_test.npz", names=np.array(tn), prob=(test_sum / n_models).astype(np.float16))
+    np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}V_{a.method}_test.npz", names=np.array(tn), prob=predict_v(net, Xt).astype(np.float16))
     print("done", f"{time.time() - t0:.0f}s")
 
 

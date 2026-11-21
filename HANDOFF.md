@@ -1,5 +1,22 @@
 # Handoff — Watermark Localisation (task 1), BlitzTeam
 
+## UPDATE Sun 22 Nov 00:15 (newest; read first)
+Best: **public 0.6456 (id 1832, 22:52), CV 0.653**, `results/sub_step4f_psbox.pt` (PS ens3+boxes, TM ens2+boxes, SS ens2).
+User directives tonight: focus FULL images; cheap measurable changes judged on CV; NO realistic-inpainting data / new
+architectures / 128 retrain / SAM without asking (the user later allowed continuing; 128 + seeds are queued); 2 GPUs max.
+Findings after 22:20:
+- Full images (diag_full.py, shape_breakdown.py): every full train image has a hole, 54 % have 2+; loss = bad shapes 46 %
+  of images (mostly "missed one of several holes"), missed holes 23 %; oracle best-threshold-per-image only +0.038.
+- Step 1 rules (step1_full.py): never-empty +0.005 PS only, top-k components +-0.002 -> post-processing saturated.
+- Dead ends: TruFor (AUC 0.44-0.56 on full), pixel matched filter with re-embedded pattern (AUC 0.51), map-mean gate,
+  768 input, no-flip, fp32, Lovasz (all ~0); frozen BN +0.006 (TM).
+- StegaStamp boxes (diag2a.py): the score peak is ~4 px wide (8 px shift -> 3 % of score); the coarse grid jumps over it;
+  centring the score does not help. New `seedrect.py`: boxes seeded from our map + dense 8 px search + refinement to 1 px.
+Running (2 jobs): `seedrect` (SS then PS; test split only if boxgain.py says CV +0.005) and `o128seeds`
+(e2e --out 128 --foldens; then seeds 1-4 of the 512 models, tags e2eR512s<k>, also 4-way-flip variants <tag>V).
+Next: when seedrect SS test exists -> make_sub2 with BRUTE file swap (make_sub2 reads results/brute_<m>_*; copy or add a
+tag option), ensemble seeds (avg of e2eR512, e2eR512s1..4) per method, submit if CV gain > 0.005.
+
 ## UPDATE Sat 21 Nov ~22:20 (read this first)
 Best: **CV 0.638 / public 0.6323 (id 1742, 22:12)**, `results/sub_step4e_r512.pt`. Leaderboard leader ~0.72.
 What works (all numbers 5-fold held-out CV, split full/partial in evalmaps.py output):
@@ -13,7 +30,7 @@ What works (all numbers 5-fold held-out CV, split full/partial in evalmaps.py ou
 - Best per method now: PS ens3 (e2eR512+e2eflux+probe) + boxes 0.621; TM ens2 (e2eR512+e2eflux) + boxes 0.698; SS ens2 0.639 (boxes pending).
 Dead ends tonight: stitched decoder agreement maps, DINOv2, AE reconstruction error, COCO retrieval, TrustMark remover energy.
 Filesystem: intermittent "Disk quota exceeded" (project-wide?) silently kills queued jobs (no log) -> check node_status after queueing.
-GPU rule from user: leave at least 1 GPU free for teammates (max 3 of ours).
+GPU rule from user: at most 1 GPU for us — one sequential chain (slurm/hold_*.cmd + waiter to queue the next part).
  — state at Sat 21 Nov 2026, ~20:35
 
 Read first: `TASK.md` (official task), `submissions.md` (all submissions), course page

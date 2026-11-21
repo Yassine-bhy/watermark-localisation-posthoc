@@ -85,7 +85,7 @@ def ok(b, lim):
 
 
 def refine(sc, x, s, box, best, lim):
-    for step in (16, 8, 4, 2):
+    for step in (16, 8, 4, 2, 1):
         while True:
             moves = []
             for k in range(4):
@@ -93,6 +93,14 @@ def refine(sc, x, s, box, best, lim):
                     b = list(box); b[k] += d
                     if ok(b, lim):
                         moves.append(tuple(b))
+            for dy, dx in ((-step, 0), (step, 0), (0, -step), (0, step)):        # translation (two opposite edges together)
+                b = (box[0] + dy, box[1] + dx, box[2] + dy, box[3] + dx)
+                if ok(b, lim):
+                    moves.append(b)
+            for d in (-step, step):                                              # scaling around the centre
+                b = (box[0] - d, box[1] - d, box[2] + d, box[3] + d)
+                if ok(b, lim):
+                    moves.append(b)
             if not moves:
                 break
             v, _ = sc.score(x, moves, s)
