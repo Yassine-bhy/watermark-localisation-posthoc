@@ -15,6 +15,7 @@ from wmloc.watermarks import load_watermark
 SIZES = [48]
 while SIZES[-1] < 512:
     SIZES.append(min(512, round(SIZES[-1] * 1.25)))
+SMALL = [16, 20, 25, 31, 39]          # --small 1: real rectangles go down to ~10 px
 
 
 class Scorer:
@@ -36,8 +37,22 @@ class Scorer:
         out = self.ss(torch.zeros(len(b), 100, device=b.device), b.permute(0, 2, 3, 1).contiguous())
         return out[3].float() if isinstance(out, (list, tuple)) else out.float()
 
+    bias = None                          # per-bit mean logit over the image's grid windows (--center 1)
+
+    @torch.no_grad()
+    def logits_all(self, x, boxes, bs=256):
+        mode = "bicubic" if self.m == "stegastamp" else "bilinear"; out = []
+        for i in range(0, len(boxes), bs):
+            b = torch.cat([F.interpolate(x[:, :, y0:y1, x0:x1], size=(self.res, self.res), mode=mode, align_corners=False, antialias=True)
+                           for y0, x0, y1, x1 in boxes[i:i + bs]]).clamp(0, 1)
+            out.append(self.logits(b))
+        return torch.cat(out)
+
     @torch.no_grad()
     def score(self, x, boxes, s, bs=256):
+        if self.bias is not None:
+            lg = self.logits_all(x, boxes, bs) - self.bias[None]
+            return (lg * s[None]).mean(1).cpu().numpy(), (torch.tanh(lg) * s[None]).mean(1).cpu().numpy()
         S, A = [], []
         mode = "bicubic" if self.m == "stegastamp" else "bilinear"
         for i in range(0, len(boxes), bs):
@@ -47,10 +62,10 @@ class Scorer:
         return torch.cat(S).cpu().numpy(), torch.cat(A).cpu().numpy()
 
 
-def grid(lim):
+def grid(lim, sizes=SIZES):
     out = []
-    for h in SIZES:
-        for w in SIZES:
+    for h in sizes:
+        for w in sizes:
             if max(h, w) / min(h, w) > lim:
                 continue
             sy, sx = max(8, h // 2), max(8, w // 2)
@@ -66,7 +81,7 @@ def iou(a, b):
 
 def ok(b, lim):
     y0, x0, y1, x1 = b; h, w = y1 - y0, x1 - x0
-    return y0 >= 0 and x0 >= 0 and y1 <= 512 and x1 <= 512 and h >= 16 and w >= 16 and max(h, w) / min(h, w) <= lim
+    return y0 >= 0 and x0 >= 0 and y1 <= 512 and x1 <= 512 and h >= 8 and w >= 8 and max(h, w) / min(h, w) <= lim
 
 
 def refine(sc, x, s, box, best, lim):
@@ -89,8 +104,9 @@ def refine(sc, x, s, box, best, lim):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--method", required=True); ap.add_argument("--split", default="train"); ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--center", type=int, default=0); ap.add_argument("--small", type=int, default=0); ap.add_argument("--tag", default="brute")
     a = ap.parse_args(); t0 = time.time()
-    sc = Scorer(a.method); lim = 2.2 if a.method == "trustmark" else 16.5; G = grid(lim)
+    sc = Scorer(a.method); lim = 2.2 if a.method == "trustmark" else 16.5; G = grid(lim, (SMALL if a.small else []) + SIZES)
     gs = dict(zip(*[np.load(data.RESULTS / "signals" / f"{a.method}_{a.split}.npz")[k].tolist() for k in ("names", "global_soft")]))
     ds = data.load_split(a.split, [a.method]); out = {"names": [], "box": [], "score": [], "agree": []}
     print(a.method, "grid boxes per image:", len(G), flush=True)
@@ -100,11 +116,16 @@ def main():
             continue
         it = ds[i]; x = torch.from_numpy(it["image"].copy()).permute(2, 0, 1)[None].float().div(255).cuda()
         s = torch.from_numpy(it["message"].astype(np.float32) * 2 - 1).cuda()
-        v, _ = sc.score(x, G, s); top = []
+        if a.center:
+            sc.bias = None; lgG = sc.logits_all(x, G); sc.bias = lgG.mean(0)
+            v = ((lgG - sc.bias[None]) * s[None]).mean(1).cpu().numpy(); del lgG
+        else:
+            v, _ = sc.score(x, G, s)
+        top = []
         for j in np.argsort(-v):
             if all(iou(G[j], G[t]) < 0.5 for t in top):
                 top.append(j)
-            if len(top) == 5:
+            if len(top) == (20 if a.center else 5):
                 break
         best = max((refine(sc, x, s, G[j], float(v[j]), lim) for j in top), key=lambda r: r[1])
         _, ag = sc.score(x, [best[0]], s)
@@ -114,7 +135,7 @@ def main():
             print(len(out["names"]), f"{time.time() - t0:.0f}s", flush=True)
         if a.limit and len(out["names"]) >= a.limit:
             break
-    np.savez(data.RESULTS / f"brute_{a.method}_{a.split}.npz", **{k: np.array(v) for k, v in out.items()})
+    np.savez(data.RESULTS / f"{a.tag}_{a.method}_{a.split}.npz", **{k: np.array(v) for k, v in out.items()})
     print("done", len(out["names"]), f"{time.time() - t0:.0f}s")
 
 

@@ -12,3 +12,4 @@ slurm/queue/*
 !slurm/queue/.gitkeep
 results/synth_flux/
 results/aerr/
+.venv_gen/

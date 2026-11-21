@@ -2,6 +2,7 @@
     python evalmaps.py probe_pixelseal probe_deep_pixelseal ...     (tags = results/preds/<tag>_train.npz)
 Protocol (5-fold CV, held-out only): full/partial gate from the whole-image decode (threshold fit on the training
 folds), then one threshold per regime on the map (fit on the training folds). Prints within-image AUC and CV mIoU."""
+import os
 import sys
 
 import numpy as np
@@ -13,7 +14,15 @@ from diagnostics import auc, best_gate, miou_batch
 TS = [-1] + list(np.linspace(0.02, 0.98, 49)) + [2]
 
 
+GATE_MAP = dict(kv.split("=") for kv in os.environ.get("GATE_MAP", "").split(",") if kv)   # method=maptag
+
+
 def gate_scores(method, split):
+    """Full/partial gate score: whole-image decode agreement, or (GATE_MAP env, e.g. 'trustmark=ens2_trustmark')
+    the mean of a probability map (more accurate for TM / SS: 0.988 / 0.994 vs 0.971 / 0.976 held-out)."""
+    if method in GATE_MAP:
+        z = np.load(data.RESULTS / "preds" / f"{GATE_MAP[method]}_{split}.npz")
+        return dict(zip(z["names"].tolist(), z["prob"].astype(np.float32).mean((1, 2))))
     z = np.load(data.RESULTS / "signals" / f"{method}_{split}.npz")
     return dict(zip(z["names"].tolist(), z["global_soft"]))
 
