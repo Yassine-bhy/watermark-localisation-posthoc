@@ -1,0 +1,40 @@
+{"step": 100, "loss": 1.5671690964698792, "sec": 12}
+{"step": 200, "loss": 1.5432267010211944, "sec": 23}
+{"step": 300, "loss": 1.4921815633773803, "sec": 34}
+{"step": 400, "loss": 1.4738292348384858, "sec": 45}
+{"step": 500, "loss": 1.4779449999332428, "sec": 56}
+{"step": 562, "real_train": {"pixelseal": {"miou_at_05": 0.247, "best_miou": 0.253, "best_thr": 0.95}, "trustmark": {"miou_at_05": 0.2771, "best_miou": 0.2771, "best_thr": 0.5}, "stegastamp": {"miou_at_05": 0.246, "best_miou": 0.254, "best_thr": 0.95}, "all_at_05": 0.2567}}
+{"step": 600, "loss": 1.4745050132274629, "sec": 72}
+{"step": 700, "loss": 1.472792010307312, "sec": 83}
+{"step": 800, "loss": 1.4865353322029113, "sec": 94}
+{"step": 900, "loss": 1.4683120739459992, "sec": 105}
+{"step": 1000, "loss": 1.4638847374916077, "sec": 116}
+{"step": 1100, "loss": 1.4708862793445587, "sec": 126}
+{"step": 1124, "real_train": {"pixelseal": {"miou_at_05": 0.247, "best_miou": 0.253, "best_thr": 0.95}, "trustmark": {"miou_at_05": 0.2484, "best_miou": 0.2516, "best_thr": 0.35}, "stegastamp": {"miou_at_05": 0.246, "best_miou": 0.254, "best_thr": 0.95}, "all_at_05": 0.2471}}
+{"step": 1200, "loss": 1.460384349822998, "sec": 142}
+{"step": 1300, "loss": 1.467267256975174, "sec": 153}
+{"step": 1400, "loss": 1.4643219363689424, "sec": 164}
+{"step": 1500, "loss": 1.4572191214561463, "sec": 175}
+{"step": 1600, "loss": 1.453951165676117, "sec": 185}
+{"step": 1686, "real_train": {"pixelseal": {"miou_at_05": 0.253, "best_miou": 0.261, "best_thr": 0.4}, "trustmark": {"miou_at_05": 0.2484, "best_miou": 0.2516, "best_thr": 0.4}, "stegastamp": {"miou_at_05": 0.254, "best_miou": 0.2758, "best_thr": 0.45}, "all_at_05": 0.2518}}
+{"step": 1700, "loss": 1.451596976518631, "sec": 201}
+{"step": 1800, "loss": 1.4575556516647339, "sec": 212}
+{"step": 1900, "loss": 1.4504556238651276, "sec": 223}
+{"step": 2000, "loss": 1.4608787977695465, "sec": 234}
+{"step": 2100, "loss": 1.4448275029659272, "sec": 245}
+{"step": 2200, "loss": 1.4491635000705718, "sec": 256}
+{"step": 2248, "real_train": {"pixelseal": {"miou_at_05": 0.247, "best_miou": 0.253, "best_thr": 0.95}, "trustmark": {"miou_at_05": 0.2516, "best_miou": 0.2516, "best_thr": 0.55}, "stegastamp": {"miou_at_05": 0.246, "best_miou": 0.2682, "best_thr": 0.55}, "all_at_05": 0.2482}}
+{"step": 2300, "loss": 1.4523050463199616, "sec": 272}
+{"step": 2400, "loss": 1.4440155911445618, "sec": 283}
+{"step": 2500, "loss": 1.4426615977287292, "sec": 293}
+{"step": 2600, "loss": 1.4395586502552034, "sec": 304}
+{"step": 2700, "loss": 1.442029025554657, "sec": 315}
+{"step": 2800, "loss": 1.439877848625183, "sec": 325}
+{"step": 2810, "real_train": {"pixelseal": {"miou_at_05": 0.253, "best_miou": 0.253, "best_thr": 0.95}, "trustmark": {"miou_at_05": 0.2531, "best_miou": 0.2531, "best_thr": 0.5}, "stegastamp": {"miou_at_05": 0.2582, "best_miou": 0.2582, "best_thr": 0.5}, "all_at_05": 0.2548}}
+{"step": 2900, "loss": 1.4359113490581512, "sec": 341}
+{"step": 3000, "loss": 1.4373164665699005, "sec": 352}
+{"step": 3100, "loss": 1.437713738679886, "sec": 363}
+{"step": 3200, "loss": 1.4377292323112487, "sec": 374}
+{"step": 3300, "loss": 1.4376536631584167, "sec": 385}
+{"step": 3372, "real_train": {"pixelseal": {"miou_at_05": 0.253, "best_miou": 0.253, "best_thr": 0.95}, "trustmark": {"miou_at_05": 0.2484, "best_miou": 0.2516, "best_thr": 0.45}, "stegastamp": {"miou_at_05": 0.254, "best_miou": 0.254, "best_thr": 0.95}, "all_at_05": 0.2518}}
+{"step": 3375, "real_train": {"pixelseal": {"miou_at_05": 0.253, "best_miou": 0.253, "best_thr": 0.95}, "trustmark": {"miou_at_05": 0.2484, "best_miou": 0.2516, "best_thr": 0.45}, "stegastamp": {"miou_at_05": 0.254, "best_miou": 0.254, "best_thr": 0.95}, "all_at_05": 0.2518}}

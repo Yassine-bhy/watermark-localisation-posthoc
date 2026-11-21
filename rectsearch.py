@@ -23,7 +23,15 @@ def _clip(b, max_aspect, min_side=8):
 @torch.no_grad()
 def refine(wm, x, s, box, n_samples=256, spread=0.3, max_aspect=16.5, seed=0):
     rng = np.random.default_rng(seed)
-    y0, x0, y1, x1 = box; h, w = y1 - y0, x1 - x0
+    y0, x0, y1, x1 = box; h, w = max(8, y1 - y0), max(8, x1 - x0)
+    if max(h, w) / min(h, w) > max_aspect:                     # widen the short side around the centre
+        cy, cx = (y0 + y1) / 2, (x0 + x1) / 2
+        if h < w: h = w / max_aspect
+        else: w = h / max_aspect
+        box = (cy - h / 2, cx - w / 2, cy + h / 2, cx + w / 2)
+        if _clip(box, max_aspect) is None:                     # touches the border: shift inside
+            y0, x0 = min(max(0, cy - h / 2), 512 - h), min(max(0, cx - w / 2), 512 - w)
+            box = (y0, x0, y0 + h, x0 + w)
     cands = {_clip(box, max_aspect)}
     for _ in range(n_samples * 3):
         d = rng.uniform(-spread, spread, 4) * np.array([h, w, h, w])
@@ -31,6 +39,8 @@ def refine(wm, x, s, box, n_samples=256, spread=0.3, max_aspect=16.5, seed=0):
         if len(cands) > n_samples:
             break
     cands = [c for c in cands if c is not None]
+    if not cands:
+        return tuple(int(v) for v in box), -1.0
     a = agreement(wm, x, cands, s).cpu().numpy()
     best, best_a = cands[int(a.argmax())], float(a.max())
     for frac in (0.12, 0.06, 0.03, 0.015):

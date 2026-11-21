@@ -1,0 +1,27 @@
+{"step": 100, "loss": 1.6538167536258697, "sec": 36}
+{"step": 200, "loss": 1.458314390182495, "sec": 71}
+{"step": 300, "loss": 1.4630395519733428, "sec": 105}
+{"step": 400, "loss": 1.432701472043991, "sec": 140}
+{"step": 500, "loss": 1.4435468232631683, "sec": 174}
+{"step": 562, "real_train": {"pixelseal": {"miou_at_05": 0.243, "best_miou": 0.2633, "best_thr": 0.65}, "trustmark": {"miou_at_05": 0.2592, "best_miou": 0.2592, "best_thr": 0.5}, "stegastamp": {"miou_at_05": 0.2572, "best_miou": 0.2675, "best_thr": 0.55}, "all_at_05": 0.2531}}
+{"step": 600, "loss": 1.3903145027160644, "sec": 218}
+{"step": 700, "loss": 1.4013967776298524, "sec": 252}
+{"step": 800, "loss": 1.3691413736343383, "sec": 287}
+{"step": 900, "loss": 1.341365297436714, "sec": 322}
+{"step": 1000, "loss": 1.3338566243648529, "sec": 357}
+{"step": 1100, "loss": 1.2569785070419313, "sec": 391}
+{"step": 1124, "real_train": {"pixelseal": {"miou_at_05": 0.2576, "best_miou": 0.2576, "best_thr": 0.5}, "trustmark": {"miou_at_05": 0.2515, "best_miou": 0.2591, "best_thr": 0.3}, "stegastamp": {"miou_at_05": 0.2657, "best_miou": 0.2968, "best_thr": 0.2}, "all_at_05": 0.2583}}
+{"step": 1200, "loss": 1.2344773238897324, "sec": 435}
+{"step": 1300, "loss": 1.2125206583738326, "sec": 470}
+{"step": 1400, "loss": 1.200399244427681, "sec": 504}
+{"step": 1500, "loss": 1.1928376173973083, "sec": 539}
+{"step": 1600, "loss": 1.168788366317749, "sec": 573}
+{"step": 1686, "real_train": {"pixelseal": {"miou_at_05": 0.2644, "best_miou": 0.2702, "best_thr": 0.45}, "trustmark": {"miou_at_05": 0.249, "best_miou": 0.2582, "best_thr": 0.15}, "stegastamp": {"miou_at_05": 0.2765, "best_miou": 0.2931, "best_thr": 0.1}, "all_at_05": 0.2633}}
+{"step": 1700, "loss": 1.158644364476204, "sec": 616}
+{"step": 1800, "loss": 1.1705433547496795, "sec": 651}
+{"step": 1900, "loss": 1.1391913855075837, "sec": 686}
+{"step": 2000, "loss": 1.1769886696338654, "sec": 720}
+{"step": 2100, "loss": 1.154491786956787, "sec": 755}
+{"step": 2200, "loss": 1.1534621304273605, "sec": 789}
+{"step": 2248, "real_train": {"pixelseal": {"miou_at_05": 0.2641, "best_miou": 0.2769, "best_thr": 0.55}, "trustmark": {"miou_at_05": 0.2411, "best_miou": 0.2568, "best_thr": 0.6}, "stegastamp": {"miou_at_05": 0.2832, "best_miou": 0.3105, "best_thr": 0.1}, "all_at_05": 0.2628}}
+{"step": 2250, "real_train": {"pixelseal": {"miou_at_05": 0.2642, "best_miou": 0.2768, "best_thr": 0.55}, "trustmark": {"miou_at_05": 0.2412, "best_miou": 0.2568, "best_thr": 0.6}, "stegastamp": {"miou_at_05": 0.2832, "best_miou": 0.3104, "best_thr": 0.1}, "all_at_05": 0.2629}}
