@@ -8,3 +8,5 @@ external/
 results/signals_b/
 results/synth/
 results/synth_dryrun/
+slurm/queue/*
+!slurm/queue/.gitkeep
