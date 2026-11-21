@@ -21,7 +21,7 @@ def averaged(spec, method, name):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--name", required=True)
+    ap = argparse.ArgumentParser(); ap.add_argument("--name", required=True); ap.add_argument("--post", type=int, default=0, help="step-4a post-processing (postproc.py)")
     for m in data.METHODS:
         ap.add_argument(f"--{m}", required=True)
     a = ap.parse_args()
@@ -30,8 +30,18 @@ def main():
         tag = getattr(a, m)
         if tag.startswith("avg:"):
             tag = averaged(tag, m, a.name)
-        row, _, _ = evaluate(tag); cvs.append(row["cv"]); print(m, tag, "CV", round(row["cv"], 4), flush=True)
+        if a.post:
+            import postproc
+            row, _ = postproc.evaluate(tag)
+        else:
+            row, _, _ = evaluate(tag)
+        cvs.append(row["cv"]); print(m, tag, "CV", round(row["cv"], 4), flush=True)
         names, P = load_maps(tag, "train"); gs = gate_scores(m, "train")
+        if a.post:
+            G = np.stack([g[n] for n in names]); prm = postproc.fit_all(P, G, np.array([gs[n] for n in names]), df.loc[names].full_watermark.values)
+            tn, Pt = load_maps(tag, "test"); gt = gate_scores(m, "test")
+            preds.update(zip(tn, postproc.apply_all(Pt, np.array([gt[n] for n in tn]), prm).astype(np.uint8)))
+            print("   params", prm); continue
         prm = fit_params(P, np.stack([g[n] for n in names]), np.array([gs[n] for n in names]), df.loc[names].full_watermark.values)
         tn, Pt = load_maps(tag, "test"); gt = gate_scores(m, "test")
         preds.update(zip(tn, apply(Pt, np.array([gt[n] for n in tn]), prm).astype(np.uint8)))

@@ -38,7 +38,7 @@ def candidates(p, k=6):
 
 def load_preds(tag):
     P = {}
-    if tag.endswith("_test"):
+    if tag.endswith(("_test", "_train")):
         z = np.load(data.RESULTS / "preds" / f"{tag}.npz"); P.update(zip(z["names"].tolist(), z["prob"].astype(np.float32)))
     else:
         for k in range(5):

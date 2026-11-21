@@ -19,6 +19,7 @@ from wmloc.watermarks import load_watermark
 
 
 SS_LAYERS = [f"gen_decoder/dec_conv_{k}/Relu:0" for k in (2, 4, 5)]
+SIG = data.RESULTS / "signals"
 _ss = None
 
 
@@ -28,7 +29,8 @@ def _to64(f):
 
 
 @torch.no_grad()
-def features(wm, x, deep=False):
+def features(wm, x, deep=False, msg=None):
+    """msg (+-1 vector) given: also the per-position bit logits signed by the known message (PS/TM)."""
     global _ss
     if wm.name == "pixelseal":
         cn = wm.det.convnext
@@ -47,7 +49,55 @@ def features(wm, x, deep=False):
         xi = F.interpolate(x.float(), size=(400, 400), mode="bicubic", align_corners=False, antialias=True).clamp(0, 1)
         outs = _ss.run(SS_LAYERS, {"image": xi.permute(0, 2, 3, 1).cpu().numpy(), "secret": np.zeros((1, 100), np.float32)})
         fs = [torch.from_numpy(o).to(x.device) for o in outs]
+    if msg is not None and wm.name != "stegastamp":
+        fs.append(wm.features(x)["per_position_logits"].float() * msg[None, :, None, None])
     return torch.cat([_to64(f) for f in fs], 1).half()
+
+
+def extra_maps(method, split, keys, names):
+    """Hand-made signal maps (results/signals, 128x128) as extra 64x64 channels."""
+    z = np.load(SIG / f"{method}_{split}.npz"); idx = {n: i for i, n in enumerate(z["names"].tolist())}
+    m = np.stack([np.stack([z[k][idx[n]] for k in keys]) for n in names]).astype(np.float32)
+    return F.avg_pool2d(torch.from_numpy(m), 2).cuda().half()
+
+
+_dino = None
+DINO = {"b": ("vit_base_patch14_reg4_dinov2.lvd142m", (5, 8, 11)), "l": ("vit_large_patch14_reg4_dinov2.lvd142m", (11, 17, 23))}
+
+
+@torch.no_grad()
+def dino_features(x, kind):
+    """DINOv2 (semantic backbone, no watermark knowledge): patch tokens of 3 blocks at 448 px -> 32 x 32."""
+    global _dino
+    import timm
+    if _dino is None:
+        _dino = timm.create_model(DINO[kind][0], pretrained=True, img_size=448).cuda().eval().half()
+    h = F.interpolate(x, size=(448, 448), mode="bicubic", align_corners=False, antialias=True)
+    h = (h - torch.tensor([0.485, 0.456, 0.406], device=x.device)[:, None, None]) / torch.tensor([0.229, 0.224, 0.225], device=x.device)[:, None, None]
+    fs = _dino.forward_intermediates(h.half(), indices=list(DINO[kind][1]), intermediates_only=True)
+    return torch.cat(fs, 1).half()
+
+
+class FS:
+    """A batch of feature tensors at different resolutions (all indexed / flipped together)."""
+    def __init__(self, ts):
+        self.ts = [t for t in ts if t is not None]
+
+    def __getitem__(self, i):
+        return FS([t[i] for t in self.ts])
+
+    def __len__(self):
+        return len(self.ts[0])
+
+    def flip(self, d):
+        return FS([t.flip(d) for t in self.ts])
+
+    @property
+    def channels(self):
+        return sum(t.shape[1] for t in self.ts)
+
+    def cat64(self):
+        return torch.cat([t.float() if t.shape[-1] == 64 else F.interpolate(t.float(), size=(64, 64), mode="bilinear", align_corners=False) for t in self.ts], 1)
 
 
 class Head(nn.Module):
@@ -58,7 +108,7 @@ class Head(nn.Module):
         self.norm = nn.BatchNorm2d(c)
 
     def forward(self, f):
-        return self.net(self.norm(f.float()))[:, 0]
+        return self.net(self.norm(f.cat64()))[:, 0]
 
 
 def loss_fn(lg, gt):
@@ -69,7 +119,7 @@ def loss_fn(lg, gt):
 
 
 def fit(Ftr, Gtr, epochs=60, bs=16, seed=0):
-    torch.manual_seed(seed); head = Head(Ftr.shape[1]).cuda()
+    torch.manual_seed(seed); head = Head(Ftr.channels).cuda()
     opt = torch.optim.AdamW(head.parameters(), lr=1e-3, weight_decay=1e-3)
     n = len(Ftr); steps = epochs * ((n + bs - 1) // bs); sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, steps)
     for _ in range(epochs):
@@ -89,16 +139,36 @@ def predict(head, Fx):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--method", required=True); ap.add_argument("--epochs", type=int, default=60); ap.add_argument("--deep", type=int, default=0)
+    ap.add_argument("--sslayers", default="2,4,5", help="StegaStamp dec_conv ids"); ap.add_argument("--seeds", type=int, default=1)
+    ap.add_argument("--extra", default="", help="signal maps as extra channels, e.g. agree,win64")
+    ap.add_argument("--msg", type=int, default=0, help="add message-signed per-position logits (PS/TM)")
+    ap.add_argument("--tag", default="", help="output tag (default probe[_deep]_<method>)")
+    ap.add_argument("--dino", default="", help="add DINOv2 features: b (base) or l (large)")
+    ap.add_argument("--nodec", type=int, default=0, help="drop the decoder's own features (DINO only)")
     a = ap.parse_args(); t0 = time.time()
+    global SS_LAYERS
+    SS_LAYERS = [f"gen_decoder/dec_conv_{k}/Relu:0" for k in a.sslayers.split(",")]
+    tag = a.tag or f"probe{'_deep' if a.deep else ''}_{a.method}"
+    if a.method not in tag:
+        tag = f"{tag}_{a.method}"
     wm = load_watermark(a.method, models_dir=data.TASK_DIR / "models", device="cuda")
     out = {}
     for split in ("train", "test"):
-        ds = data.load_split(split, [a.method]); names, feats = [], []
+        ds = data.load_split(split, [a.method]); names, feats, dfe = [], [], []
         for i in range(len(ds)):
             it = ds[i]; names.append(it["image_name"])
-            feats.append(features(wm, torch.from_numpy(it["image"]).permute(2, 0, 1)[None].float().div(255).cuda(), a.deep))
-        out[split] = (names, torch.cat(feats))
-        print(split, tuple(out[split][1].shape), f"{time.time() - t0:.0f}s", flush=True)
+            msg = torch.from_numpy(it["message"].astype(np.float32) * 2 - 1).cuda() if a.msg else None
+            x = torch.from_numpy(it["image"].copy()).permute(2, 0, 1)[None].float().div(255).cuda()
+            if not a.nodec:
+                feats.append(features(wm, x, a.deep, msg))
+            if a.dino:
+                dfe.append(dino_features(x, a.dino))
+        fx = torch.cat(feats) if feats else None
+        if a.extra:
+            em = extra_maps(a.method, split, a.extra.split(","), names)
+            fx = em if fx is None else torch.cat([fx, em], 1)
+        out[split] = (names, FS([fx, torch.cat(dfe) if dfe else None]))
+        print(split, [tuple(t.shape) for t in out[split][1].ts], f"{time.time() - t0:.0f}s", flush=True)
     names, Ftr = out["train"]
     df = data.train_table().set_index("name"); gts = data.train_masks128()
     G64 = torch.stack([F.avg_pool2d(torch.from_numpy(gts[n]).float()[None, None], 2)[0, 0] for n in names]).cuda()
@@ -106,13 +176,13 @@ def main():
     held = np.zeros((len(names), 128, 128), np.float32)
     for k in range(5):
         tr = torch.from_numpy(np.nonzero(fold != k)[0]).cuda(); te = np.nonzero(fold == k)[0]
-        head = fit(Ftr[tr], G64[tr], a.epochs)
-        held[te] = predict(head, Ftr[torch.from_numpy(te).cuda()])
+        Fte_k = Ftr[torch.from_numpy(te).cuda()]
+        held[te] = np.mean([predict(fit(Ftr[tr], G64[tr], a.epochs, seed=sd), Fte_k) for sd in range(a.seeds)], 0)
         print("fold", k, f"{time.time() - t0:.0f}s", flush=True)
-    np.savez_compressed(data.RESULTS / "preds" / f"probe{'_deep' if a.deep else ''}_{a.method}_train.npz", names=np.array(names), prob=held.astype(np.float16))
-    head = fit(Ftr, G64, a.epochs)
+    np.savez_compressed(data.RESULTS / "preds" / f"{tag}_train.npz", names=np.array(names), prob=held.astype(np.float16))
     tn, Fte = out["test"]
-    np.savez_compressed(data.RESULTS / "preds" / f"probe{'_deep' if a.deep else ''}_{a.method}_test.npz", names=np.array(tn), prob=predict(head, Fte).astype(np.float16))
+    pt = np.mean([predict(fit(Ftr, G64, a.epochs, seed=sd), Fte) for sd in range(a.seeds)], 0)
+    np.savez_compressed(data.RESULTS / "preds" / f"{tag}_test.npz", names=np.array(tn), prob=pt.astype(np.float16))
     print("done", f"{time.time() - t0:.0f}s")
 
 
