@@ -1,0 +1,3 @@
+python train.py pretrain --res 256 --epochs 3 --bs 16 --tag wam256
+python train.py pretrain --res 512 --epochs 2 --bs 16 --tag wam512
+python train.py pretrain --res 256 --epochs 3 --bs 16 --lr 3e-4 --tag wam256lr3
