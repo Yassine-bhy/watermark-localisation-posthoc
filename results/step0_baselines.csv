@@ -1,0 +1,1531 @@
+baseline,name,method,regime,miou
+all-0,8d350a3ade55,pixelseal,full,0.1973876953125
+all-0,3ae884409dc3,stegastamp,full,0.070220947265625
+all-0,63ab2489dca0,pixelseal,full,0.01983642578125
+all-0,d7759cebfa93,stegastamp,partial,0.48974609375
+all-0,a476ade3e703,stegastamp,full,0.1871337890625
+all-0,59738e22b1ba,trustmark,full,0.018463134765625
+all-0,d854e128465a,pixelseal,full,0.0147705078125
+all-0,330fb70f8303,pixelseal,partial,0.496063232421875
+all-0,4bd2be05e610,pixelseal,partial,0.489044189453125
+all-0,6882157c15d3,trustmark,partial,0.388916015625
+all-0,dc93a9acd93b,pixelseal,partial,0.468658447265625
+all-0,d339bbaefadb,pixelseal,partial,0.47552490234375
+all-0,4dcd977da36b,stegastamp,partial,0.49267578125
+all-0,5cb646b1c82f,stegastamp,full,0.021881103515625
+all-0,a82d8698a09d,trustmark,full,0.0255126953125
+all-0,53934df0429a,stegastamp,partial,0.497222900390625
+all-0,365993aa0223,trustmark,partial,0.456085205078125
+all-0,6d05e72e601c,pixelseal,partial,0.493438720703125
+all-0,77026d0b7c0f,trustmark,partial,0.455535888671875
+all-0,a2af11ea5e64,trustmark,full,0.03643798828125
+all-0,33d1b360407b,trustmark,partial,0.4959716796875
+all-0,219fe27fda99,trustmark,full,0.033843994140625
+all-0,ea6792c38efa,pixelseal,partial,0.484466552734375
+all-0,3c009e5049a1,trustmark,full,0.072021484375
+all-0,f41be13eec99,trustmark,full,0.116241455078125
+all-0,5645ac9a5991,trustmark,partial,0.47308349609375
+all-0,6a87cd543012,pixelseal,partial,0.496185302734375
+all-0,2637e305ead3,trustmark,full,0.176177978515625
+all-0,34db63f9db87,stegastamp,partial,0.48077392578125
+all-0,857f0e93299e,stegastamp,full,0.013824462890625
+all-0,4db78b807f52,trustmark,full,0.077911376953125
+all-0,897252ac4ec0,trustmark,full,0.02386474609375
+all-0,abcb8914c859,stegastamp,full,0.00811767578125
+all-0,3e2ad107d8bd,stegastamp,partial,0.495880126953125
+all-0,c34457504bd2,stegastamp,partial,0.433197021484375
+all-0,0f30c4fb22ca,stegastamp,partial,0.416778564453125
+all-0,65f49a1e33f5,pixelseal,partial,0.48583984375
+all-0,eb0b50f8d422,stegastamp,full,0.085418701171875
+all-0,3dee07a2c91d,pixelseal,full,0.01910400390625
+all-0,5b7127ca0a3a,stegastamp,partial,0.47100830078125
+all-0,981a42f57af9,stegastamp,full,0.050384521484375
+all-0,58b7e5df2755,trustmark,partial,0.487518310546875
+all-0,fcbae90b5203,stegastamp,partial,0.4842529296875
+all-0,2e6b55c0036f,pixelseal,partial,0.441864013671875
+all-0,fb670b6f1e9a,stegastamp,full,0.1270751953125
+all-0,1ed84d28c4c8,stegastamp,partial,0.42840576171875
+all-0,2f2345f8b376,stegastamp,partial,0.44024658203125
+all-0,9ebfa913b9a4,pixelseal,partial,0.470733642578125
+all-0,61628c0067e6,trustmark,partial,0.452606201171875
+all-0,9ceef7fbc120,trustmark,full,0.004791259765625
+all-0,7f74ddf5998b,trustmark,full,0.055450439453125
+all-0,05a1084c2ab4,pixelseal,full,0.059478759765625
+all-0,73478591d121,pixelseal,partial,0.49395751953125
+all-0,bb70e4ac4e26,trustmark,partial,0.454833984375
+all-0,23bfdcdaecd3,pixelseal,full,0.185638427734375
+all-0,b801c7f31896,trustmark,partial,0.4857177734375
+all-0,9234fa78fab7,pixelseal,full,0.07073974609375
+all-0,5666e86296f2,stegastamp,full,0.00653076171875
+all-0,82ff11240255,stegastamp,full,0.03753662109375
+all-0,1f81da8572ae,stegastamp,partial,0.485198974609375
+all-0,4003d769516e,pixelseal,partial,0.486572265625
+all-0,8be8cdac04c2,stegastamp,partial,0.428009033203125
+all-0,8093279c5549,pixelseal,partial,0.482025146484375
+all-0,a558bea42351,trustmark,partial,0.315216064453125
+all-0,d49de237f21c,trustmark,full,0.184356689453125
+all-0,1cd4cf403050,stegastamp,full,0.058868408203125
+all-0,bab81c5c46bc,pixelseal,partial,0.459136962890625
+all-0,f10e01fec41b,trustmark,partial,0.490692138671875
+all-0,d749e4d691a9,stegastamp,partial,0.39837646484375
+all-0,fb7cafc7cf8e,trustmark,full,0.02410888671875
+all-0,8659c72e0980,pixelseal,partial,0.494140625
+all-0,c6d085ee8ae8,pixelseal,full,0.00933837890625
+all-0,483da5e9fc39,stegastamp,partial,0.4892578125
+all-0,da014a7b8652,trustmark,partial,0.465484619140625
+all-0,a4d82c5eed4c,stegastamp,partial,0.439361572265625
+all-0,c5037e2d4867,stegastamp,full,0.03692626953125
+all-0,a224379cd393,pixelseal,partial,0.390899658203125
+all-0,3d6238419ba9,stegastamp,full,0.023712158203125
+all-0,468f425e2cb4,pixelseal,full,0.01409912109375
+all-0,6d015d1ee1a6,trustmark,partial,0.30780029296875
+all-0,3df76955d1fc,trustmark,partial,0.486236572265625
+all-0,d53fa7a68289,pixelseal,partial,0.409912109375
+all-0,2e4f5fc9f614,pixelseal,partial,0.4053955078125
+all-0,129674d13f5f,trustmark,partial,0.48724365234375
+all-0,8e071d2af614,stegastamp,partial,0.4945068359375
+all-0,b4503efbacd4,stegastamp,full,0.038909912109375
+all-0,db30d286a66f,stegastamp,partial,0.493896484375
+all-0,b6a833cb199b,pixelseal,full,0.002471923828125
+all-0,39c467d75aa5,stegastamp,full,0.034515380859375
+all-0,e300d14d9ad9,trustmark,partial,0.493011474609375
+all-0,922863ab20f3,stegastamp,full,0.036102294921875
+all-0,2cd1321044c5,trustmark,partial,0.359771728515625
+all-0,d0611fc637fa,trustmark,full,0.020111083984375
+all-0,1256bb953ed7,stegastamp,partial,0.452392578125
+all-0,e7ece8e6125a,pixelseal,full,0.004302978515625
+all-0,02eb1c264446,pixelseal,full,0.093841552734375
+all-0,dd2117957803,stegastamp,full,0.002166748046875
+all-0,3ded9275dd8c,trustmark,partial,0.43304443359375
+all-0,acf2e6dd8a72,pixelseal,full,0.140380859375
+all-0,755353b24e9f,pixelseal,partial,0.411651611328125
+all-0,0afce1b27992,trustmark,partial,0.478973388671875
+all-0,e8485cda4a0b,pixelseal,partial,0.440460205078125
+all-0,584265fada0a,trustmark,partial,0.481719970703125
+all-0,a7ee54c2d1f7,stegastamp,full,0.031097412109375
+all-0,06dfdfb8f49f,stegastamp,full,0.004608154296875
+all-0,01a8a19cb848,trustmark,partial,0.47607421875
+all-0,9aec69d421d3,pixelseal,full,0.007781982421875
+all-0,5f598820762d,trustmark,full,0.02398681640625
+all-0,1c5d286af4f2,pixelseal,full,0.010772705078125
+all-0,a9890e7a9162,stegastamp,partial,0.450164794921875
+all-0,b221162a8d6c,pixelseal,full,0.046142578125
+all-0,82430b03e627,pixelseal,partial,0.4598388671875
+all-0,5fa220ddb966,stegastamp,partial,0.4923095703125
+all-0,14aeeec9caec,trustmark,full,0.059173583984375
+all-0,7f49b4b810c5,stegastamp,partial,0.498077392578125
+all-0,5e6b3ce64803,trustmark,partial,0.469482421875
+all-0,b591ddada6e2,stegastamp,full,0.07476806640625
+all-0,08a436824488,trustmark,full,0.10302734375
+all-0,ac150fa24f69,pixelseal,partial,0.43756103515625
+all-0,716630c867a8,stegastamp,full,0.03118896484375
+all-0,2610e4f2a637,pixelseal,full,0.043975830078125
+all-0,77d08ec17b71,trustmark,partial,0.498077392578125
+all-0,b512693d6cbe,pixelseal,partial,0.349700927734375
+all-0,5b05c1ae340a,pixelseal,partial,0.49786376953125
+all-0,9f251d379b53,stegastamp,partial,0.484222412109375
+all-0,cc4b13816d42,stegastamp,partial,0.35418701171875
+all-0,8422dc049133,pixelseal,full,0.042633056640625
+all-0,87578149d91a,stegastamp,full,0.133697509765625
+all-0,4c25603f341a,trustmark,partial,0.496917724609375
+all-0,934fd5783102,trustmark,full,0.0037841796875
+all-0,cf68b2360a2b,trustmark,partial,0.39990234375
+all-0,0c7cde6818d5,stegastamp,partial,0.49066162109375
+all-0,c445d83a3c7a,pixelseal,full,0.05255126953125
+all-0,01117709f538,trustmark,partial,0.4891357421875
+all-0,612366d3bdba,stegastamp,partial,0.490570068359375
+all-0,4c732277795f,trustmark,full,0.051788330078125
+all-0,ef86e1e99ad6,stegastamp,full,0.03167724609375
+all-0,e74d5f41e18d,pixelseal,full,0.014984130859375
+all-0,62042cbd008e,stegastamp,full,0.05743408203125
+all-0,46626c487804,pixelseal,full,0.00311279296875
+all-0,c15f1406ccd3,trustmark,full,0.052886962890625
+all-0,4ad7c27c4400,stegastamp,full,0.042144775390625
+all-0,350e9f6ea820,stegastamp,full,0.039794921875
+all-0,07b2717b53ad,trustmark,full,0.003143310546875
+all-0,0adc01a30731,pixelseal,partial,0.44482421875
+all-0,07c5ceca91f8,pixelseal,full,0.112762451171875
+all-0,cd62b065d3cf,pixelseal,partial,0.3741455078125
+all-0,d378a39f49e4,stegastamp,full,0.005096435546875
+all-0,9f4496f5db6f,trustmark,partial,0.479400634765625
+all-0,11ddb06b157f,trustmark,full,0.003265380859375
+all-0,0c1cf92368eb,trustmark,full,0.193756103515625
+all-0,ac1f69a06ab4,pixelseal,full,0.010223388671875
+all-0,1587d580ff07,stegastamp,partial,0.48126220703125
+all-0,8cf1b80f84d9,stegastamp,partial,0.474945068359375
+all-0,ecc06b41364f,trustmark,partial,0.479156494140625
+all-0,d91c354d3ba8,stegastamp,full,0.002655029296875
+all-0,e0b2273bbf7c,trustmark,partial,0.4974365234375
+all-0,7685d5d2e94c,pixelseal,partial,0.49835205078125
+all-0,e81bfdbaf19b,trustmark,partial,0.49310302734375
+all-0,c0bd18651b4b,stegastamp,full,0.00286865234375
+all-0,572b61707c4c,pixelseal,full,0.11773681640625
+all-0,f9e9a9d8fbaa,pixelseal,full,0.016754150390625
+all-0,501c159f0e5a,trustmark,full,0.246337890625
+all-0,7a544a3b53da,trustmark,full,0.016845703125
+all-0,52bbbaf49947,stegastamp,full,0.03192138671875
+all-0,9ccd12ff89e9,trustmark,partial,0.48992919921875
+all-0,c739565531ca,trustmark,full,0.048126220703125
+all-0,7cfa9111f9fc,pixelseal,full,0.03631591796875
+all-0,12d51ce3cbe0,pixelseal,partial,0.486328125
+all-0,f70cbefa2f77,pixelseal,full,0.029327392578125
+all-0,5288285c16a3,pixelseal,full,0.002899169921875
+all-0,08e15b92b5b3,stegastamp,partial,0.48760986328125
+all-0,9ed4e1eeb535,stegastamp,partial,0.474090576171875
+all-0,61ebd2521e38,stegastamp,partial,0.4920654296875
+all-0,a463b746a441,stegastamp,partial,0.450592041015625
+all-0,ffa7099ac789,pixelseal,partial,0.49298095703125
+all-0,efd9328e27ab,trustmark,partial,0.4967041015625
+all-0,3e5c27215a50,trustmark,partial,0.382110595703125
+all-0,f64b41c6da23,stegastamp,partial,0.48431396484375
+all-0,5cde0a3be719,trustmark,full,0.001983642578125
+all-0,7a6c7acd250d,stegastamp,full,0.076263427734375
+all-0,09527d559e20,stegastamp,full,0.003753662109375
+all-0,6fe95564117b,trustmark,full,0.024871826171875
+all-0,5d42b3aa1afe,pixelseal,full,0.0487060546875
+all-0,e9a95855a929,stegastamp,full,0.0093994140625
+all-0,8af2a47abfa5,trustmark,full,0.073333740234375
+all-0,42314ea01a80,pixelseal,full,0.02508544921875
+all-0,cd924ae19863,pixelseal,full,0.074462890625
+all-0,623180933a3c,pixelseal,full,0.003662109375
+all-0,44bea055534d,stegastamp,partial,0.47412109375
+all-0,25a9bb85c827,stegastamp,partial,0.429443359375
+all-0,0ab680976d45,trustmark,full,0.100738525390625
+all-0,b5af22c78a60,pixelseal,full,0.001617431640625
+all-0,d02e15fbddf3,stegastamp,full,0.007476806640625
+all-0,215d44e8678c,pixelseal,partial,0.4949951171875
+all-0,b3427ae51387,trustmark,full,0.053802490234375
+all-0,9adf90a51a71,trustmark,partial,0.480987548828125
+all-0,2e5699234a38,pixelseal,partial,0.294525146484375
+all-0,30c34d0c5f50,stegastamp,partial,0.475860595703125
+all-0,1c5276ebe6bc,stegastamp,full,0.0477294921875
+all-0,fe6a0da3ca10,pixelseal,full,0.07940673828125
+all-0,fb8df1bad5e2,stegastamp,full,0.0418701171875
+all-0,81e90c8af665,trustmark,full,0.021331787109375
+all-0,6aadccf79247,stegastamp,partial,0.49017333984375
+all-0,9169cdfa4bd0,pixelseal,partial,0.441680908203125
+all-0,ce759ae7b8e4,pixelseal,full,0.0103759765625
+all-0,7061c6d99213,stegastamp,partial,0.3988037109375
+all-0,dc3c83c40513,trustmark,partial,0.49169921875
+all-0,5642c2c4e2bd,trustmark,partial,0.498046875
+all-0,a32cbb10959b,stegastamp,full,0.03118896484375
+all-0,c7b0fe088ce2,stegastamp,partial,0.489959716796875
+all-0,7168c732ee2c,pixelseal,full,0.009674072265625
+all-0,f1a940082acd,pixelseal,full,0.021331787109375
+all-0,bd90e4da0f52,stegastamp,partial,0.48883056640625
+all-0,148fa6a6293f,pixelseal,partial,0.2877197265625
+all-0,11d701e4f965,trustmark,partial,0.478973388671875
+all-0,e5e5e32f3575,pixelseal,partial,0.497711181640625
+all-0,f8a202d8d55a,pixelseal,partial,0.47607421875
+all-0,22df37a04afe,trustmark,partial,0.49462890625
+all-0,8003300b3da8,stegastamp,partial,0.493316650390625
+all-0,4183d016117d,trustmark,partial,0.49639892578125
+all-0,63a2fb225c07,stegastamp,partial,0.423858642578125
+all-0,a7876fef0ed7,trustmark,partial,0.495849609375
+all-0,e3307d3e3a5e,pixelseal,full,0.05999755859375
+all-0,3a8bfc6967f1,pixelseal,full,0.11334228515625
+all-0,d208acac5cd4,pixelseal,full,0.05303955078125
+all-0,4d43f14ad89d,stegastamp,full,0.091461181640625
+all-0,cfb8cf894a96,pixelseal,partial,0.281829833984375
+all-0,3d854e23a9c9,pixelseal,partial,0.4923095703125
+all-0,2df125cd8603,stegastamp,full,0.08807373046875
+all-0,a59c74c9a78f,trustmark,partial,0.28851318359375
+all-0,0b35f8d56e9f,stegastamp,partial,0.496917724609375
+all-0,3f1e7d46f49f,pixelseal,partial,0.49700927734375
+all-0,249d686dba1a,stegastamp,full,0.0218505859375
+all-0,8cb4e4fa4d07,stegastamp,full,0.048248291015625
+all-0,8342093a857a,stegastamp,full,0.066070556640625
+all-0,01a775d8e589,trustmark,full,0.026123046875
+all-0,441afa547a86,pixelseal,full,0.069061279296875
+all-0,d18114453ad6,trustmark,partial,0.4718017578125
+all-0,75a578c59136,trustmark,partial,0.494903564453125
+all-0,5aca13bcbc53,stegastamp,partial,0.496337890625
+all-0,a2b9306316e0,trustmark,full,0.002227783203125
+all-0,54e514b6f49f,stegastamp,full,0.025299072265625
+all-0,2dfa53b9ecf4,trustmark,partial,0.282562255859375
+all-0,f1ee565cd547,stegastamp,partial,0.455535888671875
+all-0,5fb372561cf5,stegastamp,partial,0.381988525390625
+all-0,1974c13982d2,stegastamp,partial,0.48974609375
+all-0,2a43e03d3b8b,trustmark,full,0.00665283203125
+all-0,a47a4d6fba6b,stegastamp,partial,0.45965576171875
+all-0,2260d5ffabd1,pixelseal,full,0.0291748046875
+all-0,53c9c87e7c0e,pixelseal,partial,0.496612548828125
+all-0,deb4c0be1388,trustmark,partial,0.374481201171875
+all-0,0e621b03703a,stegastamp,full,0.030181884765625
+all-0,7db094a4dda1,trustmark,partial,0.48583984375
+all-0,56f20ecd8eb0,trustmark,partial,0.4814453125
+all-0,d083287f6de2,trustmark,partial,0.493865966796875
+all-0,c4403dadabe9,pixelseal,full,0.002105712890625
+all-0,71d76625228f,trustmark,full,0.004364013671875
+all-0,f3346b510dcd,stegastamp,partial,0.46136474609375
+all-0,464627af121f,stegastamp,partial,0.484130859375
+all-0,ac82720f9631,pixelseal,full,0.00482177734375
+all-0,eba1f0db78f9,trustmark,full,0.035736083984375
+all-0,f165a98d6f36,pixelseal,full,0.00146484375
+all-0,bf9c2f02c657,pixelseal,partial,0.489044189453125
+all-0,0ba6f5f80a74,trustmark,partial,0.48541259765625
+all-0,4b7baf414f18,pixelseal,full,0.01885986328125
+all-0,5e96f3e995e0,stegastamp,full,0.21746826171875
+all-0,7b5dd85deb4f,pixelseal,full,0.11993408203125
+all-0,bb1419c0797d,pixelseal,partial,0.373138427734375
+all-0,7f593f986f59,trustmark,partial,0.456634521484375
+all-0,987f87322d80,stegastamp,full,0.02484130859375
+all-0,8aff36a43581,pixelseal,partial,0.3321533203125
+all-0,694715f71b85,pixelseal,full,0.184478759765625
+all-0,9255874fb289,pixelseal,full,0.058319091796875
+all-0,f5776539f6ac,trustmark,partial,0.4326171875
+all-0,15097a1653aa,stegastamp,full,0.027862548828125
+all-0,369430e52bd9,stegastamp,full,0.0509033203125
+all-0,bf884136486a,trustmark,partial,0.48199462890625
+all-0,435a049a735c,pixelseal,partial,0.486083984375
+all-0,682a1d54d9f8,stegastamp,full,0.022796630859375
+all-0,45765a754beb,pixelseal,full,0.0029296875
+all-0,18953a989e61,pixelseal,full,0.022857666015625
+all-0,64fa63c58b35,pixelseal,full,0.0474853515625
+all-0,e04c373f1f19,pixelseal,partial,0.39361572265625
+all-0,a8560657fce8,trustmark,full,0.018096923828125
+all-0,4976c75b1d8e,trustmark,full,0.021881103515625
+all-0,929d5ef9ec83,pixelseal,full,0.03704833984375
+all-0,b3466495202a,stegastamp,full,0.00439453125
+all-0,d2540376f815,stegastamp,partial,0.333648681640625
+all-0,fda585808eeb,pixelseal,full,0.053680419921875
+all-0,99fd9f64749e,trustmark,full,0.058349609375
+all-0,5da546be6aa2,trustmark,full,0.029022216796875
+all-0,af8283fae5e0,pixelseal,full,0.0716552734375
+all-0,57bee312c5bd,stegastamp,partial,0.48260498046875
+all-0,807adda9b2b4,trustmark,full,0.018646240234375
+all-0,54ea8dae1317,trustmark,partial,0.485137939453125
+all-0,1366ee0f9d5e,stegastamp,full,0.10626220703125
+all-0,80732ff13c49,pixelseal,full,0.013336181640625
+all-0,7cebd57ebf5c,stegastamp,partial,0.498077392578125
+all-0,c8f688ee9e58,trustmark,full,0.12158203125
+all-0,145e4172b6f9,stegastamp,full,0.0037841796875
+all-0,deea1f1acdc7,trustmark,partial,0.4422607421875
+all-0,7b3a9ef755ee,trustmark,full,0.002685546875
+all-0,b96b76dce396,trustmark,partial,0.456756591796875
+all-0,16319016e39d,trustmark,partial,0.478271484375
+all-0,bb4de9c37d22,stegastamp,full,0.0015869140625
+all-0,d46f9571398e,pixelseal,full,0.01611328125
+all-0,6e8ec5b44fa9,pixelseal,partial,0.471954345703125
+all-0,81cb54d5cf65,pixelseal,full,0.03192138671875
+all-0,3f1cc0b40d34,pixelseal,full,0.023895263671875
+all-0,0b17ada8b6f6,trustmark,full,0.008880615234375
+all-0,345d72a77a10,trustmark,full,0.025848388671875
+all-0,0b2fb5e65207,pixelseal,full,0.201904296875
+all-0,1a46eb491c4f,pixelseal,full,0.011383056640625
+all-0,279267bc151a,trustmark,partial,0.45489501953125
+all-0,d0a8f1c0ccce,pixelseal,partial,0.498291015625
+all-0,ed5976bf36af,pixelseal,full,0.135345458984375
+all-0,9b2d0936e9e3,pixelseal,partial,0.498321533203125
+all-0,a6ba414430c8,trustmark,full,0.008880615234375
+all-0,bfd0ce227906,pixelseal,partial,0.485076904296875
+all-0,6c0914b193cc,trustmark,full,0.04742431640625
+all-0,6633ff9f8192,trustmark,partial,0.44268798828125
+all-0,3e38638a4881,pixelseal,partial,0.357330322265625
+all-0,e7e2022625fa,pixelseal,full,0.105621337890625
+all-0,4265f6054cf6,trustmark,partial,0.491424560546875
+all-0,ebfc9dc16dd6,pixelseal,full,0.062652587890625
+all-0,0ae0e6224c29,stegastamp,full,0.050262451171875
+all-0,5e76de797048,stegastamp,partial,0.496246337890625
+all-0,0b08481293d1,trustmark,full,0.001739501953125
+all-0,4ca1111f7fa9,stegastamp,full,0.012542724609375
+all-0,43715261027b,pixelseal,full,0.05023193359375
+all-0,05236392da3f,trustmark,full,0.05364990234375
+all-0,b0c5f248d5f4,pixelseal,full,0.02764892578125
+all-0,18ba9cbd447a,trustmark,full,0.011016845703125
+all-0,d0e2697396ba,pixelseal,partial,0.39471435546875
+all-0,9eb0e218f902,pixelseal,partial,0.4432373046875
+all-0,95eecda4b6f3,stegastamp,full,0.0225830078125
+all-0,e3fc82395871,pixelseal,partial,0.437591552734375
+all-0,d4654f26ad33,stegastamp,partial,0.496856689453125
+all-0,17612bb5282e,stegastamp,full,0.003143310546875
+all-0,55e3f2a7680d,stegastamp,full,0.074249267578125
+all-0,3087e66bf992,trustmark,full,0.09521484375
+all-0,e5081cd3fcd7,trustmark,full,0.092987060546875
+all-0,2e731007efaf,stegastamp,full,0.03875732421875
+all-0,f5b8615ffbf3,trustmark,full,0.04296875
+all-0,bc61dd574b14,trustmark,full,0.005706787109375
+all-0,5955ddeb6f1c,stegastamp,full,0.077117919921875
+all-0,8eb1d19c7879,trustmark,full,0.03082275390625
+all-0,81c3edd7e0e1,stegastamp,full,0.08917236328125
+all-0,915bb260ec34,pixelseal,partial,0.498291015625
+all-0,2d9abc289096,trustmark,full,0.003631591796875
+all-0,8639d18f25a1,pixelseal,partial,0.455047607421875
+all-0,4e1739a8a971,trustmark,full,0.016021728515625
+all-0,38d2a5f0a28e,trustmark,full,0.061309814453125
+all-0,054c4c1d6fbe,stegastamp,partial,0.474090576171875
+all-0,d82ab583413e,trustmark,full,0.001983642578125
+all-0,dc502fc2a2f4,stegastamp,full,0.012054443359375
+all-0,bf8ac504f2c3,pixelseal,partial,0.4683837890625
+all-0,7ac4e3df5158,trustmark,full,0.0037841796875
+all-0,9682307a5e4a,stegastamp,partial,0.49761962890625
+all-0,244f74a38163,pixelseal,full,0.009490966796875
+all-0,6e00a0a03fcc,stegastamp,partial,0.410308837890625
+all-0,87e560e1273b,stegastamp,full,0.033660888671875
+all-0,8f4599154c39,stegastamp,full,0.04193115234375
+all-0,61c0748d68e9,stegastamp,full,0.018218994140625
+all-0,a6610e290ef7,trustmark,full,0.012969970703125
+all-0,67d8a7b7f087,stegastamp,partial,0.44207763671875
+all-0,e8c512787c95,trustmark,partial,0.482452392578125
+all-0,f768edf71846,trustmark,full,0.087310791015625
+all-0,9ea3fbbdb421,pixelseal,partial,0.462982177734375
+all-0,c499d5109725,pixelseal,full,0.016021728515625
+all-0,0ab56cbb0063,pixelseal,partial,0.498291015625
+all-0,da2e670b929d,pixelseal,full,0.005950927734375
+all-0,4f880cf1bc2d,trustmark,partial,0.471160888671875
+all-0,921536989578,pixelseal,full,0.240631103515625
+all-0,f832d939deab,trustmark,partial,0.498077392578125
+all-0,6aeca6917ddb,stegastamp,full,0.002838134765625
+all-0,210ac4699cd0,stegastamp,full,0.03912353515625
+all-0,f7acb19062b2,pixelseal,partial,0.495849609375
+all-0,ee5b4f271a92,stegastamp,partial,0.462310791015625
+all-0,74cc8f6da788,trustmark,partial,0.292022705078125
+all-0,7ced3c4ab6f8,trustmark,full,0.04913330078125
+all-0,f1d4d90df0dc,stegastamp,partial,0.45904541015625
+all-0,0703932c7705,trustmark,partial,0.35675048828125
+all-0,498ccac5801f,stegastamp,full,0.02447509765625
+all-0,a33c6023b6ad,trustmark,partial,0.480224609375
+all-0,ea9703d496e3,trustmark,full,0.005126953125
+all-0,6f273955efcc,trustmark,full,0.0419921875
+all-0,8e7c82a556c8,pixelseal,partial,0.44183349609375
+all-0,e7dcc01fb0a3,trustmark,full,0.056488037109375
+all-0,c27d787ad54b,pixelseal,partial,0.45831298828125
+all-0,28055f534714,pixelseal,full,0.012420654296875
+all-0,b00270778e48,stegastamp,partial,0.46856689453125
+all-0,af2f4e3f42e7,stegastamp,full,0.067108154296875
+all-0,ee050a31b3b3,trustmark,partial,0.478240966796875
+all-0,bd93c8feb303,stegastamp,partial,0.28057861328125
+all-0,f0fcf967b41f,trustmark,partial,0.45745849609375
+all-0,62d201df45e0,trustmark,full,0.048675537109375
+all-0,f93ed50be8b1,trustmark,full,0.022064208984375
+all-0,99ea93e7122d,trustmark,partial,0.470245361328125
+all-0,a6eb9718a7f3,pixelseal,partial,0.440887451171875
+all-0,46dca85f7506,stegastamp,full,0.008270263671875
+all-0,9537ce315f10,stegastamp,partial,0.467193603515625
+all-0,1327c98ab27f,trustmark,partial,0.429779052734375
+all-0,0f715ead6d99,stegastamp,full,0.1396484375
+all-0,3c541165b889,trustmark,partial,0.33856201171875
+all-0,498122cc7b51,trustmark,partial,0.31268310546875
+all-0,ef2f9c8b4013,stegastamp,partial,0.4954833984375
+all-0,2360e3e4a53f,pixelseal,full,0.11328125
+all-0,bac4f0abc084,trustmark,partial,0.48931884765625
+all-0,9e05ce4e6a2f,pixelseal,partial,0.494659423828125
+all-0,00ba6128fc95,stegastamp,full,0.096221923828125
+all-0,947e2f28769b,trustmark,full,0.02801513671875
+all-0,caabb09d28af,trustmark,full,0.06585693359375
+all-0,66cf89271161,pixelseal,partial,0.4036865234375
+all-0,1adc44415a94,pixelseal,full,0.136993408203125
+all-0,585c5e22e771,trustmark,partial,0.47991943359375
+all-0,5a906f7708bd,stegastamp,full,0.011932373046875
+all-0,356346ae1488,stegastamp,partial,0.47088623046875
+all-0,f6ae0cd0e25c,pixelseal,partial,0.4967041015625
+all-0,cba7e9ce68e1,stegastamp,full,0.016998291015625
+all-0,c53b7df2c860,trustmark,full,0.092376708984375
+all-0,d81cc1e7340c,pixelseal,full,0.0264892578125
+all-0,1badd3a979e1,trustmark,full,0.1580810546875
+all-0,7c955f9c7927,pixelseal,partial,0.497344970703125
+all-0,08a9ea596e11,stegastamp,partial,0.43212890625
+all-0,4d6ed8a8319b,stegastamp,partial,0.491180419921875
+all-0,c1ff63b4cf9e,trustmark,partial,0.410675048828125
+all-0,e8f3a939970e,stegastamp,full,0.003021240234375
+all-0,8939e4777231,trustmark,partial,0.460723876953125
+all-0,db9591067612,stegastamp,full,0.0040283203125
+all-0,c73e30f4cffc,pixelseal,partial,0.48895263671875
+all-0,7f233578c2dc,pixelseal,partial,0.442901611328125
+all-0,ee92f7207a40,stegastamp,partial,0.492279052734375
+all-0,42ee90cc410d,stegastamp,full,0.034027099609375
+all-0,cb64072dd412,trustmark,partial,0.49456787109375
+all-0,9b796dfd2a85,trustmark,full,0.004425048828125
+all-0,f6c3f5f3f205,stegastamp,partial,0.490997314453125
+all-0,239f921134e1,stegastamp,partial,0.483551025390625
+all-0,5e802b659cfa,stegastamp,partial,0.4967041015625
+all-0,5d226b56c951,stegastamp,full,0.010101318359375
+all-0,cfd84aab7691,trustmark,full,0.06781005859375
+all-0,bbef9fc8f0b7,stegastamp,full,0.037506103515625
+all-0,3b54f848fd6d,pixelseal,partial,0.496795654296875
+all-0,a89b406c6a09,stegastamp,full,0.02410888671875
+all-0,87de1553db4b,trustmark,partial,0.4732666015625
+all-0,c4cf42463984,stegastamp,partial,0.4656982421875
+all-0,be73d9dde1fe,trustmark,partial,0.49139404296875
+all-0,3b43b3b29e37,trustmark,partial,0.443756103515625
+all-0,54b2afdebc89,trustmark,full,0.0198974609375
+all-0,23ca79c98ba7,pixelseal,full,0.133087158203125
+all-0,f85659208b99,pixelseal,partial,0.47845458984375
+all-0,3348c95d7fd4,pixelseal,full,0.011383056640625
+all-0,88414844d5af,pixelseal,full,0.015228271484375
+all-0,83e0501a9fc2,pixelseal,full,0.126922607421875
+all-0,984cf9dc6045,stegastamp,partial,0.364532470703125
+all-0,2d2ec678856c,trustmark,full,0.00262451171875
+all-0,4aa4d78c3968,stegastamp,partial,0.49102783203125
+all-0,33cbd545e04e,pixelseal,full,0.05950927734375
+all-0,494176306c5b,stegastamp,partial,0.458160400390625
+all-0,72d44fae77b3,stegastamp,partial,0.442840576171875
+all-0,97adb8e5e9c6,pixelseal,partial,0.49334716796875
+all-0,2c4deff92cc9,pixelseal,partial,0.42218017578125
+all-0,8985ffba776e,pixelseal,partial,0.496246337890625
+all-0,aa26de31f2ab,trustmark,partial,0.44500732421875
+all-0,ffb70b68ad69,pixelseal,partial,0.48370361328125
+all-0,37e62376b989,stegastamp,partial,0.4970703125
+all-0,8e744aa74502,trustmark,full,0.024200439453125
+all-0,f91694d91a94,pixelseal,partial,0.40435791015625
+all-0,28e8c53f7a62,pixelseal,partial,0.4892578125
+all-0,38a0e613d649,stegastamp,full,0.093597412109375
+all-0,afdaa8af277a,trustmark,partial,0.476043701171875
+all-0,de11c61674be,stegastamp,partial,0.48822021484375
+all-0,03b5ebafe6ec,pixelseal,full,0.0338134765625
+all-0,6921edde828e,trustmark,partial,0.289794921875
+all-0,975d03039e54,trustmark,full,0.042877197265625
+all-0,6a6e6b368da2,pixelseal,partial,0.4976806640625
+all-0,fec5b98cf81b,pixelseal,partial,0.49346923828125
+all-0,f4322a3e03af,pixelseal,full,0.082183837890625
+all-0,dda21976dc73,pixelseal,full,0.010040283203125
+all-0,33cc521ed1f1,trustmark,full,0.005096435546875
+all-0,d8437ca4c1ba,pixelseal,partial,0.494049072265625
+all-0,63a9ff73ae18,stegastamp,full,0.041748046875
+all-0,d6470fd6a771,pixelseal,full,0.002105712890625
+all-0,c267b2bf0c13,pixelseal,partial,0.39581298828125
+all-0,1eab0f0ceeab,stegastamp,full,0.01043701171875
+all-0,5cb833c921cb,trustmark,full,0.111083984375
+all-0,1bb324d410cf,pixelseal,partial,0.447021484375
+all-0,795604c3aa8c,trustmark,full,0.051666259765625
+all-0,bb4b0481f38e,stegastamp,full,0.023345947265625
+all-0,ee1cd172f2d1,stegastamp,partial,0.491455078125
+all-0,693191957a29,stegastamp,partial,0.483642578125
+all-0,b07af2b318f5,trustmark,full,0.079071044921875
+all-0,7aefd4b81812,pixelseal,partial,0.47216796875
+all-0,e2dab72c9d37,pixelseal,partial,0.44842529296875
+all-0,0b591f8d006b,trustmark,partial,0.348388671875
+all-0,22ea80b90a54,pixelseal,partial,0.451324462890625
+all-0,877a2f7237c4,stegastamp,full,0.18914794921875
+all-0,d2d9c49d6554,stegastamp,partial,0.451019287109375
+all-0,c6112bbf6604,trustmark,partial,0.4940185546875
+all-0,332e7eb634ee,stegastamp,partial,0.4715576171875
+all-0,f0da1b9a0c4b,trustmark,full,0.021148681640625
+all-0,1afaf23400a2,trustmark,full,0.00665283203125
+all-0,1dc32cbb2e04,pixelseal,partial,0.417694091796875
+all-0,65660f45dd8a,trustmark,partial,0.4300537109375
+all-0,6498956eca5d,stegastamp,partial,0.48931884765625
+all-0,124efa616612,pixelseal,full,0.0467529296875
+all-0,4571a5b76263,stegastamp,partial,0.423095703125
+all-0,9026d876b7c0,pixelseal,partial,0.480865478515625
+all-0,6846e6a56d8f,pixelseal,full,0.003143310546875
+all-1,8d350a3ade55,pixelseal,full,0.3026123046875
+all-1,3ae884409dc3,stegastamp,full,0.429779052734375
+all-1,63ab2489dca0,pixelseal,full,0.48016357421875
+all-1,d7759cebfa93,stegastamp,partial,0.01025390625
+all-1,a476ade3e703,stegastamp,full,0.3128662109375
+all-1,59738e22b1ba,trustmark,full,0.481536865234375
+all-1,d854e128465a,pixelseal,full,0.4852294921875
+all-1,330fb70f8303,pixelseal,partial,0.003936767578125
+all-1,4bd2be05e610,pixelseal,partial,0.010955810546875
+all-1,6882157c15d3,trustmark,partial,0.111083984375
+all-1,dc93a9acd93b,pixelseal,partial,0.031341552734375
+all-1,d339bbaefadb,pixelseal,partial,0.02447509765625
+all-1,4dcd977da36b,stegastamp,partial,0.00732421875
+all-1,5cb646b1c82f,stegastamp,full,0.478118896484375
+all-1,a82d8698a09d,trustmark,full,0.4744873046875
+all-1,53934df0429a,stegastamp,partial,0.002777099609375
+all-1,365993aa0223,trustmark,partial,0.043914794921875
+all-1,6d05e72e601c,pixelseal,partial,0.006561279296875
+all-1,77026d0b7c0f,trustmark,partial,0.044464111328125
+all-1,a2af11ea5e64,trustmark,full,0.46356201171875
+all-1,33d1b360407b,trustmark,partial,0.0040283203125
+all-1,219fe27fda99,trustmark,full,0.466156005859375
+all-1,ea6792c38efa,pixelseal,partial,0.015533447265625
+all-1,3c009e5049a1,trustmark,full,0.427978515625
+all-1,f41be13eec99,trustmark,full,0.383758544921875
+all-1,5645ac9a5991,trustmark,partial,0.02691650390625
+all-1,6a87cd543012,pixelseal,partial,0.003814697265625
+all-1,2637e305ead3,trustmark,full,0.323822021484375
+all-1,34db63f9db87,stegastamp,partial,0.01922607421875
+all-1,857f0e93299e,stegastamp,full,0.486175537109375
+all-1,4db78b807f52,trustmark,full,0.422088623046875
+all-1,897252ac4ec0,trustmark,full,0.47613525390625
+all-1,abcb8914c859,stegastamp,full,0.49188232421875
+all-1,3e2ad107d8bd,stegastamp,partial,0.004119873046875
+all-1,c34457504bd2,stegastamp,partial,0.066802978515625
+all-1,0f30c4fb22ca,stegastamp,partial,0.083221435546875
+all-1,65f49a1e33f5,pixelseal,partial,0.01416015625
+all-1,eb0b50f8d422,stegastamp,full,0.414581298828125
+all-1,3dee07a2c91d,pixelseal,full,0.48089599609375
+all-1,5b7127ca0a3a,stegastamp,partial,0.02899169921875
+all-1,981a42f57af9,stegastamp,full,0.449615478515625
+all-1,58b7e5df2755,trustmark,partial,0.012481689453125
+all-1,fcbae90b5203,stegastamp,partial,0.0157470703125
+all-1,2e6b55c0036f,pixelseal,partial,0.058135986328125
+all-1,fb670b6f1e9a,stegastamp,full,0.3729248046875
+all-1,1ed84d28c4c8,stegastamp,partial,0.07159423828125
+all-1,2f2345f8b376,stegastamp,partial,0.05975341796875
+all-1,9ebfa913b9a4,pixelseal,partial,0.029266357421875
+all-1,61628c0067e6,trustmark,partial,0.047393798828125
+all-1,9ceef7fbc120,trustmark,full,0.495208740234375
+all-1,7f74ddf5998b,trustmark,full,0.444549560546875
+all-1,05a1084c2ab4,pixelseal,full,0.440521240234375
+all-1,73478591d121,pixelseal,partial,0.00604248046875
+all-1,bb70e4ac4e26,trustmark,partial,0.045166015625
+all-1,23bfdcdaecd3,pixelseal,full,0.314361572265625
+all-1,b801c7f31896,trustmark,partial,0.0142822265625
+all-1,9234fa78fab7,pixelseal,full,0.42926025390625
+all-1,5666e86296f2,stegastamp,full,0.49346923828125
+all-1,82ff11240255,stegastamp,full,0.46246337890625
+all-1,1f81da8572ae,stegastamp,partial,0.014801025390625
+all-1,4003d769516e,pixelseal,partial,0.013427734375
+all-1,8be8cdac04c2,stegastamp,partial,0.071990966796875
+all-1,8093279c5549,pixelseal,partial,0.017974853515625
+all-1,a558bea42351,trustmark,partial,0.184783935546875
+all-1,d49de237f21c,trustmark,full,0.315643310546875
+all-1,1cd4cf403050,stegastamp,full,0.441131591796875
+all-1,bab81c5c46bc,pixelseal,partial,0.040863037109375
+all-1,f10e01fec41b,trustmark,partial,0.009307861328125
+all-1,d749e4d691a9,stegastamp,partial,0.10162353515625
+all-1,fb7cafc7cf8e,trustmark,full,0.47589111328125
+all-1,8659c72e0980,pixelseal,partial,0.005859375
+all-1,c6d085ee8ae8,pixelseal,full,0.49066162109375
+all-1,483da5e9fc39,stegastamp,partial,0.0107421875
+all-1,da014a7b8652,trustmark,partial,0.034515380859375
+all-1,a4d82c5eed4c,stegastamp,partial,0.060638427734375
+all-1,c5037e2d4867,stegastamp,full,0.46307373046875
+all-1,a224379cd393,pixelseal,partial,0.109100341796875
+all-1,3d6238419ba9,stegastamp,full,0.476287841796875
+all-1,468f425e2cb4,pixelseal,full,0.48590087890625
+all-1,6d015d1ee1a6,trustmark,partial,0.19219970703125
+all-1,3df76955d1fc,trustmark,partial,0.013763427734375
+all-1,d53fa7a68289,pixelseal,partial,0.090087890625
+all-1,2e4f5fc9f614,pixelseal,partial,0.0946044921875
+all-1,129674d13f5f,trustmark,partial,0.01275634765625
+all-1,8e071d2af614,stegastamp,partial,0.0054931640625
+all-1,b4503efbacd4,stegastamp,full,0.461090087890625
+all-1,db30d286a66f,stegastamp,partial,0.006103515625
+all-1,b6a833cb199b,pixelseal,full,0.497528076171875
+all-1,39c467d75aa5,stegastamp,full,0.465484619140625
+all-1,e300d14d9ad9,trustmark,partial,0.006988525390625
+all-1,922863ab20f3,stegastamp,full,0.463897705078125
+all-1,2cd1321044c5,trustmark,partial,0.140228271484375
+all-1,d0611fc637fa,trustmark,full,0.479888916015625
+all-1,1256bb953ed7,stegastamp,partial,0.047607421875
+all-1,e7ece8e6125a,pixelseal,full,0.495697021484375
+all-1,02eb1c264446,pixelseal,full,0.406158447265625
+all-1,dd2117957803,stegastamp,full,0.497833251953125
+all-1,3ded9275dd8c,trustmark,partial,0.06695556640625
+all-1,acf2e6dd8a72,pixelseal,full,0.359619140625
+all-1,755353b24e9f,pixelseal,partial,0.088348388671875
+all-1,0afce1b27992,trustmark,partial,0.021026611328125
+all-1,e8485cda4a0b,pixelseal,partial,0.059539794921875
+all-1,584265fada0a,trustmark,partial,0.018280029296875
+all-1,a7ee54c2d1f7,stegastamp,full,0.468902587890625
+all-1,06dfdfb8f49f,stegastamp,full,0.495391845703125
+all-1,01a8a19cb848,trustmark,partial,0.02392578125
+all-1,9aec69d421d3,pixelseal,full,0.492218017578125
+all-1,5f598820762d,trustmark,full,0.47601318359375
+all-1,1c5d286af4f2,pixelseal,full,0.489227294921875
+all-1,a9890e7a9162,stegastamp,partial,0.049835205078125
+all-1,b221162a8d6c,pixelseal,full,0.453857421875
+all-1,82430b03e627,pixelseal,partial,0.0401611328125
+all-1,5fa220ddb966,stegastamp,partial,0.0076904296875
+all-1,14aeeec9caec,trustmark,full,0.440826416015625
+all-1,7f49b4b810c5,stegastamp,partial,0.001922607421875
+all-1,5e6b3ce64803,trustmark,partial,0.030517578125
+all-1,b591ddada6e2,stegastamp,full,0.42523193359375
+all-1,08a436824488,trustmark,full,0.39697265625
+all-1,ac150fa24f69,pixelseal,partial,0.06243896484375
+all-1,716630c867a8,stegastamp,full,0.46881103515625
+all-1,2610e4f2a637,pixelseal,full,0.456024169921875
+all-1,77d08ec17b71,trustmark,partial,0.001922607421875
+all-1,b512693d6cbe,pixelseal,partial,0.150299072265625
+all-1,5b05c1ae340a,pixelseal,partial,0.00213623046875
+all-1,9f251d379b53,stegastamp,partial,0.015777587890625
+all-1,cc4b13816d42,stegastamp,partial,0.14581298828125
+all-1,8422dc049133,pixelseal,full,0.457366943359375
+all-1,87578149d91a,stegastamp,full,0.366302490234375
+all-1,4c25603f341a,trustmark,partial,0.003082275390625
+all-1,934fd5783102,trustmark,full,0.4962158203125
+all-1,cf68b2360a2b,trustmark,partial,0.10009765625
+all-1,0c7cde6818d5,stegastamp,partial,0.00933837890625
+all-1,c445d83a3c7a,pixelseal,full,0.44744873046875
+all-1,01117709f538,trustmark,partial,0.0108642578125
+all-1,612366d3bdba,stegastamp,partial,0.009429931640625
+all-1,4c732277795f,trustmark,full,0.448211669921875
+all-1,ef86e1e99ad6,stegastamp,full,0.46832275390625
+all-1,e74d5f41e18d,pixelseal,full,0.485015869140625
+all-1,62042cbd008e,stegastamp,full,0.44256591796875
+all-1,46626c487804,pixelseal,full,0.49688720703125
+all-1,c15f1406ccd3,trustmark,full,0.447113037109375
+all-1,4ad7c27c4400,stegastamp,full,0.457855224609375
+all-1,350e9f6ea820,stegastamp,full,0.460205078125
+all-1,07b2717b53ad,trustmark,full,0.496856689453125
+all-1,0adc01a30731,pixelseal,partial,0.05517578125
+all-1,07c5ceca91f8,pixelseal,full,0.387237548828125
+all-1,cd62b065d3cf,pixelseal,partial,0.1258544921875
+all-1,d378a39f49e4,stegastamp,full,0.494903564453125
+all-1,9f4496f5db6f,trustmark,partial,0.020599365234375
+all-1,11ddb06b157f,trustmark,full,0.496734619140625
+all-1,0c1cf92368eb,trustmark,full,0.306243896484375
+all-1,ac1f69a06ab4,pixelseal,full,0.489776611328125
+all-1,1587d580ff07,stegastamp,partial,0.01873779296875
+all-1,8cf1b80f84d9,stegastamp,partial,0.025054931640625
+all-1,ecc06b41364f,trustmark,partial,0.020843505859375
+all-1,d91c354d3ba8,stegastamp,full,0.497344970703125
+all-1,e0b2273bbf7c,trustmark,partial,0.0025634765625
+all-1,7685d5d2e94c,pixelseal,partial,0.00164794921875
+all-1,e81bfdbaf19b,trustmark,partial,0.00689697265625
+all-1,c0bd18651b4b,stegastamp,full,0.49713134765625
+all-1,572b61707c4c,pixelseal,full,0.38226318359375
+all-1,f9e9a9d8fbaa,pixelseal,full,0.483245849609375
+all-1,501c159f0e5a,trustmark,full,0.253662109375
+all-1,7a544a3b53da,trustmark,full,0.483154296875
+all-1,52bbbaf49947,stegastamp,full,0.46807861328125
+all-1,9ccd12ff89e9,trustmark,partial,0.01007080078125
+all-1,c739565531ca,trustmark,full,0.451873779296875
+all-1,7cfa9111f9fc,pixelseal,full,0.46368408203125
+all-1,12d51ce3cbe0,pixelseal,partial,0.013671875
+all-1,f70cbefa2f77,pixelseal,full,0.470672607421875
+all-1,5288285c16a3,pixelseal,full,0.497100830078125
+all-1,08e15b92b5b3,stegastamp,partial,0.01239013671875
+all-1,9ed4e1eeb535,stegastamp,partial,0.025909423828125
+all-1,61ebd2521e38,stegastamp,partial,0.0079345703125
+all-1,a463b746a441,stegastamp,partial,0.049407958984375
+all-1,ffa7099ac789,pixelseal,partial,0.00701904296875
+all-1,efd9328e27ab,trustmark,partial,0.0032958984375
+all-1,3e5c27215a50,trustmark,partial,0.117889404296875
+all-1,f64b41c6da23,stegastamp,partial,0.01568603515625
+all-1,5cde0a3be719,trustmark,full,0.498016357421875
+all-1,7a6c7acd250d,stegastamp,full,0.423736572265625
+all-1,09527d559e20,stegastamp,full,0.496246337890625
+all-1,6fe95564117b,trustmark,full,0.475128173828125
+all-1,5d42b3aa1afe,pixelseal,full,0.4512939453125
+all-1,e9a95855a929,stegastamp,full,0.4906005859375
+all-1,8af2a47abfa5,trustmark,full,0.426666259765625
+all-1,42314ea01a80,pixelseal,full,0.47491455078125
+all-1,cd924ae19863,pixelseal,full,0.425537109375
+all-1,623180933a3c,pixelseal,full,0.496337890625
+all-1,44bea055534d,stegastamp,partial,0.02587890625
+all-1,25a9bb85c827,stegastamp,partial,0.070556640625
+all-1,0ab680976d45,trustmark,full,0.399261474609375
+all-1,b5af22c78a60,pixelseal,full,0.498382568359375
+all-1,d02e15fbddf3,stegastamp,full,0.492523193359375
+all-1,215d44e8678c,pixelseal,partial,0.0050048828125
+all-1,b3427ae51387,trustmark,full,0.446197509765625
+all-1,9adf90a51a71,trustmark,partial,0.019012451171875
+all-1,2e5699234a38,pixelseal,partial,0.205474853515625
+all-1,30c34d0c5f50,stegastamp,partial,0.024139404296875
+all-1,1c5276ebe6bc,stegastamp,full,0.4522705078125
+all-1,fe6a0da3ca10,pixelseal,full,0.42059326171875
+all-1,fb8df1bad5e2,stegastamp,full,0.4581298828125
+all-1,81e90c8af665,trustmark,full,0.478668212890625
+all-1,6aadccf79247,stegastamp,partial,0.00982666015625
+all-1,9169cdfa4bd0,pixelseal,partial,0.058319091796875
+all-1,ce759ae7b8e4,pixelseal,full,0.4896240234375
+all-1,7061c6d99213,stegastamp,partial,0.1011962890625
+all-1,dc3c83c40513,trustmark,partial,0.00830078125
+all-1,5642c2c4e2bd,trustmark,partial,0.001953125
+all-1,a32cbb10959b,stegastamp,full,0.46881103515625
+all-1,c7b0fe088ce2,stegastamp,partial,0.010040283203125
+all-1,7168c732ee2c,pixelseal,full,0.490325927734375
+all-1,f1a940082acd,pixelseal,full,0.478668212890625
+all-1,bd90e4da0f52,stegastamp,partial,0.01116943359375
+all-1,148fa6a6293f,pixelseal,partial,0.2122802734375
+all-1,11d701e4f965,trustmark,partial,0.021026611328125
+all-1,e5e5e32f3575,pixelseal,partial,0.002288818359375
+all-1,f8a202d8d55a,pixelseal,partial,0.02392578125
+all-1,22df37a04afe,trustmark,partial,0.00537109375
+all-1,8003300b3da8,stegastamp,partial,0.006683349609375
+all-1,4183d016117d,trustmark,partial,0.00360107421875
+all-1,63a2fb225c07,stegastamp,partial,0.076141357421875
+all-1,a7876fef0ed7,trustmark,partial,0.004150390625
+all-1,e3307d3e3a5e,pixelseal,full,0.44000244140625
+all-1,3a8bfc6967f1,pixelseal,full,0.38665771484375
+all-1,d208acac5cd4,pixelseal,full,0.44696044921875
+all-1,4d43f14ad89d,stegastamp,full,0.408538818359375
+all-1,cfb8cf894a96,pixelseal,partial,0.218170166015625
+all-1,3d854e23a9c9,pixelseal,partial,0.0076904296875
+all-1,2df125cd8603,stegastamp,full,0.41192626953125
+all-1,a59c74c9a78f,trustmark,partial,0.21148681640625
+all-1,0b35f8d56e9f,stegastamp,partial,0.003082275390625
+all-1,3f1e7d46f49f,pixelseal,partial,0.00299072265625
+all-1,249d686dba1a,stegastamp,full,0.4781494140625
+all-1,8cb4e4fa4d07,stegastamp,full,0.451751708984375
+all-1,8342093a857a,stegastamp,full,0.433929443359375
+all-1,01a775d8e589,trustmark,full,0.473876953125
+all-1,441afa547a86,pixelseal,full,0.430938720703125
+all-1,d18114453ad6,trustmark,partial,0.0281982421875
+all-1,75a578c59136,trustmark,partial,0.005096435546875
+all-1,5aca13bcbc53,stegastamp,partial,0.003662109375
+all-1,a2b9306316e0,trustmark,full,0.497772216796875
+all-1,54e514b6f49f,stegastamp,full,0.474700927734375
+all-1,2dfa53b9ecf4,trustmark,partial,0.217437744140625
+all-1,f1ee565cd547,stegastamp,partial,0.044464111328125
+all-1,5fb372561cf5,stegastamp,partial,0.118011474609375
+all-1,1974c13982d2,stegastamp,partial,0.01025390625
+all-1,2a43e03d3b8b,trustmark,full,0.49334716796875
+all-1,a47a4d6fba6b,stegastamp,partial,0.04034423828125
+all-1,2260d5ffabd1,pixelseal,full,0.4708251953125
+all-1,53c9c87e7c0e,pixelseal,partial,0.003387451171875
+all-1,deb4c0be1388,trustmark,partial,0.125518798828125
+all-1,0e621b03703a,stegastamp,full,0.469818115234375
+all-1,7db094a4dda1,trustmark,partial,0.01416015625
+all-1,56f20ecd8eb0,trustmark,partial,0.0185546875
+all-1,d083287f6de2,trustmark,partial,0.006134033203125
+all-1,c4403dadabe9,pixelseal,full,0.497894287109375
+all-1,71d76625228f,trustmark,full,0.495635986328125
+all-1,f3346b510dcd,stegastamp,partial,0.03863525390625
+all-1,464627af121f,stegastamp,partial,0.015869140625
+all-1,ac82720f9631,pixelseal,full,0.49517822265625
+all-1,eba1f0db78f9,trustmark,full,0.464263916015625
+all-1,f165a98d6f36,pixelseal,full,0.49853515625
+all-1,bf9c2f02c657,pixelseal,partial,0.010955810546875
+all-1,0ba6f5f80a74,trustmark,partial,0.01458740234375
+all-1,4b7baf414f18,pixelseal,full,0.48114013671875
+all-1,5e96f3e995e0,stegastamp,full,0.28253173828125
+all-1,7b5dd85deb4f,pixelseal,full,0.38006591796875
+all-1,bb1419c0797d,pixelseal,partial,0.126861572265625
+all-1,7f593f986f59,trustmark,partial,0.043365478515625
+all-1,987f87322d80,stegastamp,full,0.47515869140625
+all-1,8aff36a43581,pixelseal,partial,0.1678466796875
+all-1,694715f71b85,pixelseal,full,0.315521240234375
+all-1,9255874fb289,pixelseal,full,0.441680908203125
+all-1,f5776539f6ac,trustmark,partial,0.0673828125
+all-1,15097a1653aa,stegastamp,full,0.472137451171875
+all-1,369430e52bd9,stegastamp,full,0.4490966796875
+all-1,bf884136486a,trustmark,partial,0.01800537109375
+all-1,435a049a735c,pixelseal,partial,0.013916015625
+all-1,682a1d54d9f8,stegastamp,full,0.477203369140625
+all-1,45765a754beb,pixelseal,full,0.4970703125
+all-1,18953a989e61,pixelseal,full,0.477142333984375
+all-1,64fa63c58b35,pixelseal,full,0.4525146484375
+all-1,e04c373f1f19,pixelseal,partial,0.10638427734375
+all-1,a8560657fce8,trustmark,full,0.481903076171875
+all-1,4976c75b1d8e,trustmark,full,0.478118896484375
+all-1,929d5ef9ec83,pixelseal,full,0.46295166015625
+all-1,b3466495202a,stegastamp,full,0.49560546875
+all-1,d2540376f815,stegastamp,partial,0.166351318359375
+all-1,fda585808eeb,pixelseal,full,0.446319580078125
+all-1,99fd9f64749e,trustmark,full,0.441650390625
+all-1,5da546be6aa2,trustmark,full,0.470977783203125
+all-1,af8283fae5e0,pixelseal,full,0.4283447265625
+all-1,57bee312c5bd,stegastamp,partial,0.01739501953125
+all-1,807adda9b2b4,trustmark,full,0.481353759765625
+all-1,54ea8dae1317,trustmark,partial,0.014862060546875
+all-1,1366ee0f9d5e,stegastamp,full,0.39373779296875
+all-1,80732ff13c49,pixelseal,full,0.486663818359375
+all-1,7cebd57ebf5c,stegastamp,partial,0.001922607421875
+all-1,c8f688ee9e58,trustmark,full,0.37841796875
+all-1,145e4172b6f9,stegastamp,full,0.4962158203125
+all-1,deea1f1acdc7,trustmark,partial,0.0577392578125
+all-1,7b3a9ef755ee,trustmark,full,0.497314453125
+all-1,b96b76dce396,trustmark,partial,0.043243408203125
+all-1,16319016e39d,trustmark,partial,0.021728515625
+all-1,bb4de9c37d22,stegastamp,full,0.4984130859375
+all-1,d46f9571398e,pixelseal,full,0.48388671875
+all-1,6e8ec5b44fa9,pixelseal,partial,0.028045654296875
+all-1,81cb54d5cf65,pixelseal,full,0.46807861328125
+all-1,3f1cc0b40d34,pixelseal,full,0.476104736328125
+all-1,0b17ada8b6f6,trustmark,full,0.491119384765625
+all-1,345d72a77a10,trustmark,full,0.474151611328125
+all-1,0b2fb5e65207,pixelseal,full,0.298095703125
+all-1,1a46eb491c4f,pixelseal,full,0.488616943359375
+all-1,279267bc151a,trustmark,partial,0.04510498046875
+all-1,d0a8f1c0ccce,pixelseal,partial,0.001708984375
+all-1,ed5976bf36af,pixelseal,full,0.364654541015625
+all-1,9b2d0936e9e3,pixelseal,partial,0.001678466796875
+all-1,a6ba414430c8,trustmark,full,0.491119384765625
+all-1,bfd0ce227906,pixelseal,partial,0.014923095703125
+all-1,6c0914b193cc,trustmark,full,0.45257568359375
+all-1,6633ff9f8192,trustmark,partial,0.05731201171875
+all-1,3e38638a4881,pixelseal,partial,0.142669677734375
+all-1,e7e2022625fa,pixelseal,full,0.394378662109375
+all-1,4265f6054cf6,trustmark,partial,0.008575439453125
+all-1,ebfc9dc16dd6,pixelseal,full,0.437347412109375
+all-1,0ae0e6224c29,stegastamp,full,0.449737548828125
+all-1,5e76de797048,stegastamp,partial,0.003753662109375
+all-1,0b08481293d1,trustmark,full,0.498260498046875
+all-1,4ca1111f7fa9,stegastamp,full,0.487457275390625
+all-1,43715261027b,pixelseal,full,0.44976806640625
+all-1,05236392da3f,trustmark,full,0.44635009765625
+all-1,b0c5f248d5f4,pixelseal,full,0.47235107421875
+all-1,18ba9cbd447a,trustmark,full,0.488983154296875
+all-1,d0e2697396ba,pixelseal,partial,0.10528564453125
+all-1,9eb0e218f902,pixelseal,partial,0.0567626953125
+all-1,95eecda4b6f3,stegastamp,full,0.4774169921875
+all-1,e3fc82395871,pixelseal,partial,0.062408447265625
+all-1,d4654f26ad33,stegastamp,partial,0.003143310546875
+all-1,17612bb5282e,stegastamp,full,0.496856689453125
+all-1,55e3f2a7680d,stegastamp,full,0.425750732421875
+all-1,3087e66bf992,trustmark,full,0.40478515625
+all-1,e5081cd3fcd7,trustmark,full,0.407012939453125
+all-1,2e731007efaf,stegastamp,full,0.46124267578125
+all-1,f5b8615ffbf3,trustmark,full,0.45703125
+all-1,bc61dd574b14,trustmark,full,0.494293212890625
+all-1,5955ddeb6f1c,stegastamp,full,0.422882080078125
+all-1,8eb1d19c7879,trustmark,full,0.46917724609375
+all-1,81c3edd7e0e1,stegastamp,full,0.41082763671875
+all-1,915bb260ec34,pixelseal,partial,0.001708984375
+all-1,2d9abc289096,trustmark,full,0.496368408203125
+all-1,8639d18f25a1,pixelseal,partial,0.044952392578125
+all-1,4e1739a8a971,trustmark,full,0.483978271484375
+all-1,38d2a5f0a28e,trustmark,full,0.438690185546875
+all-1,054c4c1d6fbe,stegastamp,partial,0.025909423828125
+all-1,d82ab583413e,trustmark,full,0.498016357421875
+all-1,dc502fc2a2f4,stegastamp,full,0.487945556640625
+all-1,bf8ac504f2c3,pixelseal,partial,0.0316162109375
+all-1,7ac4e3df5158,trustmark,full,0.4962158203125
+all-1,9682307a5e4a,stegastamp,partial,0.00238037109375
+all-1,244f74a38163,pixelseal,full,0.490509033203125
+all-1,6e00a0a03fcc,stegastamp,partial,0.089691162109375
+all-1,87e560e1273b,stegastamp,full,0.466339111328125
+all-1,8f4599154c39,stegastamp,full,0.45806884765625
+all-1,61c0748d68e9,stegastamp,full,0.481781005859375
+all-1,a6610e290ef7,trustmark,full,0.487030029296875
+all-1,67d8a7b7f087,stegastamp,partial,0.05792236328125
+all-1,e8c512787c95,trustmark,partial,0.017547607421875
+all-1,f768edf71846,trustmark,full,0.412689208984375
+all-1,9ea3fbbdb421,pixelseal,partial,0.037017822265625
+all-1,c499d5109725,pixelseal,full,0.483978271484375
+all-1,0ab56cbb0063,pixelseal,partial,0.001708984375
+all-1,da2e670b929d,pixelseal,full,0.494049072265625
+all-1,4f880cf1bc2d,trustmark,partial,0.028839111328125
+all-1,921536989578,pixelseal,full,0.259368896484375
+all-1,f832d939deab,trustmark,partial,0.001922607421875
+all-1,6aeca6917ddb,stegastamp,full,0.497161865234375
+all-1,210ac4699cd0,stegastamp,full,0.46087646484375
+all-1,f7acb19062b2,pixelseal,partial,0.004150390625
+all-1,ee5b4f271a92,stegastamp,partial,0.037689208984375
+all-1,74cc8f6da788,trustmark,partial,0.207977294921875
+all-1,7ced3c4ab6f8,trustmark,full,0.45086669921875
+all-1,f1d4d90df0dc,stegastamp,partial,0.04095458984375
+all-1,0703932c7705,trustmark,partial,0.14324951171875
+all-1,498ccac5801f,stegastamp,full,0.47552490234375
+all-1,a33c6023b6ad,trustmark,partial,0.019775390625
+all-1,ea9703d496e3,trustmark,full,0.494873046875
+all-1,6f273955efcc,trustmark,full,0.4580078125
+all-1,8e7c82a556c8,pixelseal,partial,0.05816650390625
+all-1,e7dcc01fb0a3,trustmark,full,0.443511962890625
+all-1,c27d787ad54b,pixelseal,partial,0.04168701171875
+all-1,28055f534714,pixelseal,full,0.487579345703125
+all-1,b00270778e48,stegastamp,partial,0.03143310546875
+all-1,af2f4e3f42e7,stegastamp,full,0.432891845703125
+all-1,ee050a31b3b3,trustmark,partial,0.021759033203125
+all-1,bd93c8feb303,stegastamp,partial,0.21942138671875
+all-1,f0fcf967b41f,trustmark,partial,0.04254150390625
+all-1,62d201df45e0,trustmark,full,0.451324462890625
+all-1,f93ed50be8b1,trustmark,full,0.477935791015625
+all-1,99ea93e7122d,trustmark,partial,0.029754638671875
+all-1,a6eb9718a7f3,pixelseal,partial,0.059112548828125
+all-1,46dca85f7506,stegastamp,full,0.491729736328125
+all-1,9537ce315f10,stegastamp,partial,0.032806396484375
+all-1,1327c98ab27f,trustmark,partial,0.070220947265625
+all-1,0f715ead6d99,stegastamp,full,0.3603515625
+all-1,3c541165b889,trustmark,partial,0.16143798828125
+all-1,498122cc7b51,trustmark,partial,0.18731689453125
+all-1,ef2f9c8b4013,stegastamp,partial,0.0045166015625
+all-1,2360e3e4a53f,pixelseal,full,0.38671875
+all-1,bac4f0abc084,trustmark,partial,0.01068115234375
+all-1,9e05ce4e6a2f,pixelseal,partial,0.005340576171875
+all-1,00ba6128fc95,stegastamp,full,0.403778076171875
+all-1,947e2f28769b,trustmark,full,0.47198486328125
+all-1,caabb09d28af,trustmark,full,0.43414306640625
+all-1,66cf89271161,pixelseal,partial,0.0963134765625
+all-1,1adc44415a94,pixelseal,full,0.363006591796875
+all-1,585c5e22e771,trustmark,partial,0.02008056640625
+all-1,5a906f7708bd,stegastamp,full,0.488067626953125
+all-1,356346ae1488,stegastamp,partial,0.02911376953125
+all-1,f6ae0cd0e25c,pixelseal,partial,0.0032958984375
+all-1,cba7e9ce68e1,stegastamp,full,0.483001708984375
+all-1,c53b7df2c860,trustmark,full,0.407623291015625
+all-1,d81cc1e7340c,pixelseal,full,0.4735107421875
+all-1,1badd3a979e1,trustmark,full,0.3419189453125
+all-1,7c955f9c7927,pixelseal,partial,0.002655029296875
+all-1,08a9ea596e11,stegastamp,partial,0.06787109375
+all-1,4d6ed8a8319b,stegastamp,partial,0.008819580078125
+all-1,c1ff63b4cf9e,trustmark,partial,0.089324951171875
+all-1,e8f3a939970e,stegastamp,full,0.496978759765625
+all-1,8939e4777231,trustmark,partial,0.039276123046875
+all-1,db9591067612,stegastamp,full,0.4959716796875
+all-1,c73e30f4cffc,pixelseal,partial,0.01104736328125
+all-1,7f233578c2dc,pixelseal,partial,0.057098388671875
+all-1,ee92f7207a40,stegastamp,partial,0.007720947265625
+all-1,42ee90cc410d,stegastamp,full,0.465972900390625
+all-1,cb64072dd412,trustmark,partial,0.00543212890625
+all-1,9b796dfd2a85,trustmark,full,0.495574951171875
+all-1,f6c3f5f3f205,stegastamp,partial,0.009002685546875
+all-1,239f921134e1,stegastamp,partial,0.016448974609375
+all-1,5e802b659cfa,stegastamp,partial,0.0032958984375
+all-1,5d226b56c951,stegastamp,full,0.489898681640625
+all-1,cfd84aab7691,trustmark,full,0.43218994140625
+all-1,bbef9fc8f0b7,stegastamp,full,0.462493896484375
+all-1,3b54f848fd6d,pixelseal,partial,0.003204345703125
+all-1,a89b406c6a09,stegastamp,full,0.47589111328125
+all-1,87de1553db4b,trustmark,partial,0.0267333984375
+all-1,c4cf42463984,stegastamp,partial,0.0343017578125
+all-1,be73d9dde1fe,trustmark,partial,0.00860595703125
+all-1,3b43b3b29e37,trustmark,partial,0.056243896484375
+all-1,54b2afdebc89,trustmark,full,0.4801025390625
+all-1,23ca79c98ba7,pixelseal,full,0.366912841796875
+all-1,f85659208b99,pixelseal,partial,0.02154541015625
+all-1,3348c95d7fd4,pixelseal,full,0.488616943359375
+all-1,88414844d5af,pixelseal,full,0.484771728515625
+all-1,83e0501a9fc2,pixelseal,full,0.373077392578125
+all-1,984cf9dc6045,stegastamp,partial,0.135467529296875
+all-1,2d2ec678856c,trustmark,full,0.49737548828125
+all-1,4aa4d78c3968,stegastamp,partial,0.00897216796875
+all-1,33cbd545e04e,pixelseal,full,0.44049072265625
+all-1,494176306c5b,stegastamp,partial,0.041839599609375
+all-1,72d44fae77b3,stegastamp,partial,0.057159423828125
+all-1,97adb8e5e9c6,pixelseal,partial,0.00665283203125
+all-1,2c4deff92cc9,pixelseal,partial,0.07781982421875
+all-1,8985ffba776e,pixelseal,partial,0.003753662109375
+all-1,aa26de31f2ab,trustmark,partial,0.05499267578125
+all-1,ffb70b68ad69,pixelseal,partial,0.01629638671875
+all-1,37e62376b989,stegastamp,partial,0.0029296875
+all-1,8e744aa74502,trustmark,full,0.475799560546875
+all-1,f91694d91a94,pixelseal,partial,0.09564208984375
+all-1,28e8c53f7a62,pixelseal,partial,0.0107421875
+all-1,38a0e613d649,stegastamp,full,0.406402587890625
+all-1,afdaa8af277a,trustmark,partial,0.023956298828125
+all-1,de11c61674be,stegastamp,partial,0.01177978515625
+all-1,03b5ebafe6ec,pixelseal,full,0.4661865234375
+all-1,6921edde828e,trustmark,partial,0.210205078125
+all-1,975d03039e54,trustmark,full,0.457122802734375
+all-1,6a6e6b368da2,pixelseal,partial,0.0023193359375
+all-1,fec5b98cf81b,pixelseal,partial,0.00653076171875
+all-1,f4322a3e03af,pixelseal,full,0.417816162109375
+all-1,dda21976dc73,pixelseal,full,0.489959716796875
+all-1,33cc521ed1f1,trustmark,full,0.494903564453125
+all-1,d8437ca4c1ba,pixelseal,partial,0.005950927734375
+all-1,63a9ff73ae18,stegastamp,full,0.458251953125
+all-1,d6470fd6a771,pixelseal,full,0.497894287109375
+all-1,c267b2bf0c13,pixelseal,partial,0.10418701171875
+all-1,1eab0f0ceeab,stegastamp,full,0.48956298828125
+all-1,5cb833c921cb,trustmark,full,0.388916015625
+all-1,1bb324d410cf,pixelseal,partial,0.052978515625
+all-1,795604c3aa8c,trustmark,full,0.448333740234375
+all-1,bb4b0481f38e,stegastamp,full,0.476654052734375
+all-1,ee1cd172f2d1,stegastamp,partial,0.008544921875
+all-1,693191957a29,stegastamp,partial,0.016357421875
+all-1,b07af2b318f5,trustmark,full,0.420928955078125
+all-1,7aefd4b81812,pixelseal,partial,0.02783203125
+all-1,e2dab72c9d37,pixelseal,partial,0.05157470703125
+all-1,0b591f8d006b,trustmark,partial,0.151611328125
+all-1,22ea80b90a54,pixelseal,partial,0.048675537109375
+all-1,877a2f7237c4,stegastamp,full,0.31085205078125
+all-1,d2d9c49d6554,stegastamp,partial,0.048980712890625
+all-1,c6112bbf6604,trustmark,partial,0.0059814453125
+all-1,332e7eb634ee,stegastamp,partial,0.0284423828125
+all-1,f0da1b9a0c4b,trustmark,full,0.478851318359375
+all-1,1afaf23400a2,trustmark,full,0.49334716796875
+all-1,1dc32cbb2e04,pixelseal,partial,0.082305908203125
+all-1,65660f45dd8a,trustmark,partial,0.0699462890625
+all-1,6498956eca5d,stegastamp,partial,0.01068115234375
+all-1,124efa616612,pixelseal,full,0.4532470703125
+all-1,4571a5b76263,stegastamp,partial,0.076904296875
+all-1,9026d876b7c0,pixelseal,partial,0.019134521484375
+all-1,6846e6a56d8f,pixelseal,full,0.496856689453125
+oracle regime (not submittable),8d350a3ade55,pixelseal,full,0.3026123046875
+oracle regime (not submittable),3ae884409dc3,stegastamp,full,0.429779052734375
+oracle regime (not submittable),63ab2489dca0,pixelseal,full,0.48016357421875
+oracle regime (not submittable),d7759cebfa93,stegastamp,partial,0.48974609375
+oracle regime (not submittable),a476ade3e703,stegastamp,full,0.3128662109375
+oracle regime (not submittable),59738e22b1ba,trustmark,full,0.481536865234375
+oracle regime (not submittable),d854e128465a,pixelseal,full,0.4852294921875
+oracle regime (not submittable),330fb70f8303,pixelseal,partial,0.496063232421875
+oracle regime (not submittable),4bd2be05e610,pixelseal,partial,0.489044189453125
+oracle regime (not submittable),6882157c15d3,trustmark,partial,0.388916015625
+oracle regime (not submittable),dc93a9acd93b,pixelseal,partial,0.468658447265625
+oracle regime (not submittable),d339bbaefadb,pixelseal,partial,0.47552490234375
+oracle regime (not submittable),4dcd977da36b,stegastamp,partial,0.49267578125
+oracle regime (not submittable),5cb646b1c82f,stegastamp,full,0.478118896484375
+oracle regime (not submittable),a82d8698a09d,trustmark,full,0.4744873046875
+oracle regime (not submittable),53934df0429a,stegastamp,partial,0.497222900390625
+oracle regime (not submittable),365993aa0223,trustmark,partial,0.456085205078125
+oracle regime (not submittable),6d05e72e601c,pixelseal,partial,0.493438720703125
+oracle regime (not submittable),77026d0b7c0f,trustmark,partial,0.455535888671875
+oracle regime (not submittable),a2af11ea5e64,trustmark,full,0.46356201171875
+oracle regime (not submittable),33d1b360407b,trustmark,partial,0.4959716796875
+oracle regime (not submittable),219fe27fda99,trustmark,full,0.466156005859375
+oracle regime (not submittable),ea6792c38efa,pixelseal,partial,0.484466552734375
+oracle regime (not submittable),3c009e5049a1,trustmark,full,0.427978515625
+oracle regime (not submittable),f41be13eec99,trustmark,full,0.383758544921875
+oracle regime (not submittable),5645ac9a5991,trustmark,partial,0.47308349609375
+oracle regime (not submittable),6a87cd543012,pixelseal,partial,0.496185302734375
+oracle regime (not submittable),2637e305ead3,trustmark,full,0.323822021484375
+oracle regime (not submittable),34db63f9db87,stegastamp,partial,0.48077392578125
+oracle regime (not submittable),857f0e93299e,stegastamp,full,0.486175537109375
+oracle regime (not submittable),4db78b807f52,trustmark,full,0.422088623046875
+oracle regime (not submittable),897252ac4ec0,trustmark,full,0.47613525390625
+oracle regime (not submittable),abcb8914c859,stegastamp,full,0.49188232421875
+oracle regime (not submittable),3e2ad107d8bd,stegastamp,partial,0.495880126953125
+oracle regime (not submittable),c34457504bd2,stegastamp,partial,0.433197021484375
+oracle regime (not submittable),0f30c4fb22ca,stegastamp,partial,0.416778564453125
+oracle regime (not submittable),65f49a1e33f5,pixelseal,partial,0.48583984375
+oracle regime (not submittable),eb0b50f8d422,stegastamp,full,0.414581298828125
+oracle regime (not submittable),3dee07a2c91d,pixelseal,full,0.48089599609375
+oracle regime (not submittable),5b7127ca0a3a,stegastamp,partial,0.47100830078125
+oracle regime (not submittable),981a42f57af9,stegastamp,full,0.449615478515625
+oracle regime (not submittable),58b7e5df2755,trustmark,partial,0.487518310546875
+oracle regime (not submittable),fcbae90b5203,stegastamp,partial,0.4842529296875
+oracle regime (not submittable),2e6b55c0036f,pixelseal,partial,0.441864013671875
+oracle regime (not submittable),fb670b6f1e9a,stegastamp,full,0.3729248046875
+oracle regime (not submittable),1ed84d28c4c8,stegastamp,partial,0.42840576171875
+oracle regime (not submittable),2f2345f8b376,stegastamp,partial,0.44024658203125
+oracle regime (not submittable),9ebfa913b9a4,pixelseal,partial,0.470733642578125
+oracle regime (not submittable),61628c0067e6,trustmark,partial,0.452606201171875
+oracle regime (not submittable),9ceef7fbc120,trustmark,full,0.495208740234375
+oracle regime (not submittable),7f74ddf5998b,trustmark,full,0.444549560546875
+oracle regime (not submittable),05a1084c2ab4,pixelseal,full,0.440521240234375
+oracle regime (not submittable),73478591d121,pixelseal,partial,0.49395751953125
+oracle regime (not submittable),bb70e4ac4e26,trustmark,partial,0.454833984375
+oracle regime (not submittable),23bfdcdaecd3,pixelseal,full,0.314361572265625
+oracle regime (not submittable),b801c7f31896,trustmark,partial,0.4857177734375
+oracle regime (not submittable),9234fa78fab7,pixelseal,full,0.42926025390625
+oracle regime (not submittable),5666e86296f2,stegastamp,full,0.49346923828125
+oracle regime (not submittable),82ff11240255,stegastamp,full,0.46246337890625
+oracle regime (not submittable),1f81da8572ae,stegastamp,partial,0.485198974609375
+oracle regime (not submittable),4003d769516e,pixelseal,partial,0.486572265625
+oracle regime (not submittable),8be8cdac04c2,stegastamp,partial,0.428009033203125
+oracle regime (not submittable),8093279c5549,pixelseal,partial,0.482025146484375
+oracle regime (not submittable),a558bea42351,trustmark,partial,0.315216064453125
+oracle regime (not submittable),d49de237f21c,trustmark,full,0.315643310546875
+oracle regime (not submittable),1cd4cf403050,stegastamp,full,0.441131591796875
+oracle regime (not submittable),bab81c5c46bc,pixelseal,partial,0.459136962890625
+oracle regime (not submittable),f10e01fec41b,trustmark,partial,0.490692138671875
+oracle regime (not submittable),d749e4d691a9,stegastamp,partial,0.39837646484375
+oracle regime (not submittable),fb7cafc7cf8e,trustmark,full,0.47589111328125
+oracle regime (not submittable),8659c72e0980,pixelseal,partial,0.494140625
+oracle regime (not submittable),c6d085ee8ae8,pixelseal,full,0.49066162109375
+oracle regime (not submittable),483da5e9fc39,stegastamp,partial,0.4892578125
+oracle regime (not submittable),da014a7b8652,trustmark,partial,0.465484619140625
+oracle regime (not submittable),a4d82c5eed4c,stegastamp,partial,0.439361572265625
+oracle regime (not submittable),c5037e2d4867,stegastamp,full,0.46307373046875
+oracle regime (not submittable),a224379cd393,pixelseal,partial,0.390899658203125
+oracle regime (not submittable),3d6238419ba9,stegastamp,full,0.476287841796875
+oracle regime (not submittable),468f425e2cb4,pixelseal,full,0.48590087890625
+oracle regime (not submittable),6d015d1ee1a6,trustmark,partial,0.30780029296875
+oracle regime (not submittable),3df76955d1fc,trustmark,partial,0.486236572265625
+oracle regime (not submittable),d53fa7a68289,pixelseal,partial,0.409912109375
+oracle regime (not submittable),2e4f5fc9f614,pixelseal,partial,0.4053955078125
+oracle regime (not submittable),129674d13f5f,trustmark,partial,0.48724365234375
+oracle regime (not submittable),8e071d2af614,stegastamp,partial,0.4945068359375
+oracle regime (not submittable),b4503efbacd4,stegastamp,full,0.461090087890625
+oracle regime (not submittable),db30d286a66f,stegastamp,partial,0.493896484375
+oracle regime (not submittable),b6a833cb199b,pixelseal,full,0.497528076171875
+oracle regime (not submittable),39c467d75aa5,stegastamp,full,0.465484619140625
+oracle regime (not submittable),e300d14d9ad9,trustmark,partial,0.493011474609375
+oracle regime (not submittable),922863ab20f3,stegastamp,full,0.463897705078125
+oracle regime (not submittable),2cd1321044c5,trustmark,partial,0.359771728515625
+oracle regime (not submittable),d0611fc637fa,trustmark,full,0.479888916015625
+oracle regime (not submittable),1256bb953ed7,stegastamp,partial,0.452392578125
+oracle regime (not submittable),e7ece8e6125a,pixelseal,full,0.495697021484375
+oracle regime (not submittable),02eb1c264446,pixelseal,full,0.406158447265625
+oracle regime (not submittable),dd2117957803,stegastamp,full,0.497833251953125
+oracle regime (not submittable),3ded9275dd8c,trustmark,partial,0.43304443359375
+oracle regime (not submittable),acf2e6dd8a72,pixelseal,full,0.359619140625
+oracle regime (not submittable),755353b24e9f,pixelseal,partial,0.411651611328125
+oracle regime (not submittable),0afce1b27992,trustmark,partial,0.478973388671875
+oracle regime (not submittable),e8485cda4a0b,pixelseal,partial,0.440460205078125
+oracle regime (not submittable),584265fada0a,trustmark,partial,0.481719970703125
+oracle regime (not submittable),a7ee54c2d1f7,stegastamp,full,0.468902587890625
+oracle regime (not submittable),06dfdfb8f49f,stegastamp,full,0.495391845703125
+oracle regime (not submittable),01a8a19cb848,trustmark,partial,0.47607421875
+oracle regime (not submittable),9aec69d421d3,pixelseal,full,0.492218017578125
+oracle regime (not submittable),5f598820762d,trustmark,full,0.47601318359375
+oracle regime (not submittable),1c5d286af4f2,pixelseal,full,0.489227294921875
+oracle regime (not submittable),a9890e7a9162,stegastamp,partial,0.450164794921875
+oracle regime (not submittable),b221162a8d6c,pixelseal,full,0.453857421875
+oracle regime (not submittable),82430b03e627,pixelseal,partial,0.4598388671875
+oracle regime (not submittable),5fa220ddb966,stegastamp,partial,0.4923095703125
+oracle regime (not submittable),14aeeec9caec,trustmark,full,0.440826416015625
+oracle regime (not submittable),7f49b4b810c5,stegastamp,partial,0.498077392578125
+oracle regime (not submittable),5e6b3ce64803,trustmark,partial,0.469482421875
+oracle regime (not submittable),b591ddada6e2,stegastamp,full,0.42523193359375
+oracle regime (not submittable),08a436824488,trustmark,full,0.39697265625
+oracle regime (not submittable),ac150fa24f69,pixelseal,partial,0.43756103515625
+oracle regime (not submittable),716630c867a8,stegastamp,full,0.46881103515625
+oracle regime (not submittable),2610e4f2a637,pixelseal,full,0.456024169921875
+oracle regime (not submittable),77d08ec17b71,trustmark,partial,0.498077392578125
+oracle regime (not submittable),b512693d6cbe,pixelseal,partial,0.349700927734375
+oracle regime (not submittable),5b05c1ae340a,pixelseal,partial,0.49786376953125
+oracle regime (not submittable),9f251d379b53,stegastamp,partial,0.484222412109375
+oracle regime (not submittable),cc4b13816d42,stegastamp,partial,0.35418701171875
+oracle regime (not submittable),8422dc049133,pixelseal,full,0.457366943359375
+oracle regime (not submittable),87578149d91a,stegastamp,full,0.366302490234375
+oracle regime (not submittable),4c25603f341a,trustmark,partial,0.496917724609375
+oracle regime (not submittable),934fd5783102,trustmark,full,0.4962158203125
+oracle regime (not submittable),cf68b2360a2b,trustmark,partial,0.39990234375
+oracle regime (not submittable),0c7cde6818d5,stegastamp,partial,0.49066162109375
+oracle regime (not submittable),c445d83a3c7a,pixelseal,full,0.44744873046875
+oracle regime (not submittable),01117709f538,trustmark,partial,0.4891357421875
+oracle regime (not submittable),612366d3bdba,stegastamp,partial,0.490570068359375
+oracle regime (not submittable),4c732277795f,trustmark,full,0.448211669921875
+oracle regime (not submittable),ef86e1e99ad6,stegastamp,full,0.46832275390625
+oracle regime (not submittable),e74d5f41e18d,pixelseal,full,0.485015869140625
+oracle regime (not submittable),62042cbd008e,stegastamp,full,0.44256591796875
+oracle regime (not submittable),46626c487804,pixelseal,full,0.49688720703125
+oracle regime (not submittable),c15f1406ccd3,trustmark,full,0.447113037109375
+oracle regime (not submittable),4ad7c27c4400,stegastamp,full,0.457855224609375
+oracle regime (not submittable),350e9f6ea820,stegastamp,full,0.460205078125
+oracle regime (not submittable),07b2717b53ad,trustmark,full,0.496856689453125
+oracle regime (not submittable),0adc01a30731,pixelseal,partial,0.44482421875
+oracle regime (not submittable),07c5ceca91f8,pixelseal,full,0.387237548828125
+oracle regime (not submittable),cd62b065d3cf,pixelseal,partial,0.3741455078125
+oracle regime (not submittable),d378a39f49e4,stegastamp,full,0.494903564453125
+oracle regime (not submittable),9f4496f5db6f,trustmark,partial,0.479400634765625
+oracle regime (not submittable),11ddb06b157f,trustmark,full,0.496734619140625
+oracle regime (not submittable),0c1cf92368eb,trustmark,full,0.306243896484375
+oracle regime (not submittable),ac1f69a06ab4,pixelseal,full,0.489776611328125
+oracle regime (not submittable),1587d580ff07,stegastamp,partial,0.48126220703125
+oracle regime (not submittable),8cf1b80f84d9,stegastamp,partial,0.474945068359375
+oracle regime (not submittable),ecc06b41364f,trustmark,partial,0.479156494140625
+oracle regime (not submittable),d91c354d3ba8,stegastamp,full,0.497344970703125
+oracle regime (not submittable),e0b2273bbf7c,trustmark,partial,0.4974365234375
+oracle regime (not submittable),7685d5d2e94c,pixelseal,partial,0.49835205078125
+oracle regime (not submittable),e81bfdbaf19b,trustmark,partial,0.49310302734375
+oracle regime (not submittable),c0bd18651b4b,stegastamp,full,0.49713134765625
+oracle regime (not submittable),572b61707c4c,pixelseal,full,0.38226318359375
+oracle regime (not submittable),f9e9a9d8fbaa,pixelseal,full,0.483245849609375
+oracle regime (not submittable),501c159f0e5a,trustmark,full,0.253662109375
+oracle regime (not submittable),7a544a3b53da,trustmark,full,0.483154296875
+oracle regime (not submittable),52bbbaf49947,stegastamp,full,0.46807861328125
+oracle regime (not submittable),9ccd12ff89e9,trustmark,partial,0.48992919921875
+oracle regime (not submittable),c739565531ca,trustmark,full,0.451873779296875
+oracle regime (not submittable),7cfa9111f9fc,pixelseal,full,0.46368408203125
+oracle regime (not submittable),12d51ce3cbe0,pixelseal,partial,0.486328125
+oracle regime (not submittable),f70cbefa2f77,pixelseal,full,0.470672607421875
+oracle regime (not submittable),5288285c16a3,pixelseal,full,0.497100830078125
+oracle regime (not submittable),08e15b92b5b3,stegastamp,partial,0.48760986328125
+oracle regime (not submittable),9ed4e1eeb535,stegastamp,partial,0.474090576171875
+oracle regime (not submittable),61ebd2521e38,stegastamp,partial,0.4920654296875
+oracle regime (not submittable),a463b746a441,stegastamp,partial,0.450592041015625
+oracle regime (not submittable),ffa7099ac789,pixelseal,partial,0.49298095703125
+oracle regime (not submittable),efd9328e27ab,trustmark,partial,0.4967041015625
+oracle regime (not submittable),3e5c27215a50,trustmark,partial,0.382110595703125
+oracle regime (not submittable),f64b41c6da23,stegastamp,partial,0.48431396484375
+oracle regime (not submittable),5cde0a3be719,trustmark,full,0.498016357421875
+oracle regime (not submittable),7a6c7acd250d,stegastamp,full,0.423736572265625
+oracle regime (not submittable),09527d559e20,stegastamp,full,0.496246337890625
+oracle regime (not submittable),6fe95564117b,trustmark,full,0.475128173828125
+oracle regime (not submittable),5d42b3aa1afe,pixelseal,full,0.4512939453125
+oracle regime (not submittable),e9a95855a929,stegastamp,full,0.4906005859375
+oracle regime (not submittable),8af2a47abfa5,trustmark,full,0.426666259765625
+oracle regime (not submittable),42314ea01a80,pixelseal,full,0.47491455078125
+oracle regime (not submittable),cd924ae19863,pixelseal,full,0.425537109375
+oracle regime (not submittable),623180933a3c,pixelseal,full,0.496337890625
+oracle regime (not submittable),44bea055534d,stegastamp,partial,0.47412109375
+oracle regime (not submittable),25a9bb85c827,stegastamp,partial,0.429443359375
+oracle regime (not submittable),0ab680976d45,trustmark,full,0.399261474609375
+oracle regime (not submittable),b5af22c78a60,pixelseal,full,0.498382568359375
+oracle regime (not submittable),d02e15fbddf3,stegastamp,full,0.492523193359375
+oracle regime (not submittable),215d44e8678c,pixelseal,partial,0.4949951171875
+oracle regime (not submittable),b3427ae51387,trustmark,full,0.446197509765625
+oracle regime (not submittable),9adf90a51a71,trustmark,partial,0.480987548828125
+oracle regime (not submittable),2e5699234a38,pixelseal,partial,0.294525146484375
+oracle regime (not submittable),30c34d0c5f50,stegastamp,partial,0.475860595703125
+oracle regime (not submittable),1c5276ebe6bc,stegastamp,full,0.4522705078125
+oracle regime (not submittable),fe6a0da3ca10,pixelseal,full,0.42059326171875
+oracle regime (not submittable),fb8df1bad5e2,stegastamp,full,0.4581298828125
+oracle regime (not submittable),81e90c8af665,trustmark,full,0.478668212890625
+oracle regime (not submittable),6aadccf79247,stegastamp,partial,0.49017333984375
+oracle regime (not submittable),9169cdfa4bd0,pixelseal,partial,0.441680908203125
+oracle regime (not submittable),ce759ae7b8e4,pixelseal,full,0.4896240234375
+oracle regime (not submittable),7061c6d99213,stegastamp,partial,0.3988037109375
+oracle regime (not submittable),dc3c83c40513,trustmark,partial,0.49169921875
+oracle regime (not submittable),5642c2c4e2bd,trustmark,partial,0.498046875
+oracle regime (not submittable),a32cbb10959b,stegastamp,full,0.46881103515625
+oracle regime (not submittable),c7b0fe088ce2,stegastamp,partial,0.489959716796875
+oracle regime (not submittable),7168c732ee2c,pixelseal,full,0.490325927734375
+oracle regime (not submittable),f1a940082acd,pixelseal,full,0.478668212890625
+oracle regime (not submittable),bd90e4da0f52,stegastamp,partial,0.48883056640625
+oracle regime (not submittable),148fa6a6293f,pixelseal,partial,0.2877197265625
+oracle regime (not submittable),11d701e4f965,trustmark,partial,0.478973388671875
+oracle regime (not submittable),e5e5e32f3575,pixelseal,partial,0.497711181640625
+oracle regime (not submittable),f8a202d8d55a,pixelseal,partial,0.47607421875
+oracle regime (not submittable),22df37a04afe,trustmark,partial,0.49462890625
+oracle regime (not submittable),8003300b3da8,stegastamp,partial,0.493316650390625
+oracle regime (not submittable),4183d016117d,trustmark,partial,0.49639892578125
+oracle regime (not submittable),63a2fb225c07,stegastamp,partial,0.423858642578125
+oracle regime (not submittable),a7876fef0ed7,trustmark,partial,0.495849609375
+oracle regime (not submittable),e3307d3e3a5e,pixelseal,full,0.44000244140625
+oracle regime (not submittable),3a8bfc6967f1,pixelseal,full,0.38665771484375
+oracle regime (not submittable),d208acac5cd4,pixelseal,full,0.44696044921875
+oracle regime (not submittable),4d43f14ad89d,stegastamp,full,0.408538818359375
+oracle regime (not submittable),cfb8cf894a96,pixelseal,partial,0.281829833984375
+oracle regime (not submittable),3d854e23a9c9,pixelseal,partial,0.4923095703125
+oracle regime (not submittable),2df125cd8603,stegastamp,full,0.41192626953125
+oracle regime (not submittable),a59c74c9a78f,trustmark,partial,0.28851318359375
+oracle regime (not submittable),0b35f8d56e9f,stegastamp,partial,0.496917724609375
+oracle regime (not submittable),3f1e7d46f49f,pixelseal,partial,0.49700927734375
+oracle regime (not submittable),249d686dba1a,stegastamp,full,0.4781494140625
+oracle regime (not submittable),8cb4e4fa4d07,stegastamp,full,0.451751708984375
+oracle regime (not submittable),8342093a857a,stegastamp,full,0.433929443359375
+oracle regime (not submittable),01a775d8e589,trustmark,full,0.473876953125
+oracle regime (not submittable),441afa547a86,pixelseal,full,0.430938720703125
+oracle regime (not submittable),d18114453ad6,trustmark,partial,0.4718017578125
+oracle regime (not submittable),75a578c59136,trustmark,partial,0.494903564453125
+oracle regime (not submittable),5aca13bcbc53,stegastamp,partial,0.496337890625
+oracle regime (not submittable),a2b9306316e0,trustmark,full,0.497772216796875
+oracle regime (not submittable),54e514b6f49f,stegastamp,full,0.474700927734375
+oracle regime (not submittable),2dfa53b9ecf4,trustmark,partial,0.282562255859375
+oracle regime (not submittable),f1ee565cd547,stegastamp,partial,0.455535888671875
+oracle regime (not submittable),5fb372561cf5,stegastamp,partial,0.381988525390625
+oracle regime (not submittable),1974c13982d2,stegastamp,partial,0.48974609375
+oracle regime (not submittable),2a43e03d3b8b,trustmark,full,0.49334716796875
+oracle regime (not submittable),a47a4d6fba6b,stegastamp,partial,0.45965576171875
+oracle regime (not submittable),2260d5ffabd1,pixelseal,full,0.4708251953125
+oracle regime (not submittable),53c9c87e7c0e,pixelseal,partial,0.496612548828125
+oracle regime (not submittable),deb4c0be1388,trustmark,partial,0.374481201171875
+oracle regime (not submittable),0e621b03703a,stegastamp,full,0.469818115234375
+oracle regime (not submittable),7db094a4dda1,trustmark,partial,0.48583984375
+oracle regime (not submittable),56f20ecd8eb0,trustmark,partial,0.4814453125
+oracle regime (not submittable),d083287f6de2,trustmark,partial,0.493865966796875
+oracle regime (not submittable),c4403dadabe9,pixelseal,full,0.497894287109375
+oracle regime (not submittable),71d76625228f,trustmark,full,0.495635986328125
+oracle regime (not submittable),f3346b510dcd,stegastamp,partial,0.46136474609375
+oracle regime (not submittable),464627af121f,stegastamp,partial,0.484130859375
+oracle regime (not submittable),ac82720f9631,pixelseal,full,0.49517822265625
+oracle regime (not submittable),eba1f0db78f9,trustmark,full,0.464263916015625
+oracle regime (not submittable),f165a98d6f36,pixelseal,full,0.49853515625
+oracle regime (not submittable),bf9c2f02c657,pixelseal,partial,0.489044189453125
+oracle regime (not submittable),0ba6f5f80a74,trustmark,partial,0.48541259765625
+oracle regime (not submittable),4b7baf414f18,pixelseal,full,0.48114013671875
+oracle regime (not submittable),5e96f3e995e0,stegastamp,full,0.28253173828125
+oracle regime (not submittable),7b5dd85deb4f,pixelseal,full,0.38006591796875
+oracle regime (not submittable),bb1419c0797d,pixelseal,partial,0.373138427734375
+oracle regime (not submittable),7f593f986f59,trustmark,partial,0.456634521484375
+oracle regime (not submittable),987f87322d80,stegastamp,full,0.47515869140625
+oracle regime (not submittable),8aff36a43581,pixelseal,partial,0.3321533203125
+oracle regime (not submittable),694715f71b85,pixelseal,full,0.315521240234375
+oracle regime (not submittable),9255874fb289,pixelseal,full,0.441680908203125
+oracle regime (not submittable),f5776539f6ac,trustmark,partial,0.4326171875
+oracle regime (not submittable),15097a1653aa,stegastamp,full,0.472137451171875
+oracle regime (not submittable),369430e52bd9,stegastamp,full,0.4490966796875
+oracle regime (not submittable),bf884136486a,trustmark,partial,0.48199462890625
+oracle regime (not submittable),435a049a735c,pixelseal,partial,0.486083984375
+oracle regime (not submittable),682a1d54d9f8,stegastamp,full,0.477203369140625
+oracle regime (not submittable),45765a754beb,pixelseal,full,0.4970703125
+oracle regime (not submittable),18953a989e61,pixelseal,full,0.477142333984375
+oracle regime (not submittable),64fa63c58b35,pixelseal,full,0.4525146484375
+oracle regime (not submittable),e04c373f1f19,pixelseal,partial,0.39361572265625
+oracle regime (not submittable),a8560657fce8,trustmark,full,0.481903076171875
+oracle regime (not submittable),4976c75b1d8e,trustmark,full,0.478118896484375
+oracle regime (not submittable),929d5ef9ec83,pixelseal,full,0.46295166015625
+oracle regime (not submittable),b3466495202a,stegastamp,full,0.49560546875
+oracle regime (not submittable),d2540376f815,stegastamp,partial,0.333648681640625
+oracle regime (not submittable),fda585808eeb,pixelseal,full,0.446319580078125
+oracle regime (not submittable),99fd9f64749e,trustmark,full,0.441650390625
+oracle regime (not submittable),5da546be6aa2,trustmark,full,0.470977783203125
+oracle regime (not submittable),af8283fae5e0,pixelseal,full,0.4283447265625
+oracle regime (not submittable),57bee312c5bd,stegastamp,partial,0.48260498046875
+oracle regime (not submittable),807adda9b2b4,trustmark,full,0.481353759765625
+oracle regime (not submittable),54ea8dae1317,trustmark,partial,0.485137939453125
+oracle regime (not submittable),1366ee0f9d5e,stegastamp,full,0.39373779296875
+oracle regime (not submittable),80732ff13c49,pixelseal,full,0.486663818359375
+oracle regime (not submittable),7cebd57ebf5c,stegastamp,partial,0.498077392578125
+oracle regime (not submittable),c8f688ee9e58,trustmark,full,0.37841796875
+oracle regime (not submittable),145e4172b6f9,stegastamp,full,0.4962158203125
+oracle regime (not submittable),deea1f1acdc7,trustmark,partial,0.4422607421875
+oracle regime (not submittable),7b3a9ef755ee,trustmark,full,0.497314453125
+oracle regime (not submittable),b96b76dce396,trustmark,partial,0.456756591796875
+oracle regime (not submittable),16319016e39d,trustmark,partial,0.478271484375
+oracle regime (not submittable),bb4de9c37d22,stegastamp,full,0.4984130859375
+oracle regime (not submittable),d46f9571398e,pixelseal,full,0.48388671875
+oracle regime (not submittable),6e8ec5b44fa9,pixelseal,partial,0.471954345703125
+oracle regime (not submittable),81cb54d5cf65,pixelseal,full,0.46807861328125
+oracle regime (not submittable),3f1cc0b40d34,pixelseal,full,0.476104736328125
+oracle regime (not submittable),0b17ada8b6f6,trustmark,full,0.491119384765625
+oracle regime (not submittable),345d72a77a10,trustmark,full,0.474151611328125
+oracle regime (not submittable),0b2fb5e65207,pixelseal,full,0.298095703125
+oracle regime (not submittable),1a46eb491c4f,pixelseal,full,0.488616943359375
+oracle regime (not submittable),279267bc151a,trustmark,partial,0.45489501953125
+oracle regime (not submittable),d0a8f1c0ccce,pixelseal,partial,0.498291015625
+oracle regime (not submittable),ed5976bf36af,pixelseal,full,0.364654541015625
+oracle regime (not submittable),9b2d0936e9e3,pixelseal,partial,0.498321533203125
+oracle regime (not submittable),a6ba414430c8,trustmark,full,0.491119384765625
+oracle regime (not submittable),bfd0ce227906,pixelseal,partial,0.485076904296875
+oracle regime (not submittable),6c0914b193cc,trustmark,full,0.45257568359375
+oracle regime (not submittable),6633ff9f8192,trustmark,partial,0.44268798828125
+oracle regime (not submittable),3e38638a4881,pixelseal,partial,0.357330322265625
+oracle regime (not submittable),e7e2022625fa,pixelseal,full,0.394378662109375
+oracle regime (not submittable),4265f6054cf6,trustmark,partial,0.491424560546875
+oracle regime (not submittable),ebfc9dc16dd6,pixelseal,full,0.437347412109375
+oracle regime (not submittable),0ae0e6224c29,stegastamp,full,0.449737548828125
+oracle regime (not submittable),5e76de797048,stegastamp,partial,0.496246337890625
+oracle regime (not submittable),0b08481293d1,trustmark,full,0.498260498046875
+oracle regime (not submittable),4ca1111f7fa9,stegastamp,full,0.487457275390625
+oracle regime (not submittable),43715261027b,pixelseal,full,0.44976806640625
+oracle regime (not submittable),05236392da3f,trustmark,full,0.44635009765625
+oracle regime (not submittable),b0c5f248d5f4,pixelseal,full,0.47235107421875
+oracle regime (not submittable),18ba9cbd447a,trustmark,full,0.488983154296875
+oracle regime (not submittable),d0e2697396ba,pixelseal,partial,0.39471435546875
+oracle regime (not submittable),9eb0e218f902,pixelseal,partial,0.4432373046875
+oracle regime (not submittable),95eecda4b6f3,stegastamp,full,0.4774169921875
+oracle regime (not submittable),e3fc82395871,pixelseal,partial,0.437591552734375
+oracle regime (not submittable),d4654f26ad33,stegastamp,partial,0.496856689453125
+oracle regime (not submittable),17612bb5282e,stegastamp,full,0.496856689453125
+oracle regime (not submittable),55e3f2a7680d,stegastamp,full,0.425750732421875
+oracle regime (not submittable),3087e66bf992,trustmark,full,0.40478515625
+oracle regime (not submittable),e5081cd3fcd7,trustmark,full,0.407012939453125
+oracle regime (not submittable),2e731007efaf,stegastamp,full,0.46124267578125
+oracle regime (not submittable),f5b8615ffbf3,trustmark,full,0.45703125
+oracle regime (not submittable),bc61dd574b14,trustmark,full,0.494293212890625
+oracle regime (not submittable),5955ddeb6f1c,stegastamp,full,0.422882080078125
+oracle regime (not submittable),8eb1d19c7879,trustmark,full,0.46917724609375
+oracle regime (not submittable),81c3edd7e0e1,stegastamp,full,0.41082763671875
+oracle regime (not submittable),915bb260ec34,pixelseal,partial,0.498291015625
+oracle regime (not submittable),2d9abc289096,trustmark,full,0.496368408203125
+oracle regime (not submittable),8639d18f25a1,pixelseal,partial,0.455047607421875
+oracle regime (not submittable),4e1739a8a971,trustmark,full,0.483978271484375
+oracle regime (not submittable),38d2a5f0a28e,trustmark,full,0.438690185546875
+oracle regime (not submittable),054c4c1d6fbe,stegastamp,partial,0.474090576171875
+oracle regime (not submittable),d82ab583413e,trustmark,full,0.498016357421875
+oracle regime (not submittable),dc502fc2a2f4,stegastamp,full,0.487945556640625
+oracle regime (not submittable),bf8ac504f2c3,pixelseal,partial,0.4683837890625
+oracle regime (not submittable),7ac4e3df5158,trustmark,full,0.4962158203125
+oracle regime (not submittable),9682307a5e4a,stegastamp,partial,0.49761962890625
+oracle regime (not submittable),244f74a38163,pixelseal,full,0.490509033203125
+oracle regime (not submittable),6e00a0a03fcc,stegastamp,partial,0.410308837890625
+oracle regime (not submittable),87e560e1273b,stegastamp,full,0.466339111328125
+oracle regime (not submittable),8f4599154c39,stegastamp,full,0.45806884765625
+oracle regime (not submittable),61c0748d68e9,stegastamp,full,0.481781005859375
+oracle regime (not submittable),a6610e290ef7,trustmark,full,0.487030029296875
+oracle regime (not submittable),67d8a7b7f087,stegastamp,partial,0.44207763671875
+oracle regime (not submittable),e8c512787c95,trustmark,partial,0.482452392578125
+oracle regime (not submittable),f768edf71846,trustmark,full,0.412689208984375
+oracle regime (not submittable),9ea3fbbdb421,pixelseal,partial,0.462982177734375
+oracle regime (not submittable),c499d5109725,pixelseal,full,0.483978271484375
+oracle regime (not submittable),0ab56cbb0063,pixelseal,partial,0.498291015625
+oracle regime (not submittable),da2e670b929d,pixelseal,full,0.494049072265625
+oracle regime (not submittable),4f880cf1bc2d,trustmark,partial,0.471160888671875
+oracle regime (not submittable),921536989578,pixelseal,full,0.259368896484375
+oracle regime (not submittable),f832d939deab,trustmark,partial,0.498077392578125
+oracle regime (not submittable),6aeca6917ddb,stegastamp,full,0.497161865234375
+oracle regime (not submittable),210ac4699cd0,stegastamp,full,0.46087646484375
+oracle regime (not submittable),f7acb19062b2,pixelseal,partial,0.495849609375
+oracle regime (not submittable),ee5b4f271a92,stegastamp,partial,0.462310791015625
+oracle regime (not submittable),74cc8f6da788,trustmark,partial,0.292022705078125
+oracle regime (not submittable),7ced3c4ab6f8,trustmark,full,0.45086669921875
+oracle regime (not submittable),f1d4d90df0dc,stegastamp,partial,0.45904541015625
+oracle regime (not submittable),0703932c7705,trustmark,partial,0.35675048828125
+oracle regime (not submittable),498ccac5801f,stegastamp,full,0.47552490234375
+oracle regime (not submittable),a33c6023b6ad,trustmark,partial,0.480224609375
+oracle regime (not submittable),ea9703d496e3,trustmark,full,0.494873046875
+oracle regime (not submittable),6f273955efcc,trustmark,full,0.4580078125
+oracle regime (not submittable),8e7c82a556c8,pixelseal,partial,0.44183349609375
+oracle regime (not submittable),e7dcc01fb0a3,trustmark,full,0.443511962890625
+oracle regime (not submittable),c27d787ad54b,pixelseal,partial,0.45831298828125
+oracle regime (not submittable),28055f534714,pixelseal,full,0.487579345703125
+oracle regime (not submittable),b00270778e48,stegastamp,partial,0.46856689453125
+oracle regime (not submittable),af2f4e3f42e7,stegastamp,full,0.432891845703125
+oracle regime (not submittable),ee050a31b3b3,trustmark,partial,0.478240966796875
+oracle regime (not submittable),bd93c8feb303,stegastamp,partial,0.28057861328125
+oracle regime (not submittable),f0fcf967b41f,trustmark,partial,0.45745849609375
+oracle regime (not submittable),62d201df45e0,trustmark,full,0.451324462890625
+oracle regime (not submittable),f93ed50be8b1,trustmark,full,0.477935791015625
+oracle regime (not submittable),99ea93e7122d,trustmark,partial,0.470245361328125
+oracle regime (not submittable),a6eb9718a7f3,pixelseal,partial,0.440887451171875
+oracle regime (not submittable),46dca85f7506,stegastamp,full,0.491729736328125
+oracle regime (not submittable),9537ce315f10,stegastamp,partial,0.467193603515625
+oracle regime (not submittable),1327c98ab27f,trustmark,partial,0.429779052734375
+oracle regime (not submittable),0f715ead6d99,stegastamp,full,0.3603515625
+oracle regime (not submittable),3c541165b889,trustmark,partial,0.33856201171875
+oracle regime (not submittable),498122cc7b51,trustmark,partial,0.31268310546875
+oracle regime (not submittable),ef2f9c8b4013,stegastamp,partial,0.4954833984375
+oracle regime (not submittable),2360e3e4a53f,pixelseal,full,0.38671875
+oracle regime (not submittable),bac4f0abc084,trustmark,partial,0.48931884765625
+oracle regime (not submittable),9e05ce4e6a2f,pixelseal,partial,0.494659423828125
+oracle regime (not submittable),00ba6128fc95,stegastamp,full,0.403778076171875
+oracle regime (not submittable),947e2f28769b,trustmark,full,0.47198486328125
+oracle regime (not submittable),caabb09d28af,trustmark,full,0.43414306640625
+oracle regime (not submittable),66cf89271161,pixelseal,partial,0.4036865234375
+oracle regime (not submittable),1adc44415a94,pixelseal,full,0.363006591796875
+oracle regime (not submittable),585c5e22e771,trustmark,partial,0.47991943359375
+oracle regime (not submittable),5a906f7708bd,stegastamp,full,0.488067626953125
+oracle regime (not submittable),356346ae1488,stegastamp,partial,0.47088623046875
+oracle regime (not submittable),f6ae0cd0e25c,pixelseal,partial,0.4967041015625
+oracle regime (not submittable),cba7e9ce68e1,stegastamp,full,0.483001708984375
+oracle regime (not submittable),c53b7df2c860,trustmark,full,0.407623291015625
+oracle regime (not submittable),d81cc1e7340c,pixelseal,full,0.4735107421875
+oracle regime (not submittable),1badd3a979e1,trustmark,full,0.3419189453125
+oracle regime (not submittable),7c955f9c7927,pixelseal,partial,0.497344970703125
+oracle regime (not submittable),08a9ea596e11,stegastamp,partial,0.43212890625
+oracle regime (not submittable),4d6ed8a8319b,stegastamp,partial,0.491180419921875
+oracle regime (not submittable),c1ff63b4cf9e,trustmark,partial,0.410675048828125
+oracle regime (not submittable),e8f3a939970e,stegastamp,full,0.496978759765625
+oracle regime (not submittable),8939e4777231,trustmark,partial,0.460723876953125
+oracle regime (not submittable),db9591067612,stegastamp,full,0.4959716796875
+oracle regime (not submittable),c73e30f4cffc,pixelseal,partial,0.48895263671875
+oracle regime (not submittable),7f233578c2dc,pixelseal,partial,0.442901611328125
+oracle regime (not submittable),ee92f7207a40,stegastamp,partial,0.492279052734375
+oracle regime (not submittable),42ee90cc410d,stegastamp,full,0.465972900390625
+oracle regime (not submittable),cb64072dd412,trustmark,partial,0.49456787109375
+oracle regime (not submittable),9b796dfd2a85,trustmark,full,0.495574951171875
+oracle regime (not submittable),f6c3f5f3f205,stegastamp,partial,0.490997314453125
+oracle regime (not submittable),239f921134e1,stegastamp,partial,0.483551025390625
+oracle regime (not submittable),5e802b659cfa,stegastamp,partial,0.4967041015625
+oracle regime (not submittable),5d226b56c951,stegastamp,full,0.489898681640625
+oracle regime (not submittable),cfd84aab7691,trustmark,full,0.43218994140625
+oracle regime (not submittable),bbef9fc8f0b7,stegastamp,full,0.462493896484375
+oracle regime (not submittable),3b54f848fd6d,pixelseal,partial,0.496795654296875
+oracle regime (not submittable),a89b406c6a09,stegastamp,full,0.47589111328125
+oracle regime (not submittable),87de1553db4b,trustmark,partial,0.4732666015625
+oracle regime (not submittable),c4cf42463984,stegastamp,partial,0.4656982421875
+oracle regime (not submittable),be73d9dde1fe,trustmark,partial,0.49139404296875
+oracle regime (not submittable),3b43b3b29e37,trustmark,partial,0.443756103515625
+oracle regime (not submittable),54b2afdebc89,trustmark,full,0.4801025390625
+oracle regime (not submittable),23ca79c98ba7,pixelseal,full,0.366912841796875
+oracle regime (not submittable),f85659208b99,pixelseal,partial,0.47845458984375
+oracle regime (not submittable),3348c95d7fd4,pixelseal,full,0.488616943359375
+oracle regime (not submittable),88414844d5af,pixelseal,full,0.484771728515625
+oracle regime (not submittable),83e0501a9fc2,pixelseal,full,0.373077392578125
+oracle regime (not submittable),984cf9dc6045,stegastamp,partial,0.364532470703125
+oracle regime (not submittable),2d2ec678856c,trustmark,full,0.49737548828125
+oracle regime (not submittable),4aa4d78c3968,stegastamp,partial,0.49102783203125
+oracle regime (not submittable),33cbd545e04e,pixelseal,full,0.44049072265625
+oracle regime (not submittable),494176306c5b,stegastamp,partial,0.458160400390625
+oracle regime (not submittable),72d44fae77b3,stegastamp,partial,0.442840576171875
+oracle regime (not submittable),97adb8e5e9c6,pixelseal,partial,0.49334716796875
+oracle regime (not submittable),2c4deff92cc9,pixelseal,partial,0.42218017578125
+oracle regime (not submittable),8985ffba776e,pixelseal,partial,0.496246337890625
+oracle regime (not submittable),aa26de31f2ab,trustmark,partial,0.44500732421875
+oracle regime (not submittable),ffb70b68ad69,pixelseal,partial,0.48370361328125
+oracle regime (not submittable),37e62376b989,stegastamp,partial,0.4970703125
+oracle regime (not submittable),8e744aa74502,trustmark,full,0.475799560546875
+oracle regime (not submittable),f91694d91a94,pixelseal,partial,0.40435791015625
+oracle regime (not submittable),28e8c53f7a62,pixelseal,partial,0.4892578125
+oracle regime (not submittable),38a0e613d649,stegastamp,full,0.406402587890625
+oracle regime (not submittable),afdaa8af277a,trustmark,partial,0.476043701171875
+oracle regime (not submittable),de11c61674be,stegastamp,partial,0.48822021484375
+oracle regime (not submittable),03b5ebafe6ec,pixelseal,full,0.4661865234375
+oracle regime (not submittable),6921edde828e,trustmark,partial,0.289794921875
+oracle regime (not submittable),975d03039e54,trustmark,full,0.457122802734375
+oracle regime (not submittable),6a6e6b368da2,pixelseal,partial,0.4976806640625
+oracle regime (not submittable),fec5b98cf81b,pixelseal,partial,0.49346923828125
+oracle regime (not submittable),f4322a3e03af,pixelseal,full,0.417816162109375
+oracle regime (not submittable),dda21976dc73,pixelseal,full,0.489959716796875
+oracle regime (not submittable),33cc521ed1f1,trustmark,full,0.494903564453125
+oracle regime (not submittable),d8437ca4c1ba,pixelseal,partial,0.494049072265625
+oracle regime (not submittable),63a9ff73ae18,stegastamp,full,0.458251953125
+oracle regime (not submittable),d6470fd6a771,pixelseal,full,0.497894287109375
+oracle regime (not submittable),c267b2bf0c13,pixelseal,partial,0.39581298828125
+oracle regime (not submittable),1eab0f0ceeab,stegastamp,full,0.48956298828125
+oracle regime (not submittable),5cb833c921cb,trustmark,full,0.388916015625
+oracle regime (not submittable),1bb324d410cf,pixelseal,partial,0.447021484375
+oracle regime (not submittable),795604c3aa8c,trustmark,full,0.448333740234375
+oracle regime (not submittable),bb4b0481f38e,stegastamp,full,0.476654052734375
+oracle regime (not submittable),ee1cd172f2d1,stegastamp,partial,0.491455078125
+oracle regime (not submittable),693191957a29,stegastamp,partial,0.483642578125
+oracle regime (not submittable),b07af2b318f5,trustmark,full,0.420928955078125
+oracle regime (not submittable),7aefd4b81812,pixelseal,partial,0.47216796875
+oracle regime (not submittable),e2dab72c9d37,pixelseal,partial,0.44842529296875
+oracle regime (not submittable),0b591f8d006b,trustmark,partial,0.348388671875
+oracle regime (not submittable),22ea80b90a54,pixelseal,partial,0.451324462890625
+oracle regime (not submittable),877a2f7237c4,stegastamp,full,0.31085205078125
+oracle regime (not submittable),d2d9c49d6554,stegastamp,partial,0.451019287109375
+oracle regime (not submittable),c6112bbf6604,trustmark,partial,0.4940185546875
+oracle regime (not submittable),332e7eb634ee,stegastamp,partial,0.4715576171875
+oracle regime (not submittable),f0da1b9a0c4b,trustmark,full,0.478851318359375
+oracle regime (not submittable),1afaf23400a2,trustmark,full,0.49334716796875
+oracle regime (not submittable),1dc32cbb2e04,pixelseal,partial,0.417694091796875
+oracle regime (not submittable),65660f45dd8a,trustmark,partial,0.4300537109375
+oracle regime (not submittable),6498956eca5d,stegastamp,partial,0.48931884765625
+oracle regime (not submittable),124efa616612,pixelseal,full,0.4532470703125
+oracle regime (not submittable),4571a5b76263,stegastamp,partial,0.423095703125
+oracle regime (not submittable),9026d876b7c0,pixelseal,partial,0.480865478515625
+oracle regime (not submittable),6846e6a56d8f,pixelseal,full,0.496856689453125
