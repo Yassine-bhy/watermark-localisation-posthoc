@@ -58,7 +58,7 @@ class Real(Dataset):
         for i in keep:
             m = ds.meta[i]; n = m["image_name"]
             from PIL import Image
-            self.img.append(np.asarray(Image.open(ds.dir / "images" / f"{n}.png").convert("RGB")))
+            self.img.append(np.array(Image.open(ds.dir / "images" / f"{n}.png").convert("RGB")))
             self.mask.append(gts[n] if gts else np.zeros((128, 128), np.uint8))
             self.mi.append(METHODS.index(m["method"])); self.bits.append(bits_vec(m["message"])); self.names.append(n)
 
@@ -123,7 +123,7 @@ def run(net, loader, steps, lr, log, eval_fn=None, eval_every=None):
     enc = [p for n, p in net.named_parameters() if n.startswith("enc.")]
     rest = [p for n, p in net.named_parameters() if not n.startswith("enc.")]
     opt = torch.optim.AdamW([{"params": enc, "lr": lr}, {"params": rest, "lr": lr * 5}], weight_decay=0.01)
-    sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=[lr, lr * 5], total_steps=steps, pct_start=0.05)
+    sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=[lr, lr * 5], total_steps=steps, pct_start=max(0.05, 3 / steps))
     it, t0, run_l = 0, time.time(), []
     while it < steps:
         for x, gt, mi, bits in loader:

@@ -5,9 +5,11 @@
 set -u
 cd /p/scratch/training2666/neves2/BlitzTeam/Hackathon_Watermark_Localisation_Task/benelhajyahia1
 source ../.venv/bin/activate
+if [ -z "${WM_SKIP_DRY:-}" ]; then
 echo "== dry run $(date)"
 CUDA_VISIBLE_DEVICES=0 slurm/dryrun.sh > output/${SLURM_JOB_ID}_dryrun.log 2>&1 \
   || { echo "DRY RUN FAILED, stopping to free the node"; exit 1; }
+fi
 echo "== synthetic data $(date)"
 slurm/multi.sh slurm/data.cmds
 [ "$(ls -d results/synth/*_* | wc -l)" -eq 12 ] || { echo "SYNTH INCOMPLETE"; exit 1; }
