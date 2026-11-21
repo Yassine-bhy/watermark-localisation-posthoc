@@ -1,4 +1,20 @@
-# Handoff — Watermark Localisation (task 1), BlitzTeam — state at Sat 21 Nov 2026, ~20:35
+# Handoff — Watermark Localisation (task 1), BlitzTeam
+
+## UPDATE Sat 21 Nov ~22:20 (read this first)
+Best: **CV 0.638 / public 0.6323 (id 1742, 22:12)**, `results/sub_step4e_r512.pt`. Leaderboard leader ~0.72.
+What works (all numbers 5-fold held-out CV, split full/partial in evalmaps.py output):
+- `vae_synth.py`: FLUX-VAE round trip of the synthetic COCO data -> `results/synth_flux/<method>_<k>` (6000/method).
+- `e2e.py`: decoder's own early layers + head trained end-to-end: pretrain on synth_flux, fine-tune per fold on real.
+  `--res 512` (no 512->256 shrink) is much better on partial images (TM partial AUC 0.79 -> 0.88); `--noflip`, `--res 768` under test.
+  StegaStamp backbone = dec_conv_1..7 rebuilt in torch from external/stega_feats.onnx (exact). Long pretraining (24k steps) overfits: worse.
+- `bruterect.py`: brute-force multi-scale rectangle search (raw known-message logit score) on gate-partial images;
+  `recteval.py <maptag> score` = CV with boxes. TM +0.08, PS +0.04. SS search is slow (~19 s/img, onnx2torch).
+- `make_sub2.py --pixelseal TAG[:box] ...` builds submissions (post-processing + optional boxes).
+- Best per method now: PS ens3 (e2eR512+e2eflux+probe) + boxes 0.621; TM ens2 (e2eR512+e2eflux) + boxes 0.698; SS ens2 0.639 (boxes pending).
+Dead ends tonight: stitched decoder agreement maps, DINOv2, AE reconstruction error, COCO retrieval, TrustMark remover energy.
+Filesystem: intermittent "Disk quota exceeded" (project-wide?) silently kills queued jobs (no log) -> check node_status after queueing.
+GPU rule from user: leave at least 1 GPU free for teammates (max 3 of ours).
+ — state at Sat 21 Nov 2026, ~20:35
 
 Read first: `TASK.md` (official task), `submissions.md` (all submissions), course page
 https://claude.ai/artifact/2wsamNKEVYGFWFRuW8QiXZ (source `docs/course_template.html`, rebuild with
