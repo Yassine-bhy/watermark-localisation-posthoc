@@ -1,0 +1,460 @@
+<title>Watermark Localisation Course</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky table of contents on the left (desktop), one reading column; code and tables scroll inside their own boxes.
+   Palette from the subject: the black/white of a ground-truth mask, a "watermarked" cyan and a "magma" heat accent. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #14171f; --muted: #5b6272; --line: #dde1e8;
+  --wm: #0b8aa8; --heat: #d9480f; --ok: #2b8a3e; --bad: #c92a2a; --code-bg: #0f131a; --code-ink: #e6e9ef;
+  --tok-kw: #ff8f6b; --tok-str: #9fe0a8; --tok-num: #ffd479; --tok-com: #7f8899; --tok-fn: #7cd4f0; --tok-bi: #c3a6ff;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --step--1: .86rem; --step-0: 1.02rem; --step-1: 1.25rem; --step-2: 1.6rem; --step-3: 2.3rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0c0f14; --panel: #131821; --ink: #e8ebf1; --muted: #98a1b3; --line: #252c38;
+  --wm: #3cc6e6; --heat: #ff7a3d; --ok: #69db7c; --bad: #ff8787; --code-bg: #080a0e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0c0f14; --panel: #131821; --ink: #e8ebf1; --muted: #98a1b3; --line: #252c38;
+  --wm: #3cc6e6; --heat: #ff7a3d; --ok: #69db7c; --bad: #ff8787; --code-bg: #080a0e; color-scheme: dark }
+
+html { scroll-behavior: smooth }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
+body { background: var(--bg); color: var(--ink); font: 400 var(--step-0)/1.62 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.shell { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; max-width: 74rem; margin: 0 auto; padding-block: 2.5rem 5rem }
+@media (max-width: 900px) { .shell { grid-template-columns: minmax(0, 1fr); gap: 1.5rem } nav.toc { position: static !important; max-height: none !important } }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1.5rem); align-self: start; max-height: calc(100vh - 3rem); overflow: auto;
+  font: 500 var(--step--1)/1.4 var(--f-display); border-left: 2px solid var(--line); padding-left: 1rem }
+nav.toc p { margin: 0 0 .6rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-size: .75rem }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem }
+nav.toc a { color: var(--ink); text-decoration: none }
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--wm) }
+nav.toc .n { color: var(--muted); font-family: var(--f-mono); font-size: .72rem; margin-right: .35rem }
+main { min-width: 0 }
+.measure { max-width: 44rem }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.15; margin: 0 }
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; letter-spacing: -.02em }
+h2 { font-size: var(--step-3); font-weight: 700; letter-spacing: -.015em; margin-top: 4.5rem; padding-top: 1rem; border-top: 1px solid var(--line) }
+h3 { font-size: var(--step-1); font-weight: 700; margin-top: 2.2rem }
+h2 .n { font-family: var(--f-mono); font-size: .9rem; color: var(--heat); display: block; margin-bottom: .4rem; letter-spacing: 0 }
+p, li { max-width: 44rem }
+a { color: var(--wm) }
+code:not(pre code) { font-family: var(--f-mono); font-size: .86em; background: color-mix(in srgb, var(--wm) 10%, transparent); padding: .08em .35em; border-radius: 4px }
+.eyebrow { font: 600 .78rem/1 var(--f-display); text-transform: uppercase; letter-spacing: .12em; color: var(--wm) }
+.lede { font-size: var(--step-1); color: var(--muted); max-width: 40rem }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end }
+@media (max-width: 700px) { .hero { grid-template-columns: minmax(0, 1fr) } }
+.hero canvas { width: 11rem; height: 11rem; max-width: 100%; image-rendering: pixelated; border: 1px solid var(--line) }
+.hero figcaption { font: 400 .72rem/1.3 var(--f-mono); color: var(--muted); margin-top: .35rem; max-width: 11rem }
+.status { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem }
+.chip { font: 600 .78rem/1 var(--f-display); padding: .45rem .65rem; border-radius: 999px; border: 1px solid var(--line); background: var(--panel) }
+.chip b { color: var(--heat) }
+
+.code { margin: 1.2rem 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--code-bg) }
+.code figcaption { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: .5rem .9rem;
+  font: 500 .76rem/1.3 var(--f-mono); color: var(--code-ink); background: color-mix(in srgb, var(--code-bg) 80%, #2a3242); }
+.code figcaption .path { color: var(--tok-fn) }
+.code figcaption .what { color: var(--tok-com) }
+.code pre { margin: 0; overflow-x: auto; padding: .9rem 1rem; font: 400 .8rem/1.55 var(--f-mono); color: var(--code-ink) }
+.hljs-keyword, .hljs-built_in.hljs-keyword, .hljs-literal { color: var(--tok-kw) }
+.hljs-string, .hljs-meta .hljs-string { color: var(--tok-str) }
+.hljs-number { color: var(--tok-num) }
+.hljs-comment, .hljs-meta { color: var(--tok-com); font-style: italic }
+.hljs-title, .hljs-title.function_, .hljs-title.class_ { color: var(--tok-fn) }
+.hljs-built_in, .hljs-variable, .hljs-params, .hljs-attr { color: var(--tok-bi) }
+
+.tbl { overflow-x: auto; margin: 1.1rem 0; border: 1px solid var(--line); border-radius: 8px; background: var(--panel) }
+table { border-collapse: collapse; width: 100%; font: 400 .9rem/1.4 var(--f-display); font-variant-numeric: tabular-nums }
+th, td { text-align: left; padding: .55rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted) }
+tr:last-child td { border-bottom: 0 }
+td.num { text-align: right; font-family: var(--f-mono); font-size: .85rem }
+.good { color: var(--ok); font-weight: 700 } .weak { color: var(--bad); font-weight: 700 }
+
+.tree { font: 400 .82rem/1.65 var(--f-mono); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; overflow-x: auto; white-space: pre }
+.tree .d { color: var(--wm); font-weight: 600 } .tree .c { color: var(--muted) } .tree .s { color: var(--heat) }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 1.2rem 0 }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; min-width: 0 }
+.card h4 { margin: 0 0 .4rem; font: 700 1rem/1.25 var(--f-display) }
+.card p { margin: 0; font-size: .93rem; color: var(--muted) }
+.card .tag { font: 600 .7rem/1 var(--f-mono); color: var(--heat); text-transform: uppercase; letter-spacing: .06em }
+
+.callout { border-left: 3px solid var(--heat); background: color-mix(in srgb, var(--heat) 8%, var(--panel)); padding: .85rem 1.1rem; border-radius: 0 8px 8px 0; margin: 1.3rem 0; max-width: 44rem }
+.callout.wm { border-color: var(--wm); background: color-mix(in srgb, var(--wm) 8%, var(--panel)) }
+.callout p { margin: .2rem 0 }
+
+.lab { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.4rem; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 1.1rem; margin: 1.2rem 0 }
+@media (max-width: 640px) { .lab { grid-template-columns: minmax(0, 1fr) } }
+.lab canvas { width: 12rem; height: 12rem; max-width: 100%; image-rendering: pixelated; border: 1px solid var(--line) }
+.lab .btns { display: flex; flex-wrap: wrap; gap: .45rem; margin: .4rem 0 .8rem }
+.lab button { font: 600 .8rem/1 var(--f-display); padding: .5rem .7rem; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer }
+.lab button[aria-pressed="true"] { border-color: var(--wm); color: var(--wm) }
+.lab button:focus-visible { outline: 2px solid var(--wm); outline-offset: 2px }
+.lab .score { font: 700 var(--step-2)/1 var(--f-display); font-variant-numeric: tabular-nums }
+.lab .parts { font: 400 .82rem/1.5 var(--f-mono); color: var(--muted) }
+.legend { display: flex; gap: 1rem; flex-wrap: wrap; font: 400 .75rem/1 var(--f-mono); color: var(--muted); margin-top: .5rem }
+.legend i { display: inline-block; width: .8rem; height: .8rem; vertical-align: -1px; margin-right: .3rem; border: 1px solid var(--line) }
+
+pre.mermaid { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 1rem; overflow-x: auto; font-family: var(--f-display) }
+.steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: .8rem; max-width: 44rem }
+.steps li { counter-increment: s; padding-left: 2.4rem; position: relative }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: .05rem; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  display: grid; place-items: center; font: 700 .8rem/1 var(--f-mono); background: var(--wm); color: var(--bg) }
+footer { margin-top: 5rem; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 1rem }
+</style>
+
+<div class="shell">
+<nav class="toc" aria-label="Contents">
+  <p>Contents</p>
+  <ol>
+    <li><a href="#task"><span class="n">01</span>The task</a></li>
+    <li><a href="#score"><span class="n">02</span>How the score works</a></li>
+    <li><a href="#data"><span class="n">03</span>What the data looks like</a></li>
+    <li><a href="#folders"><span class="n">04</span>Where everything lives</a></li>
+    <li><a href="#cluster"><span class="n">05</span>The cluster and Slurm</a></li>
+    <li><a href="#step0"><span class="n">06</span>Step 0: baselines</a></li>
+    <li><a href="#step1"><span class="n">07</span>Step 1: hand-made signals</a></li>
+    <li><a href="#crops"><span class="n">08</span>Decoding crops</a></li>
+    <li><a href="#step2"><span class="n">09</span>Step 2: the network</a></li>
+    <li><a href="#synth"><span class="n">10</span>Synthetic training data</a></li>
+    <li><a href="#training"><span class="n">11</span>Training and evaluation</a></li>
+    <li><a href="#worker"><span class="n">12</span>The node worker</a></li>
+    <li><a href="#decisions"><span class="n">13</span>Decisions and plan B</a></li>
+    <li><a href="#commands"><span class="n">14</span>Command cheat sheet</a></li>
+    <li><a href="#glossary"><span class="n">15</span>Glossary</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="hero">
+  <div>
+    <p class="eyebrow">BlitzTeam · European AI Championship, Paris · 21–22 Nov 2026</p>
+    <h1>Watermark Localisation Course</h1>
+    <p class="lede">Everything we built for task 1, in the order we built it: what the task asks, how the score behaves, what lives where on JURECA, every experiment with its numbers, and how the step 2 network is trained.</p>
+    <div class="status">
+      <span class="chip">Leaderboard (public): <b>0.4695</b></span>
+      <span class="chip">Best CV so far: <b>0.473</b></span>
+      <span class="chip">Leader: <b>0.66</b></span>
+      <span class="chip">Step 2 job: <b>waiting for a node</b></span>
+    </div>
+  </div>
+  <figure style="margin:0">
+    <canvas id="heroMask" width="128" height="128" aria-label="Example 128 by 128 mask: watermarked image with clean holes"></canvas>
+    <figcaption>A 128 × 128 answer grid. Cyan cells are watermarked, dark cells are clean holes.</figcaption>
+  </figure>
+</header>
+
+<h2 id="task"><span class="n">01</span>The task</h2>
+<div class="measure">
+<p>Every image (512 × 512 px) was watermarked by one of three public, <em>post-hoc</em> watermarking methods: <strong>PixelSeal</strong> (Meta, 256-bit message), <strong>TrustMark</strong> (Adobe, 100 bits) or <strong>StegaStamp</strong> (100 bits). Post-hoc means the watermark is added to an existing image by an encoder network, and a decoder network reads the message back from the whole image.</p>
+<p>After watermarking, the images were edited. For each test image we must say <strong>which parts still carry the watermark</strong>: a binary mask with 1 = watermarked and 0 = clean. The organisers give us, for every test image, the method and the exact message that was embedded. That turns out to be the most useful piece of information we have.</p>
+<p>The hard part, in the organisers' words: these methods were trained to decode one message from a whole image, not to tell you where the watermark is. The question of the task is whether we can make them localise anyway.</p>
+</div>
+<div class="cards">
+  <div class="card"><span class="tag">Outpainting</span><h4>A rectangle in a bigger picture</h4><p>The whole watermarked image is shrunk and extended into a larger generated canvas. The mask is a clean rectangle.</p></div>
+  <div class="card"><span class="tag">Object removal / alteration</span><h4>A hole in the watermark</h4><p>An object is edited out of a watermarked image. The mask is “everything except the edited object”.</p></div>
+  <div class="card"><span class="tag">Object addition</span><h4>Another hole</h4><p>Something clean is pasted on top of a watermarked image, covering the watermark there.</p></div>
+  <div class="card"><span class="tag">Transplantation</span><h4>A watermarked object</h4><p>An object cut from a watermarked image is pasted into a clean image. Only the object is watermarked.</p></div>
+</div>
+
+<h2 id="score"><span class="n">02</span>How the score works</h2>
+<div class="measure">
+<p>The answer is scored on a <strong>128 × 128 grid</strong>: one cell covers 4 × 4 pixels, and a true cell counts as watermarked if at least half of its 16 pixels are. Per image the score is the mean IoU over the two classes:</p>
+<p style="font-family:var(--f-mono);font-size:.9rem">IoU<sub>c</sub> = |P<sub>c</sub> ∩ G<sub>c</sub>| / |P<sub>c</sub> ∪ G<sub>c</sub>|, &nbsp; mIoU = (IoU<sub>0</sub> + IoU<sub>1</sub>) / 2, &nbsp; score = mean over images</p>
+<p>The consequence that drives every decision: <strong>the smaller class of each image is worth half its score.</strong> If an image is 95 % watermarked with a 5 % hole, predicting “all watermarked” gets IoU<sub>1</sub> = 0.95 but IoU<sub>0</sub> = 0, so only 0.475. Finding the hole is the other half. Try it:</p>
+</div>
+<div class="lab" id="lab">
+  <canvas id="labCanvas" width="32" height="32" aria-label="Ground truth and prediction overlay"></canvas>
+  <div>
+    <div class="btns" role="group" aria-label="Choose a prediction">
+      <button type="button" data-p="all1" aria-pressed="true">Predict all watermarked</button>
+      <button type="button" data-p="all0">Predict all clean</button>
+      <button type="button" data-p="close">Hole found, slightly too big</button>
+      <button type="button" data-p="perfect">Perfect</button>
+    </div>
+    <div class="score" id="labScore">0.000</div>
+    <div class="parts" id="labParts"></div>
+    <div class="legend"><span><i style="background:var(--wm)"></i>both say watermarked</span><span><i style="background:var(--ink)"></i>both say clean</span><span><i style="background:var(--heat)"></i>disagree</span></div>
+  </div>
+</div>
+<div class="callout"><p><strong>Rule of thumb.</strong> Any constant mask scores at most 0.5 per image. On our train set, all-0 scores 0.252 and all-1 scores 0.248, because about half the images are mostly watermarked and half mostly clean.</p></div>
+
+<h2 id="data"><span class="n">03</span>What the data looks like</h2>
+<div class="measure">
+<p>Train: 510 images (170 per method) with masks. Test: 1,020 images (340 per method), no masks. Looking at the 510 train masks (notebook <code>00_data</code>) showed two regimes of exactly equal size, marked by the <code>full_watermark</code> flag:</p>
+</div>
+<div class="tbl"><table>
+<thead><tr><th></th><th>partial (full_watermark = False)</th><th>full (full_watermark = True)</th></tr></thead>
+<tbody>
+<tr><td>Share of train</td><td>50 % for each method</td><td>50 %</td></tr>
+<tr><td>Watermarked area</td><td>median 4–8 % of the image</td><td>about 90 %</td></tr>
+<tr><td>Minority region</td><td>the watermarked part: a rectangle or an object</td><td>the clean holes: object-shaped, median 2 pieces, up to 24</td></tr>
+<tr><td>Edit types</td><td>outpainting, transplantation</td><td>object removal, object addition</td></tr>
+</tbody></table></div>
+<div class="tbl"><table>
+<thead><tr><th>Partial images, shape of the watermarked region</th><th class="num">rectangle</th><th class="num">rotated / clipped rectangle</th><th class="num">object-shaped</th></tr></thead>
+<tbody>
+<tr><td>PixelSeal</td><td class="num">45</td><td class="num">11</td><td class="num">29</td></tr>
+<tr><td>StegaStamp</td><td class="num">44</td><td class="num">9</td><td class="num">32</td></tr>
+<tr><td>TrustMark</td><td class="num">44</td><td class="num">14</td><td class="num">27</td></tr>
+</tbody></table></div>
+
+<h2 id="folders"><span class="n">04</span>Where everything lives</h2>
+<div class="measure">
+<p>The team folder belongs to the team lead (<code>neves2</code>) and is readable only by the four team members. Shared material sits at the top of the task folder and is only read. All of our own work is in <code>benelhajyahia1/</code>, which is its own git repository with one commit per step.</p>
+</div>
+<div class="tree"><span class="d">/p/scratch/training2666/neves2/BlitzTeam/Hackathon_Watermark_Localisation_Task/</span>
+├── <span class="d">.venv/</span>                    <span class="c"># shared Python 3.11 env (torch 2.5.1 + CUDA 12.4). Ask before installing anything.</span>
+├── <span class="d">wmloc/</span>                    <span class="c"># starter kit: loader, the 3 watermark wrappers, official mIoU + downsampling</span>
+├── <span class="d">models/</span>                   <span class="c"># PixelSeal (videoseal clone + checkpoint), StegaStamp ONNX; TrustMark weights live in .venv</span>
+├── <span class="d">release/</span>                  <span class="c"># the data: train/ (images, masks, masks_128.npz, metadata.json) and test/</span>
+├── submission_template.py    <span class="s"># holds the team's leaderboard token: never copy it anywhere public</span>
+└── <span class="d">benelhajyahia1/</span>           <span class="c"># our work (git)</span>
+    ├── TASK.md               <span class="c"># official task text</span>
+    ├── submissions.md        <span class="c"># every submission: file, settings, CV score, leaderboard score</span>
+    ├── data.py               <span class="c"># loading, train table, stratified 5-fold CV folds</span>
+    ├── metrics.py            <span class="c"># official mIoU tables, checked submission writer</span>
+    ├── baselines.py          <span class="c"># step 0</span>
+    ├── signals.py            <span class="c"># step 1: residual energy, agreement maps, window decoding (GPU)</span>
+    ├── signals_b.py          <span class="c"># step 1b: PixelSeal detection channel, TrustMark remover, matched filter (GPU)</span>
+    ├── diagnostics.py        <span class="c"># step 1: AUC + CV mIoU per signal, full/partial gate, submission</span>
+    ├── crops.py              <span class="c"># decode any rectangular crop with any of the 3 decoders</span>
+    ├── rectsearch.py         <span class="c"># decoder-verified rectangle refinement</span>
+    ├── synth.py              <span class="c"># step 2: synthetic edits on COCO with the kit's embedders</span>
+    ├── model.py              <span class="c"># step 2: Watermark Anything backbone + our heads</span>
+    ├── train.py              <span class="c"># step 2: pretraining, 5-fold fine-tuning, test predictions</span>
+    ├── <span class="d">notebooks/</span>            <span class="c"># make_NN_*.py builds NN_*.ipynb; each is executed and exported to .html</span>
+    ├── <span class="d">slurm/</span>                <span class="c"># job scripts; worker.sh + queue/ = the long-running node worker</span>
+    ├── <span class="d">docs/</span>                 <span class="c"># this course (built from the real files by build_course.py)</span>
+    ├── <span class="d">external/</span>             <span class="c"># not in git: Watermark Anything repo + MIT weights, COCO val2017 (5,000 images + masks)</span>
+    ├── <span class="d">results/</span>              <span class="c"># signal maps, CV predictions, synthetic shards, models, submissions (.pt)</span>
+    └── <span class="d">output/</span>               <span class="c"># Slurm logs: &lt;jobid&gt;.out / .err and per-command logs</span></div>
+
+<h2 id="cluster"><span class="n">05</span>The cluster and Slurm</h2>
+<div class="measure">
+<p>JURECA has <strong>login nodes</strong> (where we type, edit, and run small checks; they have internet) and <strong>compute nodes</strong> (A100 GPUs, no internet), which we can only use through the Slurm queue. The organisers reserved <strong>30 nodes</strong> (reservation <code>cispahack</code>) for all teams. Three facts shape how we work:</p>
+</div>
+<ol class="steps">
+  <li><strong>A job always gets a whole node of 4 GPUs</strong>, even if it asks for one (the partition allocates nodes exclusively). So every job should use all 4 GPUs.</li>
+  <li><strong>One node per person at a time</strong> (organiser rule; offenders lose GPU access). We never queue a second job while one is waiting or running.</li>
+  <li><strong>Waiting is the expensive part.</strong> Jobs waited 2–3 hours today, while most of our runs take minutes. So we test ideas cheaply first, and once we hold a node we keep it busy instead of giving it back.</li>
+</ol>
+<pre class="mermaid">
+flowchart LR
+  A["login node<br/>edit code, small checks,<br/>downloads (internet)"] -- "sbatch slurm/worker.sbatch" --> Q["Slurm queue<br/>reservation cispahack<br/>(about 2–3 h wait)"]
+  Q --> N["compute node, 4 × A100<br/>16 h, until 14:00 tomorrow"]
+  N --> P["step 2 pipeline<br/>data → pretrain → fine-tune"]
+  P --> W["worker: each GPU runs the next<br/>command from slurm/queue/"]
+  A -- "echo 'python …' > slurm/queue/x.cmd" --> W
+  W -- "results/, output/" --> A
+</pre>
+<p class="measure">Budget is not the constraint: the project has 150,000 core-hours, and our 16-hour node costs about 2,000 of them.</p>
+
+<h2 id="step0"><span class="n">06</span>Step 0: baselines and a valid submission</h2>
+<div class="measure">
+<p><strong>Why.</strong> Before any idea, we need the floor every idea must beat, and proof that our submission file is accepted.</p>
+<p><strong>How.</strong> Score constant masks on train with the official function, and write a submission through a writer that re-loads the file the same way the server does (<code>weights_only=True</code>).</p>
+</div>
+{{py:metrics.py:write_submission}}
+<div class="tbl"><table>
+<thead><tr><th>Baseline (train, official mIoU)</th><th class="num">full images</th><th class="num">partial images</th><th class="num">all</th></tr></thead>
+<tbody>
+<tr><td>all 0 (“nothing is watermarked”)</td><td class="num">0.047</td><td class="num">0.457</td><td class="num">0.252</td></tr>
+<tr><td>all 1 (“everything is watermarked”)</td><td class="num">0.453</td><td class="num">0.044</td><td class="num">0.248</td></tr>
+<tr><td>knowing the regime, constant per regime (not submittable)</td><td class="num">0.453</td><td class="num">0.457</td><td class="num good">0.455</td></tr>
+</tbody></table></div>
+<p class="measure">The last row says: if we only knew whether an image is <em>full</em> or <em>partial</em>, we would already score 0.455. Step 1 found that we can know it.</p>
+
+<h2 id="step1"><span class="n">07</span>Step 1: hand-made signals</h2>
+<div class="measure">
+<p><strong>Why.</strong> Before training anything, measure what simple maps already know. Each map is scored the same way: cell-level AUC over all train cells, and 5-fold CV mIoU of a threshold chosen on the training folds.</p>
+<p><strong>The signals.</strong> <em>Residual energy</em>: what is left after a 3 × 3 median filter, per cell. <em>Agreement map</em>: the decoders end with “average over positions, then a linear layer”, so we can apply that linear layer at every position before averaging and compare the per-position bit guesses with the known message. <em>Window decoding</em>: decode crops of 64, 128 and 256 px and score how well each matches the message.</p>
+</div>
+{{py:signals.py:agreement_map}}
+<div class="measure"><p>The agreement is exact for PixelSeal and TrustMark: averaging the per-position logits reproduces the real logits (error 2·10⁻⁶ and 9·10⁻⁸). StegaStamp ends with dense layers on the flattened map, so it has no exact per-position version.</p></div>
+<div class="tbl"><table>
+<thead><tr><th>Method</th><th class="num">full/partial gate, CV accuracy</th><th>best simple signal</th><th class="num">CV mIoU</th></tr></thead>
+<tbody>
+<tr><td>PixelSeal</td><td class="num good">97.1 %</td><td>agreement map, standardised per image</td><td class="num">0.470</td></tr>
+<tr><td>TrustMark</td><td class="num good">97.1 %</td><td>window decoding</td><td class="num">0.465</td></tr>
+<tr><td>StegaStamp</td><td class="num good">97.6 %</td><td>residual energy</td><td class="num">0.485</td></tr>
+<tr><td><strong>All</strong> (leaderboard 0.4695)</td><td></td><td></td><td class="num"><strong>0.473</strong></td></tr>
+</tbody></table></div>
+<div class="callout wm">
+<p><strong>What we learned.</strong> Decoding the whole image and comparing with the known message separates full from partial images almost perfectly (AUC 0.998–0.999). That gate alone is worth +0.20. But <em>inside</em> an image the maps barely help: standardised per image, the agreement map drops to AUC about 0.54, and small windows decode nothing (AUC about 0.5).</p>
+<p>Step 1b tried three more maps (PixelSeal's own detection channel, TrustMark's watermark remover, a matched filter that re-embeds the known message). None beat step 1. The matched filter works on images we watermark ourselves, but finds nothing on the real ones, so the real watermarks no longer exist as exact pixel patterns.</p>
+</div>
+
+<h2 id="crops"><span class="n">08</span>Decoding crops: rectangles can be found exactly</h2>
+<div class="measure">
+<p><strong>Why.</strong> The task text says outpainting shrinks the <em>whole</em> watermarked image into a bigger canvas. Every decoder resizes its input to a fixed square, so decoding exactly that rectangle should reproduce the geometry used at embedding time and give back the message.</p>
+<p><strong>The oracle test.</strong> Decode the ground-truth bounding box of each partial train image (agreement: 1 = perfect, 0 = random).</p>
+</div>
+{{py:crops.py:crop_logits}}
+<div class="tbl"><table>
+<thead><tr><th>Method</th><th class="num">exact box, rectangles</th><th class="num">exact box, rectangles ≥ 3 %</th><th class="num">box 8 px too big</th><th class="num">inner half of box</th><th class="num">object-shaped</th></tr></thead>
+<tbody>
+<tr><td>TrustMark</td><td class="num good">1.00 (84 % decode)</td><td class="num">1.00</td><td class="num">0.61</td><td class="num weak">0.00</td><td class="num weak">0.00</td></tr>
+<tr><td>StegaStamp</td><td class="num">0.76 (64 %)</td><td class="num">0.95</td><td class="num">0.23</td><td class="num weak">0.00</td><td class="num weak">0.01</td></tr>
+<tr><td>PixelSeal</td><td class="num">0.09 (33 %)</td><td class="num">0.82</td><td class="num">0.06</td><td class="num weak">0.00</td><td class="num weak">0.02</td></tr>
+</tbody></table></div>
+<div class="measure"><p>The peak is sharp, so a blind grid search over all boxes is far too large (tens of millions per image). Instead, a rough guess gets refined: sample boxes around it, keep the best, then nudge each edge with smaller and smaller steps.</p></div>
+{{py:rectsearch.py:refine}}
+<div class="tbl"><table>
+<thead><tr><th>Start 30 % off the true box</th><th class="num">decodable rectangles</th><th class="num">mIoU before → after</th><th class="num">message found</th></tr></thead>
+<tbody>
+<tr><td>TrustMark</td><td class="num">37 / 44</td><td class="num">0.75 → <span class="good">0.89</span></td><td class="num">100 %</td></tr>
+<tr><td>StegaStamp</td><td class="num">28 / 44</td><td class="num">0.76 → <span class="good">0.88</span></td><td class="num">68 %</td></tr>
+<tr><td>PixelSeal</td><td class="num">15 / 45</td><td class="num">0.74 → <span class="good">0.88</span></td><td class="num">100 %</td></tr>
+</tbody></table></div>
+<p class="measure">So the refinement becomes a post-processing step: it needs a rough guess (from the network) and it only keeps a rectangle when the crop actually decodes the message. Objects and holes never decode, so they are left to the network.</p>
+
+<h2 id="step2"><span class="n">09</span>Step 2: the network</h2>
+<div class="measure">
+<p><strong>Why a network.</strong> Holes and transplanted objects make up about three quarters of the images, and no hand-made map finds them. We need a model that looks at the pixels and learns what each watermark looks like locally.</p>
+<p><strong>Why Watermark Anything.</strong> Meta's <em>Watermark Anything</em> (ICLR 2025) was trained to say, pixel by pixel, where <em>its own</em> watermark is, including after splicing and inpainting. Its MIT-licensed extractor is a SAM ViT-B encoder (93 M parameters) with a pixel decoder. We keep the pretrained body, which already knows how to look for invisible patterns, and replace its last layer.</p>
+</div>
+<pre class="mermaid">
+flowchart LR
+  I["image 512×512"] --> R["resize to 256 or 512"] --> E["SAM ViT-B encoder<br/>(pretrained, WAM)"]
+  E --> D["pixel decoder<br/>768→192→96→48 channels, ×16 upsampling"]
+  D --> P["average-pool to 128×128"]
+  P --> H["new 1×1 layer: 459 channels"]
+  H --> DET["3 detection maps<br/>(one per method)"]
+  H --> BITS["456 bit maps<br/>PixelSeal 256 · TrustMark 100 · StegaStamp 100"]
+  BITS --> AG["agreement with the known message"]
+  DET --> M["mask = P(watermarked) > threshold"]
+</pre>
+{{py:model.py:LocNet}}
+<div class="measure"><p>Each detection channel starts from WAM's own detection weights, so on day one the network already “sees” watermark-like texture. Running at 512 px needs the position tables of the transformer stretched, which the constructor does.</p></div>
+
+<h2 id="synth"><span class="n">10</span>Synthetic training data</h2>
+<div class="measure">
+<p><strong>Why.</strong> 510 real masks are few for a 93 M-parameter model. But we have the three embedders, so we can make unlimited examples with exact labels by repeating the organisers' recipe on clean COCO photos (5,000 images with object outlines).</p>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>Kind (share)</th><th>How it is made</th><th>Label</th></tr></thead>
+<tbody>
+<tr><td>holes (50 %)</td><td>watermark the whole image, then put back clean pixels (removal) or a clean object from another photo (addition) inside 1–3 object outlines</td><td>everything except the holes</td></tr>
+<tr><td>transplant (25 %)</td><td>watermark photo A, cut out one of its objects (sometimes shifted), paste it into clean photo B</td><td>the object</td></tr>
+<tr><td>outpaint (25 %)</td><td>watermark a crop at its own size (aspect up to 16:1, TrustMark 2:1), shrink it, paste into a canvas (half the time a blurred copy of itself)</td><td>the rectangle</td></tr>
+</tbody></table></div>
+{{py:synth.py:outpaint}}
+<div class="measure"><p>Afterwards half of the images get a mild whole-image change (JPEG, resize or noise), because the real pipeline clearly re-processed the images: the matched-filter test showed exact pixel patterns are gone. Checked with the decoders before scaling up: full synthetic images decode at 0.75–1.00 agreement, the exact box of a synthetic outpainting decodes, and transplanted objects do not, just like the real data.</p></div>
+
+<h2 id="training"><span class="n">11</span>Training and evaluation</h2>
+<div class="measure">
+<p><strong>Loss.</strong> Binary cross-entropy on the detection map, plus soft Dice on <em>both</em> classes (it mirrors the metric, which also weighs both classes equally), plus a bit loss: on watermarked cells, the bit maps must predict the known message.</p>
+</div>
+{{py:train.py:loss_fn}}
+<ol class="steps">
+  <li><strong>Pretrain on synthetic data only</strong>, three variants side by side on the 4 GPUs: input 256 px, input 512 px, and 256 px with a 3× higher learning rate. Twice per epoch, each variant is scored on all 510 real train images, which it has never seen.</li>
+  <li><strong>Pick the best variant automatically</strong> by that real-train score.</li>
+  <li><strong>Fine-tune with 5-fold CV</strong>: for each fold, train on the other 4 folds of real images mixed 1:1 with synthetic ones, and predict the held-out fold. Together the 5 folds give an honest prediction for every train image.</li>
+  <li><strong>Train once on all 510</strong> and predict the 1,020 test images.</li>
+  <li><strong>Post-process</strong> (tuned in CV): threshold per method, the full/partial gate, removing tiny specks, and rectangle refinement where the crop decodes.</li>
+</ol>
+
+<h2 id="worker"><span class="n">12</span>The node worker</h2>
+<div class="measure">
+<p>Because waiting for a node costs hours, step 2 is <strong>one</strong> 16-hour job. It runs the pipeline, then stays on the node: each GPU keeps taking the next command dropped into <code>slurm/queue/</code>. New experiments start within seconds, without queueing again. The job runs from a frozen copy of its shell scripts (bash reads scripts while running them, so editing them mid-job could break it), while Python files are read fresh by every new command.</p>
+</div>
+{{whole:slurm/worker.sh}}
+{{whole:slurm/pipeline.sh}}
+{{whole:slurm/multi.sh}}
+
+<h2 id="decisions"><span class="n">13</span>Decisions and plan B</h2>
+<div class="tbl"><table>
+<thead><tr><th>When</th><th>We look at</th><th>Decision</th></tr></thead>
+<tbody>
+<tr><td>about 30–40 min after the job starts</td><td>dry-run log, 12 synthetic shards present</td><td>a failure stops the job at once; fix and resubmit</td></tr>
+<tr><td>every half epoch of pretraining</td><td>real-train mIoU per variant (510 unseen images)</td><td>if nothing beats 0.473 after one epoch, synthetic data does not transfer: switch to plan B</td></tr>
+<tr><td>after fine-tuning</td><td>5-fold CV mIoU per method and regime</td><td>submit only if it beats 0.473 by more than 0.02 (leaderboard noise)</td></tr>
+</tbody></table></div>
+<div class="cards">
+  <div class="card"><span class="tag">Plan B1</span><h4>Real images only</h4><p>Fine-tune WAM directly on the real folds with augmentation, skipping synthetic pretraining.</p></div>
+  <div class="card"><span class="tag">Plan B2</span><h4>Split the problem</h4><p>Separate models per method or per regime (holes in full images vs. partial images).</p></div>
+  <div class="card"><span class="tag">Always</span><h4>Gate + rectangles</h4><p>The 97 %-accurate gate and decoder-verified rectangles go on top of whichever model wins.</p></div>
+</div>
+
+<h2 id="commands"><span class="n">14</span>Command cheat sheet</h2>
+<div class="code"><figcaption><span class="path">your terminal</span><span class="what">connect, keep a session, watch the job</span></figcaption><pre><code class="language-bash">ssh benelhajyahia1@jrlogin10.jureca.fz-juelich.de
+tmux new -s mon                      # later: tmux attach -t mon   (detach: Ctrl-b then d)
+cd /p/scratch/training2666/neves2/BlitzTeam/Hackathon_Watermark_Localisation_Task/benelhajyahia1
+watch -n 30 'squeue -u $USER -o "%.10i %.10j %.8T %.10M %R %S"'
+
+tail -f output/&lt;jobid&gt;.out           # pipeline progress
+tail -f output/&lt;jobid&gt;_c0.log        # one GPU's live log
+ls slurm/queue slurm/queue/running   # extra commands waiting / running
+
+# add an experiment to the running node (picked up by the next free GPU)
+echo "python train.py finetune --init results/models/wam256_pre.pt --fold 0 --tag test" &gt; slurm/queue/$(date +%s)_test.cmd
+
+# release the node when everything is done (only then)
+touch slurm/queue/STOP</code></pre></div>
+
+<h2 id="glossary"><span class="n">15</span>Glossary</h2>
+<div class="tbl"><table><tbody>
+<tr><td><strong>mIoU</strong></td><td>Mean over the two classes of intersection over union, per image, then averaged over images.</td></tr>
+<tr><td><strong>Regime / gate</strong></td><td>Full (whole image watermarked, with holes) vs. partial (a watermarked part in a clean image). The gate decides it from the whole-image decode.</td></tr>
+<tr><td><strong>Agreement</strong></td><td>How well decoded bits match the known message: mean of (2m−1)·tanh(logit). 1 = perfect, 0 = random.</td></tr>
+<tr><td><strong>AUC</strong></td><td>Chance that a random watermarked cell gets a higher signal than a random clean cell. 0.5 = useless.</td></tr>
+<tr><td><strong>5-fold CV</strong></td><td>Split train into 5 parts (balanced by method and regime); fit on 4, score on the 5th; repeat. Every score we report comes from the held-out part.</td></tr>
+<tr><td><strong>Oracle test</strong></td><td>An experiment that cheats on purpose (uses the true mask) to learn whether an idea could work at all, before building it.</td></tr>
+<tr><td><strong>Slurm / reservation</strong></td><td>The cluster's job queue; <code>cispahack</code> is the set of 30 nodes reserved for the hackathon until 22 Nov, 14:00.</td></tr>
+<tr><td><strong>WAM</strong></td><td>Watermark Anything (Sander et al., ICLR 2025): a model trained to localise its own watermark pixel by pixel. We reuse its extractor.</td></tr>
+</tbody></table></div>
+
+<footer>Built from the files in <code>benelhajyahia1/</code> by <code>docs/build_course.py</code>: every code block on this page is cut from the real source. Numbers are from the notebooks <code>00_data</code> and <code>01_signals</code> and the logged experiments.</footer>
+</main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+try { hljs.highlightAll(); } catch (e) {}
+
+function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+
+// Hero: a 128x128 "full" mask with clean blob holes, drawn on the official grid.
+(function () {
+  const c = document.getElementById('heroMask'), x = c.getContext('2d');
+  function draw() {
+    x.fillStyle = css('--wm'); x.fillRect(0, 0, 128, 128);
+    x.fillStyle = css('--ink');
+    const blobs = [[38, 44, 13, 9], [86, 30, 7, 11], [70, 90, 16, 12], [24, 100, 5, 5], [104, 70, 4, 8]];
+    for (const [cx, cy, rx, ry] of blobs) { x.beginPath(); x.ellipse(cx, cy, rx, ry, 0.4, 0, Math.PI * 2); x.fill(); }
+  }
+  draw(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+
+// Score lab: 32x32 toy grid, ground truth = watermarked image with one clean hole.
+(function () {
+  const N = 32, c = document.getElementById('labCanvas'), x = c.getContext('2d');
+  const G = []; for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) G.push(((i - 12) ** 2 / 25 + (j - 19) ** 2 / 16) <= 1 ? 0 : 1);
+  const preds = {
+    all1: () => G.map(() => 1), all0: () => G.map(() => 0), perfect: () => G.slice(),
+    close: () => { const P = []; for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) P.push(((i - 12) ** 2 / 36 + (j - 19) ** 2 / 25) <= 1 ? 0 : 1); return P; }
+  };
+  let cur = 'all1';
+  function iou(P, k) { let a = 0, u = 0; for (let t = 0; t < G.length; t++) { const p = P[t] === k, g = G[t] === k; if (p && g) a++; if (p || g) u++; } return u === 0 ? 1 : a / u; }
+  function render() {
+    const P = preds[cur](), wm = css('--wm'), ink = css('--ink'), heat = css('--heat');
+    for (let t = 0; t < G.length; t++) { x.fillStyle = P[t] !== G[t] ? heat : (G[t] ? wm : ink); x.fillRect(t % N, Math.floor(t / N), 1, 1); }
+    const i0 = iou(P, 0), i1 = iou(P, 1);
+    document.getElementById('labScore').textContent = 'mIoU ' + ((i0 + i1) / 2).toFixed(3);
+    document.getElementById('labParts').textContent = 'IoU clean = ' + i0.toFixed(3) + '   IoU watermarked = ' + i1.toFixed(3) + '   (hole = ' + (100 * G.filter(v => !v).length / G.length).toFixed(0) + ' % of the image)';
+  }
+  document.querySelectorAll('#lab button').forEach(b => b.addEventListener('click', () => {
+    cur = b.dataset.p; document.querySelectorAll('#lab button').forEach(o => o.setAttribute('aria-pressed', String(o === b))); render();
+  }));
+  render(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+  new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
