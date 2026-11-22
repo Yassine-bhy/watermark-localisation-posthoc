@@ -45,17 +45,20 @@ for m in (sys.argv[1:] or data.METHODS):
     # W = old 0.2 + fine-tuned RS full maps only; *P = plus all fine-tuned RS-partial maps on gate-partial images.
     fine = [t for t in full_rs if t.startswith("e2eRSf")]; pfine = [t for t in part_rs if t.startswith("e2eRPf")]
     cands = []
-    for name, maps, w in (("ensN", full_rs, 0.333), ("ensW", fine, 0.2)):
+    big = [t for t in fine if re.match(r"e2eRSf(XXL|X32|X64)", t)]; pbig = [t for t in pfine if re.match(r"e2eRPf(PXX|P32|P64)", t)]
+    sets = [("ensN", full_rs, 0.333), ("ensW", fine, 0.2)] + ([("ensB", big, 0.2)] if len(big) >= 2 else [])
+    for name, maps, w in sets:
+        pf = pbig if (name == "ensB" and len(pbig) >= 2) else pfine
         tag = f"{name}_{m}"; run(f"python research/tests/make_ensrs.py {m} {OLD[m]} {','.join(maps)} {tag} {w} full"); cands.append(tag)
-        if pfine:
-            ptag = f"{name}P_{m}"; run(f"python research/tests/make_ensrs.py {m} {tag} {','.join(pfine)} {ptag} 0.333 partial"); cands.append(ptag)
+        if pf:
+            ptag = f"{name}P_{m}"; run(f"python research/tests/make_ensrs.py {m} {tag} {','.join(pf)} {ptag} 0.333 partial"); cands.append(ptag)
     for t in cands:
         for s in ("train", "test"):
             dst = data.RESULTS / "preds" / f"{t}_{s}.npz"
             if not dst.exists():
                 os.symlink(f"../../{OUT}/{t}_{s}.npz", dst)
     from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(4) as ex:
+    with ThreadPoolExecutor(6) as ex:
         res = dict(zip(cands, ex.map(lambda t: cv(m, t), cands)))
     best = max(res, key=res.get); box, zoom = SPEC[m]
     spec = best + (f":{box}" if box else "") + (f":zoom={zoom}" if zoom else "") + ":sam"
