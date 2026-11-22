@@ -1,5 +1,13 @@
 # Handoff — Watermark Localisation (task 1), BlitzTeam
 
+## FINAL (Sun 22 Nov 10:55): best submission = results/sub_step10.pt, public 0.7390 (id 3929, 09:58), CV 0.739, 14th of 42.
+Night summary: RS (real-domain synthetic) data at scale (8k -> 64k images per model) was the lever; extra Slurm nodes
+outside the reservation (allowed: max one node per team INSIDE the reservation) via slurm/xjob.sh + slurm/xqueue/.
+Final pipeline = integrate.py (largest-model ensembles ensH/ensHP) + make_sub3.py (gate -> boxes -> zoom -> SAM -> map).
+See submissions.md for every step with CV and public score.
+
+## DEADLINE: submissions close Sunday 12:00 (user, 06:05). Final submission by ~11:30.
+
 ## UPDATE Sun 22 Nov 00:15 (newest; read first)
 Best: **public 0.6456 (id 1832, 22:52), CV 0.653**, `results/sub_step4f_psbox.pt` (PS ens3+boxes, TM ens2+boxes, SS ens2).
 User directives tonight: focus FULL images; cheap measurable changes judged on CV; NO realistic-inpainting data / new
@@ -14,6 +22,7 @@ Findings after 22:20:
   centring the score does not help. New `seedrect.py`: boxes seeded from our map + dense 8 px search + refinement to 1 px.
 Running (2 jobs): `seedrect` (SS then PS; test split only if boxgain.py says CV +0.005) and `o128seeds`
 (e2e --out 128 --foldens; then seeds 1-4 of the 512 models, tags e2eR512s<k>, also 4-way-flip variants <tag>V).
+Disk (01:30): deleted results/synth (originals, regenerable with synth.py; synth_flux kept) and results/synth_inp (SD2-inpainted holes: measured worse on full images, 0.537 vs 0.592). Quota errors are intermittent and NOT from our folder.
 Next: when seedrect SS test exists -> make_sub2 with BRUTE file swap (make_sub2 reads results/brute_<m>_*; copy or add a
 tag option), ensemble seeds (avg of e2eR512, e2eR512s1..4) per method, submit if CV gain > 0.005.
 
