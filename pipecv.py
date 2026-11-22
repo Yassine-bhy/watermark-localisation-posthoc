@@ -4,6 +4,7 @@ else post-processed map.   SAM pick = research/tests/test_samprompt.py ('contras
     python pipecv.py --method trustmark --map ens2_trustmark [--box brute] [--sam 1]
 Reports CV overall / full / partial and the chosen thresholds per fold."""
 import argparse
+import os
 import numpy as np
 from scipy import ndimage as ndi
 import data
@@ -91,6 +92,8 @@ def run(method, tag, box, use_sam, zoom="", split_report=True):
         _, tb, tz, ta = best; ub = part & (bs > tb); uz = part & ~ub & (zr > tz); us = part & ~ub & ~uz & (sag >= ta)
         held[te] = np.where(ub, bsc, np.where(uz, zsc, np.where(us, ss, base)))[te]
         ch.append((round(float(tb), 2), round(float(tz), 3), ta, int(ub[te].sum()), int(uz[te].sum()), int(us[te].sum())))
+    if os.environ.get("PIPECV_DUMP"):
+        np.savez(os.environ["PIPECV_DUMP"], names=np.array(names), held=held, full=full, G=G)
     print(f"{method} map={tag} box={box} zoom={zoom} sam={use_sam}: CV {held.mean():.4f} (map only {base.mean():.4f}) | full {held[full].mean():.4f} | partial {held[~full].mean():.4f} (map only {base[~full].mean():.4f})")
     print("   per fold (tau_box, rho_zoom, tau_sam, #box, #zoom, #sam on held-out):", ch)
     return held.mean()

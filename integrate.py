@@ -12,7 +12,7 @@ import data
 
 OLD = {"pixelseal": "ens3_pixelseal", "trustmark": "ens2_trustmark", "stegastamp": "ens2_stegastamp"}
 SPEC = {"pixelseal": (os.environ.get("PS_BOX", "brute"), ""), "trustmark": ("brute", "e2eR512s1Z_trustmark"),
-        "stegastamp": ("rsbox", "e2eR512s1Z_stegastamp")}
+        "stegastamp": ("rsbox2", "e2eR512s1Z_stegastamp")}     # rsbox2 = boxes seeded by the large RS-partial maps (+0.009, 09:38)
 OUT = "research/out"
 
 
@@ -46,9 +46,10 @@ for m in (sys.argv[1:] or data.METHODS):
     fine = [t for t in full_rs if t.startswith("e2eRSf")]; pfine = [t for t in part_rs if t.startswith("e2eRPf")]
     cands = []
     big = [t for t in fine if re.match(r"e2eRSf(XXL|X32|X64)", t)]; pbig = [t for t in pfine if re.match(r"e2eRPf(PXX|P32|P64)", t)]
-    sets = [("ensN", full_rs, 0.333), ("ensW", fine, 0.2)] + ([("ensB", big, 0.2)] if len(big) >= 2 else [])
+    huge = [t for t in fine if re.match(r"e2eRSf(X32|X64)", t)]     # largest models only (>= 32k images), 09:35 error analysis
+    sets = [("ensN", full_rs, 0.333), ("ensW", fine, 0.2)] + ([("ensB", big, 0.2)] if len(big) >= 2 else []) + ([("ensH", huge, 0.2)] if len(huge) >= 3 else [])
     for name, maps, w in sets:
-        pf = pbig if (name == "ensB" and len(pbig) >= 2) else pfine
+        pf = pbig if (name in ("ensB", "ensH") and len(pbig) >= 2) else pfine
         tag = f"{name}_{m}"; run(f"python research/tests/make_ensrs.py {m} {OLD[m]} {','.join(maps)} {tag} {w} full"); cands.append(tag)
         if pf:
             ptag = f"{name}P_{m}"; run(f"python research/tests/make_ensrs.py {m} {tag} {','.join(pf)} {ptag} 0.333 partial"); cands.append(ptag)
@@ -58,7 +59,7 @@ for m in (sys.argv[1:] or data.METHODS):
             if not dst.exists():
                 os.symlink(f"../../{OUT}/{t}_{s}.npz", dst)
     from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(6) as ex:
+    with ThreadPoolExecutor(8) as ex:
         res = dict(zip(cands, ex.map(lambda t: cv(m, t), cands)))
     best = max(res, key=res.get); box, zoom = SPEC[m]
     spec = best + (f":{box}" if box else "") + (f":zoom={zoom}" if zoom else "") + ":sam"
