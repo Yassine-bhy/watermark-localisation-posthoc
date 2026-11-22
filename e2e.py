@@ -79,6 +79,7 @@ class Net(nn.Module):
 
 
 FLIP = True
+SCALEAUG = 0.0               # prob. of magnifying a random 128-256 px crop to 512 (shrunk-watermark scale)
 DEEP = False                 # add a deeper decoder layer (PS stage 2 / TM layer3) for context + bigger head
 OUT = 64                     # output grid (64, or 128 = the official mask grid)
 LOVASZ = False
@@ -113,6 +114,11 @@ def batches(X, M, bs, steps, rng):
         g = F.avg_pool2d(g[:, None], 128 // OUT)[:, 0] if OUT < 128 else g
         if FLIP and rng.random() < 0.5:
             x, g = x.flip(-1), g.flip(-1)
+        if SCALEAUG and rng.random() < SCALEAUG:
+            T = int(rng.integers(128, 257)) // 8 * 8; y0, x0 = rng.integers(0, 512 - T + 1, 2)
+            x = F.interpolate(x[:, :, y0:y0 + T, x0:x0 + T], size=(512, 512), mode="bilinear", align_corners=False)
+            gs = g.shape[-1]; c0, c1, cs = y0 * gs // 512, x0 * gs // 512, max(1, T * gs // 512)
+            g = F.interpolate(g[:, None, c0:c0 + cs, c1:c1 + cs], size=(gs, gs), mode="bilinear", align_corners=False)[:, 0]
         yield x, g
 
 
@@ -131,6 +137,29 @@ def train(net, X, M, steps, lr, bs, seed):
             lg = net(x)
         loss = loss_fn(lg.float(), g) + (lovasz_both(lg.float(), g) if LOVASZ else 0); opt.zero_grad(); loss.backward(); opt.step(); sch.step()
     return net.eval()
+
+
+@torch.no_grad()
+def zoom_map(net, img, z):
+    """research/tests/test_zoom.py: tiles of side 512/z, each magnified to the network input (shrunk outpainting
+    watermarks come back to the scale the network knows); tile maps averaged on the 128 grid."""
+    x = torch.from_numpy(np.ascontiguousarray(img)).cuda().permute(2, 0, 1)[None].float() / 255
+    T = int(round(512 / z / 8)) * 8; st = T // 2; pos = sorted(set(list(range(0, 512 - T + 1, st)) + [512 - T]))
+    tiles = torch.cat([x[:, :, y:y + T, xx:xx + T] for y in pos for xx in pos]); out = []
+    for i in range(0, len(tiles), 16):
+        with torch.autocast("cuda", dtype=AMP or torch.float32, enabled=AMP is not None):
+            out.append(torch.sigmoid(net(tiles[i:i + 16]).float()))
+    P = F.interpolate(torch.cat(out)[:, None], size=(T // 4, T // 4), mode="area")[:, 0].cpu().numpy()
+    acc = np.zeros((128, 128), np.float32); cnt = np.zeros((128, 128), np.float32); k = 0
+    for y in pos:
+        for xx in pos:
+            acc[y // 4:y // 4 + T // 4, xx // 4:xx // 4 + T // 4] += P[k]; cnt[y // 4:y // 4 + T // 4, xx // 4:xx // 4 + T // 4] += 1; k += 1
+    return acc / np.maximum(cnt, 1)
+
+
+@torch.no_grad()
+def predict_z(net, X, zooms=(2, 3, 4)):
+    return np.stack([np.mean([zoom_map(net, img, z) for z in zooms], 0) for img in X])
 
 
 @torch.no_grad()
@@ -164,13 +193,18 @@ def main():
     ap.add_argument("--pre_steps", type=int, default=6000); ap.add_argument("--ft_epochs", type=int, default=30)
     ap.add_argument("--noflip", type=int, default=0, help="no left-right flips (they mirror the watermark pattern)")
     ap.add_argument("--seed", type=int, default=0, help="seed offset (seed ensembles)")
+    ap.add_argument("--scaleaug", type=float, default=0.0)
+    ap.add_argument("--kinds", default="", help="synthetic kinds to keep, e.g. holes,removal,addition")
+    ap.add_argument("--realfull", type=int, default=0, help="fine-tune on real FULL images only")
+    ap.add_argument("--zoom", type=int, default=1, help="also write zoomed-tile maps <tag>Z (mean of zooms 2,3,4)")
     ap.add_argument("--deep", type=int, default=0); ap.add_argument("--out", type=int, default=64); ap.add_argument("--foldens", type=int, default=0, help="test map = mean of the 5 fold models + full model")
     ap.add_argument("--bnfreeze", type=int, default=0); ap.add_argument("--lovasz", type=int, default=0)
     ap.add_argument("--fp32", type=int, default=0, help="no bf16 autocast")
     ap.add_argument("--res", type=int, default=0, help="input resolution (default: the decoder's own, 256/245/400)")
     ap.add_argument("--lr", type=float, default=1e-3); ap.add_argument("--bs", type=int, default=16); ap.add_argument("--tag", default="e2e")
     a = ap.parse_args(); t0 = time.time(); torch.manual_seed(a.seed)
-    global FLIP, AMP, BNFREEZE, LOVASZ, OUT, DEEP
+    global FLIP, AMP, BNFREEZE, LOVASZ, OUT, DEEP, SCALEAUG
+    SCALEAUG = a.scaleaug
     OUT = a.out; DEEP = bool(a.deep)
     LOVASZ = bool(a.lovasz)
     BNFREEZE = bool(a.bnfreeze)
@@ -183,31 +217,50 @@ def main():
     tr = data.load_split("train", [a.method]); names = [tr[i]["image_name"] for i in range(len(tr))]
     Xr = [tr[i]["image"] for i in range(len(tr))]; g = data.train_masks128(); Mr = [g[n] for n in names]
     fold = data.train_table().set_index("name").loc[names].fold.values
+    isfull = data.train_table().set_index("name").loc[names].full_watermark.values
     if a.pre_steps:
         sh = sorted(p for d in a.synth.split(",") for p in (data.RESULTS / d).glob(f"{a.method}_*") if (p / "images.npy").exists() and (p / "masks.npy").exists())
-        Xs = [np.load(s / "images.npy", mmap_mode="r") for s in sh]; Ms = [np.load(s / "masks.npy") for s in sh]
-        Xs = [x for X in Xs for x in X]; Ms = [m for M in Ms for m in M]   # lists of views (lazy)
+        Xs, Ms = [], []
+        for d in sh:
+            X = np.load(d / "images.npy", mmap_mode="r"); Mm = np.load(d / "masks.npy")
+            if a.kinds:
+                if (d / "prep.npz").exists():
+                    kinds = np.load(d / "prep.npz")["kind"]
+                else:
+                    import json
+                    kinds = np.array([r["kind"] for r in json.loads((d / "meta.json").read_text())["samples"]])
+                keep = np.isin(kinds, a.kinds.split(","))
+            else:
+                keep = np.ones(len(X), bool)
+            Xs += [X[j] for j in np.nonzero(keep)[0]]; Ms += [Mm[j] for j in np.nonzero(keep)[0]]
         print("synthetic", len(Xs), flush=True)
         net = train(net, Xs, Ms, a.pre_steps, a.lr, a.bs, 100 * a.seed)
         zs = predict(net, Xr); np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}pre_{a.method}_train.npz", names=np.array(names), prob=zs.astype(np.float16))
         print("stage A done (zero-shot maps on real train saved)", f"{time.time() - t0:.0f}s", flush=True)
-    base = copy.deepcopy(net.state_dict()); held = np.zeros((len(names), 128, 128), np.float32); held_v = np.zeros_like(held)
+    base = copy.deepcopy(net.state_dict()); held = np.zeros((len(names), 128, 128), np.float32); held_v = np.zeros_like(held); held_z = np.zeros_like(held)
     te_ds = data.load_split("test", [a.method]); tn = [te_ds[i]["image_name"] for i in range(len(te_ds))]
     Xt = [te_ds[i]["image"] for i in range(len(te_ds))]; test_sum = np.zeros((len(tn), 128, 128), np.float32); n_models = 0
     ft_steps = lambda n: a.ft_epochs * n // a.bs
     for k in range(5):
-        net.load_state_dict(base); idx = np.nonzero(fold != k)[0]
+        net.load_state_dict(base); idx = np.nonzero((fold != k) & (isfull if a.realfull else True))[0]
         train(net, [Xr[i] for i in idx], [Mr[i] for i in idx], ft_steps(len(idx)), a.lr * 0.3, a.bs, 100 * a.seed + k + 1)
         te = np.nonzero(fold == k)[0]; held[te] = predict(net, [Xr[i] for i in te]); held_v[te] = predict_v(net, [Xr[i] for i in te])
+        if a.zoom:
+            held_z[te] = predict_z(net, [Xr[i] for i in te])
         if a.foldens:
             test_sum += predict(net, Xt); n_models += 1
         print("fold", k, f"{time.time() - t0:.0f}s", flush=True)
     np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}_{a.method}_train.npz", names=np.array(names), prob=held.astype(np.float16))
     np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}V_{a.method}_train.npz", names=np.array(names), prob=held_v.astype(np.float16))
-    net.load_state_dict(base); train(net, Xr, Mr, ft_steps(len(Xr)), a.lr * 0.3, a.bs, 100 * a.seed + 9)
+    if a.zoom:
+        np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}Z_{a.method}_train.npz", names=np.array(names), prob=held_z.astype(np.float16))
+    allidx = np.nonzero(isfull)[0] if a.realfull else np.arange(len(Xr))
+    net.load_state_dict(base); train(net, [Xr[i] for i in allidx], [Mr[i] for i in allidx], ft_steps(len(allidx)), a.lr * 0.3, a.bs, 100 * a.seed + 9)
     test_sum += predict(net, Xt); n_models += 1
     np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}_{a.method}_test.npz", names=np.array(tn), prob=(test_sum / n_models).astype(np.float16))
     np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}V_{a.method}_test.npz", names=np.array(tn), prob=predict_v(net, Xt).astype(np.float16))
+    if a.zoom:
+        np.savez_compressed(data.RESULTS / "preds" / f"{a.tag}Z_{a.method}_test.npz", names=np.array(tn), prob=predict_z(net, Xt).astype(np.float16))
     print("done", f"{time.time() - t0:.0f}s")
 
 

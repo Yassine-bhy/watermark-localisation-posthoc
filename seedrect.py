@@ -12,6 +12,7 @@ from bruterect import Scorer, ok, refine, iou
 from evalmaps import load_maps
 
 ap = argparse.ArgumentParser(); ap.add_argument("--method", required=True); ap.add_argument("--split", default="train"); ap.add_argument("--maps", required=True)
+ap.add_argument("--step", type=int, default=8); ap.add_argument("--scales", default="0.8,0.9,1.0,1.1,1.25"); ap.add_argument("--tag", default="seedrect")
 a = ap.parse_args(); t0 = time.time()
 sc = Scorer(a.method); lim = 2.2 if a.method == "trustmark" else 16.5
 gs = dict(zip(*[np.load(data.RESULTS / "signals" / f"{a.method}_{a.split}.npz")[k].tolist() for k in ("names", "global_soft")]))
@@ -44,10 +45,11 @@ for i, m in enumerate(ds.meta):
     cands = []
     for y0, x0, y1, x1 in seeds(M[n]):
         cy, cx, h, w = (y0 + y1) / 2, (x0 + x1) / 2, y1 - y0, x1 - x0
-        for fh in (0.8, 0.9, 1.0, 1.1, 1.25):
-            for fw in (0.8, 0.9, 1.0, 1.1, 1.25):
-                for dy in range(-32, 33, 8):
-                    for dx in range(-32, 33, 8):
+        SC = [float(v) for v in a.scales.split(",")]
+        for fh in SC:
+            for fw in SC:
+                for dy in range(-32, 33, a.step):
+                    for dx in range(-32, 33, a.step):
                         b = (int(cy + dy - h * fh / 2), int(cx + dx - w * fw / 2), int(cy + dy + h * fh / 2), int(cx + dx + w * fw / 2))
                         if ok(b, lim):
                             cands.append(b)
@@ -68,5 +70,5 @@ for i, m in enumerate(ds.meta):
         out[k].append(val)
     if len(out["names"]) % 10 == 0:
         print(len(out["names"]), f"{time.time() - t0:.0f}s", flush=True)
-np.savez(data.RESULTS / f"seedrect_{a.method}_{a.split}.npz", **{k: np.array(v) for k, v in out.items()})
+np.savez(data.RESULTS / f"{a.tag}_{a.method}_{a.split}.npz", **{k: np.array(v) for k, v in out.items()})
 print("done", len(out["names"]), f"{time.time() - t0:.0f}s")
