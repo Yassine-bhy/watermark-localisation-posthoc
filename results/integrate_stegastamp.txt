@@ -1,0 +1,1 @@
+ensHP_stegastamp 0.7653 ensHP_stegastamp:rsbox2:zoom=e2eR512s1Z_stegastamp:sam GATE_MAP=stegastamp=ensHP_stegastamp
