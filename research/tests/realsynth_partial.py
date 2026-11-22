@@ -182,7 +182,7 @@ for tag in (f"e2eR512pre_{method}", f"e2eR512_{method}", ENS, f"e2eR512s1Z_{meth
 Pens = existing(ENS)
 
 # ---- train on the synthetic images, zero-shot maps (plain and zoomed)
-net = e2e.Net(wm).cuda().float(); net.res = 512
+net = e2e.Net(wm).cuda().float(); net.res = int(os.environ.get("RS_RES", 512))
 e2e.train(net, X, L, STEPS, 1e-3, 16, 100 * SEED); del X
 zs_tr = e2e.predict(net, Xr); zs_te = e2e.predict(net, Xt)
 print(f"zero-shot (plain)        {describe(zs_tr[pi])}   {time.time() - t0:.0f}s", flush=True)

@@ -74,4 +74,9 @@ if __name__ == "__main__":
     a = ap.parse_args(); preds = {}
     for m in data.METHODS:
         preds.update(method_preds(m, getattr(a, m)))
-    print("->", metrics.write_submission(preds, data.RESULTS / f"sub_{a.name}.pt"))
+    import time
+    for t in range(20):                     # intermittent project inode quota: retry the save
+        try:
+            print("->", metrics.write_submission(preds, data.RESULTS / f"sub_{a.name}.pt")); break
+        except (RuntimeError, OSError) as e:
+            print("save failed, retry", t, e, flush=True); time.sleep(20)

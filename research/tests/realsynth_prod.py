@@ -150,7 +150,7 @@ def cv_full(Pf):
     return float(out.mean())
 
 
-net = e2e.Net(wm).cuda().float(); net.res = 512
+net = e2e.Net(wm).cuda().float(); net.res = int(os.environ.get("RS_RES", 512))
 e2e.train(net, X, L, STEPS, 1e-3, 16, 100 * SEED); del X
 zs_tr = e2e.predict(net, Xr); zs_te = e2e.predict(net, Xt); pf = zs_tr[fi]
 print(f"zero-shot: hole AUC {np.median([auc(-pf[i].ravel(), ~G[i].ravel()) for i in range(len(fi))]):.3f} | mIoU@best {max(miou_batch(pf > t, G).mean() for t in TS):.3f} | full CV {cv_full(pf):.4f}   {time.time() - t0:.0f}s", flush=True)
