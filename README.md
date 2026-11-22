@@ -27,6 +27,7 @@ Output: a 128×128 binary mask per image. Score per image = (IoU of the watermar
 | Ensembles | Largest RS models only (≥ 32k images) averaged with the earlier ensemble; per-regime post-processing | +0.01 – 0.02 |
 
 Full history of submissions with CV and public scores: [`submissions.md`](submissions.md).
+Visual summary of the final pipeline and results: [`notebooks/99_final_summary.ipynb`](notebooks/99_final_summary.ipynb) (HTML export next to it).
 Research reports: [`research/REPORT.md`](research/REPORT.md), [`research/REPORT_FULL.md`](research/REPORT_FULL.md),
 [`research/REPORT_PARTIAL.md`](research/REPORT_PARTIAL.md). Session notes: [`HANDOFF.md`](HANDOFF.md).
 

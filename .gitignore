@@ -13,3 +13,9 @@ slurm/queue/*
 results/synth_flux/
 results/aerr/
 .venv_gen/
+results/models/
+results/preds/
+results/signals/
+results/final/
+results/rsbox*
+research/out/
