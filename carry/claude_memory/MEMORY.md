@@ -1,0 +1,5 @@
+- [Hackathon rules & workflow](hackathon-rules-and-workflow.md) — anything allowed; notebooks+HTML for every step; one node per team inside the reservation; outside jobs OK; install without asking but never break .venv
+- [Task description & leaderboard](task-description-location.md) — TASK.md in subfolder; server 34.147.229.55
+- [Handoff state](handoff-state.md) — FINAL: public 0.7390 (sub_step10), 14th of 42; competition closed Sun 12:00
+- [GPU budget](gpu-sharing-rule.md) — from Sun 05:45: all 4 node GPUs + extra jobs outside reservation (slurm/xqueue), user override
+- [Standard baseline first](standard-baseline-first.md) — ML tasks: U-Net+pretrained encoder+standard aug+ensembles before custom ideas; ablate, don't theorise
