@@ -26,9 +26,12 @@ def run(cmd):
     return subprocess.run(cmd, shell=True, capture_output=True, text=True).stdout
 
 
+MAPGATE = {"trustmark", "stegastamp"}          # map-mean gate measured better for these two (06:50: +0.006 / +0.005)
+
+
 def cv(m, tag):
-    box, zoom = SPEC[m]
-    out = run(f"python pipecv.py --method {m} --map {tag} --box '{box}' --zoom '{zoom}' --sam 1 2>&1")
+    box, zoom = SPEC[m]; g = f"GATE_MAP={m}={tag} " if m in MAPGATE else ""
+    out = run(f"{g}python pipecv.py --method {m} --map {tag} --box '{box}' --zoom '{zoom}' --sam 1 2>&1")
     v = re.search(r"CV ([0-9.]+)", out)
     print("  ", out.strip().splitlines()[0] if out.strip() else out, flush=True)
     return float(v.group(1)) if v else -1
@@ -56,5 +59,5 @@ for m in (sys.argv[1:] or data.METHODS):
         res = dict(zip(cands, ex.map(lambda t: cv(m, t), cands)))
     best = max(res, key=res.get); box, zoom = SPEC[m]
     spec = best + (f":{box}" if box else "") + (f":zoom={zoom}" if zoom else "") + ":sam"
-    open(data.RESULTS / f"integrate_{m}.txt", "w").write(f"{best} {res[best]:.4f} {spec}\n")
+    open(data.RESULTS / f"integrate_{m}.txt", "w").write(f"{best} {res[best]:.4f} {spec} {'GATE_MAP=' + m + '=' + best if m in MAPGATE else ''}\n")
     print(f"   BEST {m}: {best} CV {res[best]:.4f}  spec {spec}", flush=True)
